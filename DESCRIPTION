@@ -1,18 +1,16 @@
 Package: idealista18
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Type: Package
+Title: Idealista 2018 Data Package
+Version: 0.1.1
+Author: Antonio Paez
+Maintainer: Antonio Paez <paezha@mcmaster.ca>
+Description: This data package includes datasets of property values from Idealista. 
+    The datasets are for five major cities in Spain and the year 2018.
+Depends:
+    dplyr,
+    Metrics,
+    R (>= 3.5.0)
+License: CC BY-NC-SA
 Encoding: UTF-8
 LazyData: true
-Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-URL: https://github.com/paezha/idealista18
-BugReports: https://github.com/paezha/idealista18/issues
