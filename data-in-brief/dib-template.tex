@@ -1,0 +1,668 @@
+%% This is file `dib-template.tex',
+%%
+%% Copyright 2020 Elsevier Ltd
+%%
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%%
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%%
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%%
+%% Template article for Elsevier's document class `elsarticle'
+%% with harvard style bibliographic references
+%%
+%% $Id: dib-template.tex 185 2020-08-07 09:06:08Z rishi $
+%%
+%% Use the option review to obtain double line spacing
+%\documentclass[times,review,preprint]{elsarticle}
+
+%% Use the options `final' to obtain the final layout
+%% Use longtitle option to break abstract to multiple pages if overfull.
+%% For Review pdf (With double line spacing)
+%\documentclass[times,review]{elsarticle}
+%% For abstracts longer than one page.
+%\documentclass[times,review,longtitle]{elsarticle}
+%% For Review pdf without preprint line
+%\documentclass[times,review,nopreprintline]{elsarticle}
+%% Final pdf
+\documentclass[times,final]{elsarticle}
+%%
+%\documentclass[times,final,longtitle]{elsarticle}
+%%
+
+%%
+%% Stylefile to load DIB template
+\usepackage{dib}
+\usepackage{framed,multirow}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+\usepackage{latexsym}
+
+%% For line numbers
+%\usepackage[switch]{lineno}
+
+% Following three lines are needed for this document.
+% If you are not loading colors or url, then these are
+% not required.
+\usepackage{url}
+\usepackage{xcolor}
+\definecolor{newcolor}{rgb}{.8,.349,.1}
+
+%%
+\usepackage{longtable}
+\usepackage[colorlinks]{hyperref}
+
+\journal{Data in Brief}
+
+\begin{document}
+
+\verso{Given-name Surname \textit{etal}}
+
+\begin{frontmatter}
+
+\dochead{Data Article}
+%The article title must include the word 'data' or 'dataset'.
+%Please avoid the use of acronyms and abbreviations where possible.
+%For co-submission authors, the title should be unique,
+%i.e. not the same as your research paper.
+%A maximum of 250 characters is allowed.
+\title{Article Title\tnoteref{tnote1}}%
+\tnotetext[tnote1]{This is an example for title footnote coding.}
+%Tip: here are a few examples of recent suitable article titles - these are short and clear:
+%%Adolescent Rat Social Play: Amygdalar Proteomic and Transcriptomic Data
+%%Execution Data Logs of a Supercomputer Workload Over its Extended Lifetime
+%%Calgary Preschool Magnetic Resonance Imaging (MRI) Dataset]
+
+%%Authors
+\author[1]{Given-name1 \snm{Surname1}\corref{cor1}}
+\cortext[cor1]{Corresponding author:
+  Tel.: +0-000-000-0000;
+  fax: +0-000-000-0000;}
+\author[1]{Given-name2 \snm{Surname2}\fnref{fn1}}
+\fntext[fn1]{This is author footnote for second author.}
+\author[2]{Given-name3 \snm{Surname3}}
+%% Third author's email
+\ead{author3@author.com}
+\author[2]{Given-name4 \snm{Surname4}}
+
+%%Affiliations
+\address[1]{Affiliation 1, Address, City and Postal Code, Country}
+\address[2]{Affiliation 2, Address, City and Postal Code, Country}
+
+%\received{1 May 2013}
+%\finalform{10 May 2013}
+%\accepted{13 May 2013}
+%\availableonline{15 May 2013}
+%\communicated{S. Sarkar}
+
+
+\begin{abstract}
+%%%%
+Please Type your abstract here.
+
+\noindent[The Abstract should describe the data collection process, the analysis
+performed, the data, and their reuse potential. It should not provide
+conclusions or interpretive insights. If your article is being
+submitted via another Elsevier journal as a co-submission, please cite
+this research article in the abstract.
+
+\noindent\textbf{Tip:} do not use words such as
+`study', `results', and `conclusions' because a data article should be
+describing your data only.  Min 100 words - Max 500 words.]
+%%%%
+\end{abstract}
+
+\begin{keyword}
+%% Keywords
+%[Include 4-8 keywords (or phrases) to facilitate others finding your
+%article online.
+%\noindent\textbf{Tip:} Try Google Scholar to find which terms are most common in your
+%field. In biomedical fields, MeSH terms are a good 'common vocabulary'
+%to draw from]
+\KWD Keyword1\sep Keyword2\sep Keyword3
+\end{keyword}
+
+\end{frontmatter}
+
+%% For linenumbers
+%\linenumbers
+\section*{Data in Brief Article Template}
+%% main text
+\noindent \href{https://www.journals.elsevier.com/data-in-brief/about-data-in-brief/data-in-brief-faq}%
+{\textit{Data in Brief}}
+is an open access journal that publishes data articles.
+Please note:
+\begin{itemize}
+\item A data article is different to a research article, so it is
+important to \textbf{use the template} below to prepare your manuscript for Data
+in Brief.
+\item A data article should \textbf{simply describe data} without providing
+conclusions or interpretive insights.
+\item Before you start writing your data article you should read the
+guidance on
+\href{https://www.journals.elsevier.com/data-in-brief/policies-and-guidelines/what-data-are-suitable-for-data-in-brief}%
+{What Data are Suitable for Data in Brief}.
+\item It is mandatory that Data in Brief authors share their research data:
+\begin{itemize}
+\item If you have \textbf{raw data} (also referred to as primary, source or
+unprocessed data) relating to any charts, graphs or figures in the
+manuscript, these data must be publicly available, either with the data
+article (e.g. as a supplementary file) or hosted on a trusted data
+repository.
+
+\item If you are describing \textbf{secondary data} you are required to provide
+a list of the primary data sources used \underline{and} to make the full secondary
+dataset publicly available, either with the data article (e.g. as a
+supplementary file) or hosted on a trusted data repository.
+
+\item Although we allow supplementary files, it is preferred that
+authors deposit their data in a trusted data repository ($>$70\% of
+Data in Brief authors now do this). See our?
+\href{https://www.elsevier.com/authors/author-resources/research-data/data-base-linking#repositories}%
+{list of supported data repositories}.
+
+\item For data that, for ethical reasons, require access controls a
+mechanism must be provided so that our Editors and reviewers may access
+these data without revealing their identities to authors (more
+information is provided in the template \hyperlink{target1}{below}).
+\end{itemize}
+\end{itemize}
+
+Have you any questions? See a list of frequently asked questions
+\href{https://www.journals.elsevier.com/data-in-brief/about-data-in-brief/data-in-brief-faq}{here},
+or email our Managing Editors:
+\href{mailto:dib-me@elsevier.com}{dib-me@elsevier.com}. This
+step-by-step?
+\href{https://www.journals.elsevier.com/data-in-brief/about-data-in-brief/how-to-submit-your-research-data-article-data-in-brief}%
+{video}?guide will also tell you how to complete the
+template correctly to maximise your chances of acceptance.
+
+\vskip6pt
+\noindent Authors can submit to Data in Brief in two ways:
+
+\begin{enumerate}
+\item[\bf(1)] \textbf{If you are submitting your data article directly to Data in
+Brief, you can now skip the next section and complete the}
+\hyperlink{target2}{\textbf{Data Article template}}.
+
+\item[\bf(2)] \textbf{If you are submitting your data article to Data in Brief via
+another Elsevier journal as a co-submission (i.e. with a Research
+Article), please read the} \hyperlink{target3}{\textbf{Co-submission Instructions}}
+\textbf{on the next page
+before completing the} \hyperlink{target2}{\textbf{Data Article template}}.
+
+\end{enumerate}
+
+\hypertarget{target3}{}
+\section*{Co-submission Instructions}
+A co-submission to~\textit{Data in Brief}~is done at the same time that you
+submit (or resubmit, after revision) a research article to another
+Elsevier journal. For co-submissions you therefore submit your
+\textit{Data in Brief} data article manuscript via the other journal's
+submission system and \underline{not} directly to
+\textit{Data in Brief} itself.
+
+\vskip6pt\noindent
+The other Elsevier journal's Guide for Authors will state if a
+co-submission is offered by that journal, and any revision letter/email
+you receive from a participating journal will contain an offer to
+submit a data article to \textit{Data in Brief}.
+
+\vskip6pt\noindent
+\textbf{To complete a co-submission you will need to zip your
+~\textit{Data in Brief}~
+manuscript file and all other files relevant to the
+~\textit{Data in Brief}~
+submission (including any supplementary data files) into a single .zip
+file, and upload this as a "Data in Brief"-labelled item in the other
+journal's submission system when you submit manuscript to that journal.
+The .zip file will then be automatically transferred to
+~\textit{Data in Brief}~
+when your research article is accepted for publication in the other
+journal, and when published your original research article and data
+article will link to each other on ScienceDirect.}
+
+\vskip6pt\noindent
+\textbf{As~\textit{Data in Brief}~is open access, a moderate article publication charge
+(APC) fee is payable on publication. For more information about the
+APC, please see
+\href{https://www.elsevier.com/journals/data-in-brief/2352-3409/open-access-journal}%
+{here}.}
+
+\vskip6pt\noindent
+\textit{Data in Brief} \underline{requires} that authors share their research data. This can
+be done by submitting it with the data article (e.g. as a supplementary
+file) or by hosting on a trusted data repository (the latter is
+preferred). Failure to do this will delay publication of your
+co-submission.
+
+\vskip6pt\noindent
+\textbf{If you have any questions, please contact:
+\href{mailto:DIB@Elsevier.com}{DIB@Elsevier.com}}
+
+\vskip6pt\noindent
+Please note, authors should not republish the same data presented in
+their original research article in a \textit{Data in Brief} co-submission, as
+this could constitute duplicate publication; however, \textit{Data in Brief}
+welcomes the publication of any data article that fulfils one or more
+of the following criteria:
+
+\checkmark A description of the supplementary data that would
+previously have been hosted as supplementary electronic files alongside
+your original research article.*
+
+\checkmark A description of the full dataset or additional information
+that will aid reuse of the data.
+
+\checkmark A detailed description of the raw data relating to the
+charts, graphs or figures in your companion research article, if making
+these data available will substantially enhance reproducibility and/or
+reanalysis of the data.
+
+\checkmark Any negative datasets or data from intermediate experiments
+related to your research.
+
+\textsf{X} Review articles or supplemental files from a review article
+are not considered original data and are typically unsuitable for Data
+in Brief.
+
+\vskip12pt\noindent
+* If describing supplementary data that you previously planned to
+publish as supplem
+entary electronic files hosted alongside the original
+research article, it is requested that you either\break
+deposit these in a
+repository (preferred) or submit these to \textit{Data in Brief} alongside the
+data article. \textbf{They should not be published as supplementary files with
+your research article in the other journal}.
+
+\clearpage
+\hypertarget{target2}{}
+\section*{Data Article template}
+\noindent
+Please fill in the template below. All sections are mandatory unless
+otherwise indicated. Please read all instructions in [square brackets]
+carefully and ensure that you delete all instruction text (including
+the questions) from the template before submitting your article.
+
+\vskip6pt\noindent
+Reminder: A data article simply describes data and should not provide
+conclusions or interpretive insights, so \textbf{avoid} using words such as
+`study', `results' and `conclusions'.
+
+\vskip6pt\noindent
+We would welcome feedback on this template and how it might be
+improved. To provide anonymous feedback via a very short survey, please
+click \href{https://forms.office.com/Pages/ResponsePage.aspx?id=P-50kiWUCUGif5-xXBBnXTeXkbO343VFrbpYVBvxdZtUM05UVjIwM0U4WlRKUldCOTNMRUQwOVRHTy4u}%
+{here}.
+
+\vskip6pt\noindent
+{\small\textbf{\textit{Please delete this line and everything above it before submitting your
+article, in addition to anything in [square brackets] below, including
+in the Specifications Table}}\vskip6pt\hrule\vskip12pt}
+
+{\fontsize{7.5pt}{9pt}\selectfont
+%%%
+\noindent\textbf{Specifications Table}
+
+Every section of this table is mandatory.
+Please enter information in the right-hand column and remove all the instructions
+\begin{longtable}{|p{33mm}|p{94mm}|}
+\hline
+\endhead
+\hline
+\endfoot
+Subject                & [Please select one CATEGORY for your manuscript from the list
+					               available at:\break
+                         \href{https://www.elsevier.com/__data/assets/excel_doc/0012/736977/%
+                               DIB-categories.xlsx}{DIB categories}.]\\
+\hline
+Specific subject area  & [Briefly describe the narrower subject area. Max 150 characters]\\
+\hline
+Type of data           & [List the type(s) of data this article describes.
+                         Simply delete from this list as appropriate:]
+                         Table\newline
+                         Image\newline
+                         Chart\newline
+                         Graph\newline
+                         Figure\newline
+                         [Any other type not listed- please specify]\\
+%\clearpage
+How data were acquired & [State how the data were acquired: E.g. Microscope,
+                         SEM, NMR, mass spectrometry, survey* etc.\newline
+                         Instruments: E.g. hardware, software, program\newline
+                         Make and model and of the instruments used:\newline
+
+                         {\fontsize{7pt}{8pt}\selectfont
+                         *\,if you conducted a survey you must submit a copy of the
+                         survey(s) used (either provide these as supplementary material
+                         file or provide a URL link to the survey
+                         in this section of the table).
+                         If the survey is not written in English,
+                         please provide an English-language translation.}]\\
+\hline
+Data format            & [List your data format(s). Note, unless you are describing secondary data,
+                         all raw data must be provided (either with this data article or linked to a repository).
+                         Simply delete from this list as appropriate:]\newline
+                         Raw\newline
+                         Analyzed\newline
+                         Filtered\newline
+                         [Any other format not listed- please specify]\\
+\hline
+Parameters for
+data\newline
+collection             & [Provide a brief description of which conditions were considered
+                         for data collection. Max 400 characters]\\
+
+\hline
+Description of
+data\newline
+collection             & [Provide a brief description of how these data were collected.
+                         Max 600 characters]\\
+\hline
+Data source location   & [Fill in the information available, and delete from this list as appropriate:\newline
+
+                         Institution:\newline
+                         City/Town/Region:\newline
+                         Country:\newline
+                         Latitude and longitude (and GPS coordinates, if possible) for collected samples/data:\newline
+
+
+                         If you are describing secondary data, you are required to provide a list of
+                         the primary data sources used in the section.\newline
+
+                         Primary data sources:  ]\\
+\hline
+\hypertarget{target1}
+{Data accessibility}   & [State here if the data are either hosted `With the article' or on a public repository.
+                         In the interests of openly sharing data we recommend hosting your data in a
+                         trusted repository ($>$70\% of Data in Brief authors now use a data repository).
+                         See our \href{https://www.elsevier.com/authors/author-resources/research-data/data-base-linking#repositories}{list of supported data repositories}.
+                         We suggest \href{https://data.mendeley.com/}{Mendeley Data} if you do not have a trusted repository.\newline
+
+                         Please delete or complete as appropriate, either:]\newline
+
+                         With the article\newline
+
+                         [Or, if in a public repository:]\newline
+
+                         Repository name: [Name repository]\newline
+                         Data identification number: [provide number]\newline
+                         Direct URL to data: [e.g. https://www.data.edu.com - please note,\newline
+                         this URL should be working at the time of submission]\newline
+
+                         [\textbf{In addition, for data with access controls only:} For data that,
+                         for ethical reasons (i.e. human patient data),
+                         require access controls please describe
+                         how readers can request access these data and provide a link to any
+                         Data Use Agreement (DUA) or upload a copy as a supplementary file.]\newline
+
+                         Instructions for accessing these data:\newline
+
+                         [\textit{Important: if your data have access controls a mechanism must also be
+                         provided so that our Editors and reviewers may access these data
+                         without revealing their identities to authors, please include
+                         these instructions with your submission. Please contact the Managing
+                         Editors (DIB-ME@DIB.com) if you have any questions.}]\\
+\hline
+Related
+research\newline
+article                & [If your data article is related to a research article - \textbf{especially
+                         if it is a co-submission} - please cite your associated research
+                         article here. Authors should only list \textbf{one article}.\newline
+
+                         Authors' names\newline
+                         Title\newline
+                         Journal\newline
+                         DOI: \textbf{OR} for co-submission manuscripts `In Press'\newline
+
+                         \textbf{For example, for a direct submission:}\newline
+
+                         J. van der Geer, J.A.J. Hanraads, R.A. Lupton, The art of writing a scientific article,
+                         J. Sci. Commun. 163 (2010) 51-59. https://doi.org/10.1016/j.Sc.2010.00372\newline
+
+                         \textbf{Or, for a co-submission (when your related research article has not yet published):}\newline
+
+                         J. van der Geer, J.A.J. Hanraads, R.A. Lupton, The art of writing a
+                         scientific article, J. Sci. Commun. In Press.\newline
+
+                         \textbf{Or, if your data article is not directly related to a research article,
+                         please delete this last row of the table.}]
+\end{longtable}
+}
+%%%
+
+\section*{Value of the Data}
+
+[Provide 3-6 bullet points explaining why these data are of value to the scientific community.
+Bullet points 1-3 must specifically answer the questions next to the bullet point,
+but do not include the question itself in your answer. You may
+provide up to three additional bullet points to outline the value of these data.
+Please keep points brief, with ideally no more than 400 characters for each point.]
+
+\begin{itemize}
+\itemsep=0pt
+\parsep=0pt
+\item Your first bullet point must explain why these data are useful or important?
+\item Your second bullet point must explain who can benefit from these data?
+\item Your third point bullet must explain how these data might be used/reused for
+further insights and/or development of experiments.
+\item In the next three points you may like to explain how these data could
+potentially make an impact on society and highlight any other additional value of these data.
+\item ....
+\end{itemize}
+
+\section*{Data Description}
+
+\noindent [Individually describe each data file (i.e. figure 1, figure 2, table
+1, dataset, raw data, supplementary data, etc.) that are included in
+this article. Please make sure you refer to every data file and provide
+a clear description for each - do not simply list them. No insight,
+interpretation, background or conclusions should be included in this
+section. Please include legends with any tables, figures or graphs.
+
+\noindent\textbf{Tip:} do not forget to describe any supplementary data files.]
+
+\section*{Experimental Design, Materials and Methods}
+
+\noindent [Offer a complete description of the experimental design and methods
+used to acquire these data. Please provide any programs or code files
+used for filtering and analyzing these data. It is very important that
+this section is as comprehensive as possible. If you are submitting via
+another Elsevier journal (a co-submission) you are encouraged to
+provide more detail than in your accompanying research article. There
+is no character limit for this section; however, no insight,
+interpretation, or background should be included in this section.
+
+\noindent\textbf{Tip:} do not describe your data (figures, tables, etc.) in this section,
+do this in the Data Description section above.]
+
+\section*{Ethics Statement}
+\noindent [Please refer to the journal's
+\href{https://www.elsevier.com/journals/data-in-brief/2352-3409/guide-for-authors}{Guide for Authors}
+for more information on
+the ethical requirements for publication in Data in Brief. In addition
+to these requirements:
+
+\noindent\textbf{If the work involved the use of human subjects:}
+please include a statement here confirming that informed consent was
+obtained for experimentation with human subjects;
+
+\noindent\textbf{If the work involved animal experiments:} please
+include a statement confirming that all experiments comply with
+the \href{https://www.nc3rs.org.uk/arrive-guidelines}{ARRIVE\ guidelines} and were be carried out in accordance with the
+U.K. Animals (Scientific Procedures) Act, 1986 and associated
+guidelines, \href{https://ec.europa.eu/environment/chemicals/lab_animals/legislation_en.htm}{EU Directive 2010/63/EU for animal experiments}, or the
+National Institutes of Health guide for the care and use of Laboratory
+animals (NIH Publications No. 8023, revised 1978)]
+
+\section*{Acknowledgments}
+Acknowledgments should be inserted at the end of the paper, before the
+references, not as a footnote to the title. Use the unnumbered
+Acknowledgements Head style for the Acknowledgments heading.
+
+\section*{Declaration of Competing Interest}
+
+\noindent [All authors are required to report the following information:
+\begin{enumerate}
+\item[(1)] All third-party financial support for the work this article;
+
+\item[(2)] All financial relationships with any entity that could be
+viewed as relevant to data described in this manuscript;
+
+\item[(3)] All sources of revenue with relevance to this work where
+payments have been made to authors, or their institutions on their
+behalf, within the 36 months prior to submission;
+
+\item[(4)] Any other interactions with the sponsor, outside of the
+submitted work;
+
+\item[(5)] Any relevant patents or copyrights (planned, pending or
+issued);
+
+\item[(6)] Any other relationships or affiliations that may be
+perceived by readers to have influenced, or give the appearance of
+potentially influencing, what has been written in this article.
+\end{enumerate}
+As a general guideline, it is usually better to
+disclose a relationship than not. This information will be acknowledged
+at publication in the manuscript. If there is no known competing
+financial interests or personal relationships that could have appeared
+to influence the work reported in this paper, please include this
+statement.]
+
+\vskip12pt\noindent
+The authors declare that they have no known competing
+financial interests or personal relationships which have, or could be
+perceived to have, influenced the work reported in this article.
+
+\vskip12pt\noindent
+[If there are financial interests/personal relationships which may be
+considered as potential competing interests, please declare them here.]
+
+\subsection*{Note}
+\label{sec1}
+Any instructions relevant to the \verb+elsarticle.cls+ are applicable
+here as well. See the online instruction available on:
+\makeatletter
+\if@twocolumn
+\begin{verbatim}
+ http://support.river-valley.com/wiki/
+ index.php?title=Elsarticle.cls
+\end{verbatim}
+\else
+\begin{verbatim}
+ http://support.river-valley.com/wiki/index.php?title=Elsarticle.cls
+\end{verbatim}
+\fi
+
+\section*{References}
+
+\noindent [References are limited (approx. 15) and excessive self-citation is not
+allowed. \textbf{If your data article is co-submitted via another Elsevier
+journal, please cite your associated research article here.}
+
+\noindent\textbf{Reference style:}
+Text:?Indicate references by number(s) in square brackets in line with
+the text. The actual authors can be referred to, but the reference
+number(s) must always be given.?
+
+\noindent Example: '..... as demonstrated [3,6]. Barnaby and Jones [8] obtained a different result ....'?
+
+\noindent [Use \verb+\cite+ command to cite a reference list item in text.
+
+\noindent These are examples for reference citations \cite{1}.
+\cite{2}.
+\cite{4}.]
+
+\subsection*{Reference list using Bib\TeX database file}
+\noindent [If Bib\TeX database file is used for reference data please use
+\begin{verbatim}
+\bibliographystyle{model1-num-names}
+\bibliography{<BibTeX file name>}
+\end{verbatim}
+and use bibtex command to generate list of references.]
+
+%% Numbered
+%%If
+\bibliographystyle{model1-num-names}
+\bibliography{refs}
+
+\subsection*{Reference list using bibliography envrironment}
+
+\noindent [List:?Number the references (numbers in square brackets) in
+the list in the order in which they appear in the text.?
+
+\noindent Examples:?
+
+{\small
+\begin{verbatim}
+\begin{thebibliography}{0}
+\bibitem{1} J. van der Geer, J.A.J. Hanraads, R.A. Lupton, The art of
+writing a scientific article, J. Sci. Commun. 163 (2010) 51-59.
+https://doi.org/10.1016/j.Sc.2010.00372.
+\bibitem{2} Van der Geer, J., Hanraads, J.A.J., Lupton, R.A., 2018. The
+art of writing a scientific article. Heliyon. 19, e00205.
+https://doi.org/10.1016/j.heliyon.2018.e00205.
+\bibitem{3} W. Strunk Jr., E.B. White, The Elements of Style, fourth ed.,
+Longman, New York, 2000.?
+\bibitem{4} G.R. Mettam, L.B. Adams, How to prepare an electronic
+version of your article, in: B.S. Jones, R.Z. Smith (Eds.),
+Introduction to the Electronic Age, E-Publishing Inc., New York, 2009,
+pp. 281-304.
+\bibitem{5} Cancer Research UK, Cancer statistics reports for the UK.
+http://www.cancerresearchuk.org/aboutcancer/statistics/cancerstatsreport/,
+2003 (accessed 13 March 2003).
+\bibitem{6} [dataset] M. Oguro, S. Imahiro, S. Saito, T. Nakashizuka,
+Mortality data for Japanese oak wilt disease and surrounding forest
+compositions, Mendeley Data, v1, 2015.
+https://doi.org/10.17632/xwj98nb39r.1.
+\end{thebibliography}
+\end{verbatim}
+}
+
+\noindent Example:]
+\vspace*{-12pt}
+
+\begin{thebibliography}{0}
+\item[] \textbf{Reference to a journal publication:}
+\bibitem{1} J. van der Geer, J.A.J. Hanraads, R.A. Lupton, The art of
+writing a scientific article, J. Sci. Commun. 163 (2010) 51-59.
+https://doi.org/10.1016/j.Sc.2010.00372.
+
+\textbf{Reference to a journal publication with an article number:}
+\bibitem{2} Van der Geer, J., Hanraads, J.A.J., Lupton, R.A., 2018. The
+art of writing a scientific article. Heliyon. 19, e00205.
+https://doi.org/10.1016/j.heliyon.2018.e00205.
+
+\textbf{Reference to a book:}
+\bibitem{3} W. Strunk Jr., E.B. White, The Elements of Style, fourth ed., Longman, New York, 2000.?
+
+\textbf{Reference to a chapter in an edited book:}
+\bibitem{4} G.R. Mettam, L.B. Adams, How to prepare an electronic
+version of your article, in: B.S. Jones, R.Z. Smith (Eds.),
+Introduction to the Electronic Age, E-Publishing Inc., New York, 2009,
+pp. 281-304.
+
+\textbf{Reference to a website:}
+\bibitem{5} Cancer Research UK, Cancer statistics reports for the UK.\newline
+http://www.cancerresearchuk.org/aboutcancer/statistics/cancerstatsreport/, 2003 (accessed 13 March 2003).
+
+\textbf{Reference to a dataset:}
+\bibitem{6} [dataset] M. Oguro, S. Imahiro, S. Saito, T. Nakashizuka,
+Mortality data for Japanese oak wilt disease and surrounding forest
+compositions, Mendeley Data, v1, 2015.
+https://doi.org/10.17632/xwj98nb39r.1.]
+\end{thebibliography}
+
+\end{document}
+
+%%
