@@ -3,11 +3,15 @@
 \docType{package}
 \name{idealista18}
 \alias{idealista18}
-\title{idealista18: A data package with property values in Spain from the Idealista data base.}
+\title{idealista18: A data package with real estate litings in Spain from the idealista data base.}
 \description{
-This package is an exercise in package creation using
-R studio. The package includes a sample function and
-a sample dataset with their respective documentation.
+This package contains four quarterly extractions with the set of apartments listed on idealista during 2018,
+the package contains three data items for the three spanish cities of Madrid, Barcelona and Valencia:
+}
+\details{
+* Polygons for each city neighborhood
+* Listing ads (referred also as assets)
+* Points of Interest for each city
 }
 \references{
 \url{https://github.com/paezha/Reproducible-Research-Workflow}

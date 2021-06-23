@@ -9,7 +9,6 @@ An object of class `sf` (inherits from `data.frame`) with 73 rows and 4 variable
 \describe{
   \item{LOCATIONID}{ID of the neighborhood}
   \item{LOCATIONNAME}{Name of the neighborhood)}
-  \item{ZONELEVELID}{ID of the zone (the city??)}
   \item{geometry}{geometry of simple features}
   }
 
