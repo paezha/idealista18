@@ -1,0 +1,37 @@
+\begin{thebibliography}{3}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Article
+\bibitem[{Newman and Girvan(2004)}]{1}
+\bibinfo{author}{M.~E.~J. Newman}, \bibinfo{author}{M.~Girvan},
+\newblock \bibinfo{title}{Finding and evaluating community structure in
+  networks},
+\newblock \bibinfo{journal}{Phys. Rev. E.} \bibinfo{volume}{69}
+  (\bibinfo{year}{2004}) \bibinfo{pages}{026113}.
+%Type = Article
+\bibitem[{Vehlow et~al.(2013)Vehlow, Reinhardt, and Weiskopf}]{2}
+\bibinfo{author}{C.~Vehlow}, \bibinfo{author}{T.~Reinhardt},
+  \bibinfo{author}{D.~Weiskopf},
+\newblock \bibinfo{title}{Visualizing fuzzy overlapping communities in
+  networks},
+\newblock \bibinfo{journal}{IEEE Trans. Vis. Comput. Graph.}
+  \bibinfo{volume}{19} (\bibinfo{year}{2013}) \bibinfo{pages}{2486--2495}.
+%Type = Inproceedings
+\bibitem[{Hullermeier and Rifqi(2009)}]{4}
+\bibinfo{author}{E.~Hullermeier}, \bibinfo{author}{M.~Rifqi},
+\newblock \bibinfo{title}{A fuzzy variant of the rand index for comparing
+  clustering structures},
+\newblock in: \bibinfo{booktitle}{in Proc. IFSA/EUSFLAT Conf.},
+  \bibinfo{year}{2009}, pp. \bibinfo{pages}{1294--1298}.
+
+\end{thebibliography}
