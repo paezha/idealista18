@@ -28,20 +28,20 @@ An object of class `sf` (inherits from `data.frame`) with 156,016 rows and 57 va
   \item{HASEASTORIENTATION}{Dummy variable for orientation (takes 1 if orientation is East in the Ad, 0 otherwise)  - Important note: orientation features are not orthogonal features, a house oriented to the north can be also oriented to the east}
   \item{HASWESTORIENTATION}{Dummy variable for orientation (takes 1 if orientation is West in the Ad, 0 otherwise)  - Important note: orientation features are not orthogonal features, a house oriented to the north can be also oriented to the east}
   \item{HASBOXROOM}{Dummy variable for boxroom (takes 1 if boxroom is included in the Ad, 0 otherwise)}
-  \item{HASWARDROBE}{Dummy variable for wardrobe (takes 1 if wardrobe is included in the Ad, 0 otherwise)}
+  \item{HASWARDROBE}{Dummy variable for wardrobe (takes 1 whether the property has wardrobes, 0 otherwise}
   \item{HASSWIMMINGPOOL}{Dummy variable for swimming pool (takes 1 if swimming pool is included in the Ad, 0 otherwise)}
   \item{HASDOORMAN}{Dummy variable for doorman (takes 1 if there is a doorman in the building, 0 otherwise)}
   \item{HASGARDEN}{Dummy variable for garden (takes 1 if there is a garden in the building, 0 otherwise)}
-  \item{ISDUPLEX}{Dummy variable for duplex (takes 1 if it is a duplex, 0 otherwise)}
-  \item{ISSTUDIO}{Dummy variable for studio (takes 1 if it is a studio, 0 otherwise)}
+  \item{ISDUPLEX}{Dummy variable for duplex (takes 1 if the apartment has two or more floors, 0 otherwise)}
+  \item{ISSTUDIO}{Dummy variable for bachelor apartment (referred as studio in Spain) (takes 1 if it is a bachelor apartment, 0 otherwise)}
   \item{ISINTOPFLOOR}{Dummy variable indicating if the apartment is located in the top floor (takes 1 on the top floor 0 otherwise)}
   \item{CONSTRUCTIONYEAR}{Construction year (source: advertiser)}
-  \item{FLOORCLEAN}{Indicates flat floornumber starting from the 0 value for groung floor (source: advertiser)}
+  \item{FLOORCLEAN}{Indicates flat floornumber starting from the 0 value for ground floor (source: advertiser)}
   \item{FLATLOCATIONID}{Indicates the kind of views the flat has (1 - external, 2 - internal)}
   \item{CADCONSTRUCTIONYEAR}{Construction year as of cadastral source (source: cadastre), note this figure can differ from the one given by the advertiser}
   \item{CADMAXBUILDINGFLOOR}{Max building floor (source: cadastre)}
   \item{CADDWELLINGCOUNT}{Dwelling count in the building (source: cadastre)}
-  \item{CADASTRALQUALITYID}{Cadastral quality (source: cadastre)}
+  \item{CADASTRALQUALITYID}{Cadastral quality (source: cadastre). 0 Best - 10 Worst}
   \item{BUILTTYPEID_1}{Dummy value for flat condition: 1 new development 0 otherwise (source: advertiser))}
   \item{BUILTTYPEID_2}{Dummy value for flat condition: 1 second hand to be restored 0 otherwise (source: advertiser))}
   \item{BUILTTYPEID_3}{Dummy value for flat condition: 1 second hand in good condition 0 otherwise (source: advertiser))}#'   \item{DISTANCE_TO_CITY_CENTER}{Distance to center of city in km}

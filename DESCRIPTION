@@ -5,7 +5,7 @@ Version: 0.1.1
 Author: Antonio Paez
 Maintainer: Antonio Paez <paezha@mcmaster.ca>
 Description: This data package includes datasets of property values from Idealista. 
-    The datasets are for five major cities in Spain and the year 2018.
+    The datasets are for three major cities in Spain and the year 2018.
 Depends:
     dplyr,
     Metrics,

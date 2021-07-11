@@ -41,6 +41,8 @@
 %% Stylefile to load DIB template
 \usepackage{dib}
 \usepackage{framed,multirow}
+\usepackage[linesnumbered,lined,boxed,commentsnumbered]{algorithm2e}
+\usepackage{graphicx}
 
 %% The amssymb package provides various useful mathematical symbols
 \usepackage{amssymb}
@@ -64,7 +66,7 @@
 
 \begin{document}
 
-\verso{Given-name Surname \textit{etal}}
+\verso{D. Rey Blanco \textit{et al.}}
 
 \begin{frontmatter}
 
@@ -184,7 +186,7 @@ collection             & [Provide a brief description of how these data were col
                          Max 600 characters]\\
 \hline
 Data source location   & Institution: Idealista\newline
-                         City/Town/Region: Madrid\newline
+                         City/Town/Region: Madrid, Barcelona, Valencia\newline
                          Country: Spain\newline
                          Latitude and longitude (and GPS coordinates, if possible) for collected samples/data:\newline
 
@@ -221,28 +223,215 @@ article                & D. Rey Blanco, P. González Arbues, F. López Hernánde
 
 \section*{Data Description}
 
-\noindent [Individually describe each data file (i.e. figure 1, figure 2, table
-1, dataset, raw data, supplementary data, etc.) that are included in
-this article. Please make sure you refer to every data file and provide
-a clear description for each - do not simply list them. No insight,
-interpretation, background or conclusions should be included in this
-section. Please include legends with any tables, figures or graphs.
+\noindent
+% [Individually describe each data file (i.e. figure 1, figure 2, table
+% 1, dataset, raw data, supplementary data, etc.) that are included in
+% this article. Please make sure you refer to every data file and provide
+% a clear description for each - do not simply list them. No insight,
+% interpretation, background or conclusions should be included in this
+% section. Please include legends with any tables, figures or graphs.
 
-\noindent\textbf{Tip:} do not forget to describe any supplementary data files.]
+The data set is composed by three items for three major spanish cities: quarterly single family listings, neighboorhood polygons and a a set of Points of Interest from Open Street Map \cite{OpenStreetMap}. All spatial features, such as polygons and points, are expressed in geodetic coordinates using the \emph{EPSG:4326} coordinate reference system.
+
+The first block integrates property published ads,the files contain the complete offering for each of the four quarters in 2018 on idealista web site \cite{idealista}. Idealista is the major real estate listing portal in Spain and also present in other southern european countries as Italy and Portugal. Each record contains all attributes the listing ad has plus a number of additional attribues from the Spanish cadastre \cite{Catastro}, the names for all these variables start with the prefix \emph{CAD}. Cadastral features asssignment is done by assigning the features of the nearest parcel to the coordinates \emph{LATITUDE} and \emph{LONGITUDE}.
+
+\begin{footnotesize}
+\begin{longtable}{p{40mm} c p{63mm}}
+\hline
+\hline
+% \endhead
+% \hline
+% \endfoot
+& &\\
+\textbf{Variable} & \textbf{Mesurement scale} & \textbf{Description}\\
+& &\\
+\hline
+ASSETID & Identifier & Unique identifier of the advertisement\\
+PERIOD & Nominal (Date) & Expressed as YYYYMM, indicates the quarter when the ad was extracted we used YYYY03 for the 1st Q, YYYY06 the 2nd, YYYY09 for the 3rd and YYYY12 for the 4th\\
+PRICE & Interval & Asking price for the ad at idealista expressed in euros\\
+UNITPRICE & Interval & Asking price in euros per square meter (constructed area)\\
+ADTYPOLOGYID & Nominal & Residential building type: multi-family: \emph{home}, single-familiy: \emph{chalet}\\
+ADOPERATIONID & Nominal & Operation type for the ad: \emph{sale} or \emph{rent}\\
+ROOMNUMBER & Ordinal & Number of bedrooms\\
+BATHNUMBER & Ordinal & Number of bathrooms\\
+HASTERRACE & Nominal & Dummy variable for terrace (takes 1 if there is a terrace, 0 otherwise\\
+HASLIFT & Nominal & Dummy variable for lift (takes 1 if there is a lift in the building, 0 otherwise)\\
+HASAIRCONDITIONING & Nominal & Dummy variable for AA (takes 1 if there is a AA, 0 otherwise)\\
+AMENITYID & Nominal & Indicates the amenities included (1 - no furniture, no kitchen amenities, 2 - kitchen amenities, no furniture, 3 - kitchen amenities, furniture)\\
+HASPARKINGSPACE & Nominal & Dummy variable for parking (takes 1 if parking is included in the Ad, 0 otherwise)\\
+ISPARKINGSPACEINCLUDEDINPRICE & Nominal & Dummy variable for parking (takes 1 if parking is included in the Ad, 0 otherwise)\\
+PARKINGSPACEPRICE & Interval & Price of parking space in euros\\
+HASNORTHORIENTATION & Nominal & Dummy variable for orientation (takes 1 if orientation is North in the Ad, 0 otherwise) - Important note: orientation features are not orthogonal features, a house oriented to the north can be also oriented to the east\\
+HASSOUTHORIENTATION & Nominal & Dummy variable for orientation (takes 1 if orientation is South in the Ad, 0 otherwise) - Important note: orientation features are not orthogonal features, a house oriented to the north can be also oriented to the east\\
+HASEASTORIENTATION & Nominal & Dummy variable for orientation (takes 1 if orientation is East in the Ad, 0 otherwise) - Important note: orientation features are not orthogonal features, a house oriented to the north can be also oriented to the east\\
+HASWESTORIENTATION & Nominal & Dummy variable for orientation (takes 1 if orientation is West in the Ad, 0 otherwise) - Important note: orientation features are not orthogonal features, a house oriented to the north can be also oriented to the east\\
+HASBOXROOM & Nominal & Dummy variable for boxroom (takes 1 if boxroom is included in the Ad, 0 otherwise)\\
+HASWARDROBE & Nominal & Dummy variable for wardrobe (takes 1 whether the property has wardrobes, 0 otherwise)\\
+HASSWIMMINGPOOL & Nominal & Dummy variable for swimming pool (takes 1 if swimming pool is included in the Ad, 0 otherwise)\\
+HASDOORMAN & Nominal & Dummy variable for doorman (takes 1 if there is a doorman in the building, 0 otherwise)\\
+HASGARDEN & Nominal & Dummy variable for garden (takes 1 if there is a garden in the building, 0 otherwise)\\
+ISDUPLEX & Nominal & Dummy variable for bachelor apartment (referred as studio in Spain) (takes 1 if it is a bachelor apartment, 0 otherwise)\\
+ISINTOPFLOOR & Nominal & Dummy variable indicating if the apartment is located in the top floor (takes 1 on the top floor 0 otherwise)\\
+CONSTRUCTIONYEAR & Interval & Construction year (source: advertiser)\\
+FLOORCLEAN & Ordinal & Indicates flat floornumber starting from the 0 value for ground floor (source: advertiser)\\
+FLATLOCATIONID & Nominal & Indicates the kind of views the flat has (1 - external, 2 - internal)\\
+CADCONSTRUCTIONYEAR & Interval & Construction year as of cadastral source (source: cadastre), note this figure can differ from the one given by the advertiser\\
+CADMAXBUILDINGFLOOR & Ordinal & Max building floor (source: cadastre)\\
+CADDWELLINGCOUNT & Interval & Dwelling count in the building (source: cadastre)\\
+CADASTRALQUALITYID & Ordinal & Cadastral quality (source: cadastre). 0 Best - 10 Worst\\
+BUILTTYPEID\_1 & Nominal & Dummy value for flat condition: 1 new development and 0 otherwise\\
+BUILTTYPEID\_2 & Nominal & Dummy value for flat condition: 1 second hand to be restored 0 otherwise (\emph{source: advertiser})\\
+BUILTTYPEID\_3 & Nominal & Dummy value for flat condition: 1 second hand in good condition 0 otherwise (\emph{source: advertiser})\\
+DISTANCE\_TO\_CITY\_CENTER & Interval & Distance to center of city in Km\\
+geometry & Geometry & Geometry for the elements. A point with $X,Y$ coordinates\\
+\hline
+\hline
+\end{longtable}
+\end{footnotesize}
+
+In addition to the common features each city will have a set of spatial additional features:
+
+\begin{footnotesize}
+\begin{longtable}{l p{40mm} c p{63mm}}
+\hline
+\hline
+% \endhead
+% \hline
+% \endfoot
+& & &\\
+\textbf{City} & \textbf{Variable} & \textbf{Mesurement scale} & \textbf{Description}\\
+\hline
+& & &\\
+\emph{Madrid} & DISTANCE\_TO\_CASTELLANA & Interval & Distance in km to the Paseo de la Castellana Street \\
+& & &\\
+% \hline
+\emph{Valencia} & DISTANCE\_TO\_METRO & Interval & Distance in km to the nearest subway station \\
+ & DISTANCE\_TO\_BLASCO & Interval & Distance in km to the Blasco Ibáñez Avenue \\
+& & &\\
+% \hline
+\emph{Barcelona} & DISTANCE\_TO\_DIAGONAL & Interval & Distance in km to the Diagonal Avenue \\
+& & &\\
+\hline
+\hline
+\hline
+\end{longtable}
+\end{footnotesize}
+
+
+The second part contains the polygons for the different neighborhoods for such cities as we can see in the figure \ref{fig:all-polygons}. This boundaries are not the official boundaries but the official boundaries used by idealista portal. In practical terms we can assume they are the same, since the website simply collapsed those areas if they are small enough in terms of number of ads. In the case of Madrid they just collapse four areas in two new ones.
+
+\begin{figure}[h]
+  \caption{Neighborhood boundaries for Madrid, Barcelona and Valencia. Source: own elaboration}
+  \centering
+  \includegraphics[height=4.5cm]{figures/idealista18-all-polygons}
+  \label{fig:all-polygons}
+\end{figure}
+
+We have a total of 73 neigborhoods for Barcelona, 135 for Madrid and 73 for Valencia. Each neighborhood has also two additional variables:
+
+\begin{footnotesize}
+\begin{longtable}{p{40mm} c p{63mm}}
+\hline
+\hline
+% \endhead
+% \hline
+% \endfoot
+& &\\
+\textbf{Variable} & \textbf{Mesurement scale} & \textbf{Description}\\
+\hline
+& &\\
+LOCATIONID & nominal & Unique identifier for the neighborhood \\
+LOCATIONNAME & nominal & Neighborhood name \\
+& &\\
+\hline
+\end{longtable}
+\end{footnotesize}
+% \noindent\textbf{Tip:} do not forget to describe any supplementary data files.]
 
 \section*{Experimental Design, Materials and Methods}
 
-\noindent [Offer a complete description of the experimental design and methods
-used to acquire these data. Please provide any programs or code files
-used for filtering and analyzing these data. It is very important that
-this section is as comprehensive as possible. If you are submitting via
-another Elsevier journal (a co-submission) you are encouraged to
-provide more detail than in your accompanying research article. There
-is no character limit for this section; however, no insight,
-interpretation, or background should be included in this section.
+The data encompassed three major cities in Spain: Madrid, Barcelona and Valencia, for each municipality we provide listing prices for multi-familiy homes on a quarterly basis. The files contain the complete offering for each of the four quarters in 2018 on idealista web site \cite{idealista}. Idealista is the major real estate listing portal in Spain and also present in other southern european countries as Italy and Portugal.
 
-\noindent\textbf{Tip:} do not describe your data (figures, tables, etc.) in this section,
-do this in the Data Description section above.]
+Given regulatory restriction idealista listings are slighly anonymized, in order to agree regulatory requirements guaranteeing their attributes and spatial properties. This process take two steps, the first consists of the obfuscation of prices adding or substracting a random percentage of their original values ranging from -2.5\% to +2.5\%. Since asking prices are not normally a completely continuous magnitude (sale prices are usually multiples of 1000 and rent prices are of 10), after the first price modification we finally align prices to multiples of 1000.
+
+% Year of construction is revised as well, given that original year of construction from listings are entered by users in the web site, therefore subject to errors and incomplete (a 40\% missing rate). To remove any issue we assign cadastral construction year from the nearest cadastral parcel whenever value has an outstanding value (date is after publication date or year of construction is before 1500) or when the field value was missing.
+
+Finally we carry out a spatial masking process that intend to keep spatial properties of the original data set. We essentially displace the coordinates of each listing with a minimum distance and a maximum distance with the restriction that every new location must fall in within the original neighborbood of the add. The process is described in the algorithm below:
+
+\begin{algorithm}[H]
+ \KwData{all idealista listings}
+ \KwResult{all idealista listings with masked coordinates}
+ initialization\;
+ \For{each listing L}{
+  take geographical location of L as $(X,Y)$
+  \Repeat{this stop condition}{
+    take a random angle $\alpha$ from 0 to 360 degrees
+    take a distance $R$ as a random value from 30 to 60 meters
+    determine a new point $(X',Y')$ calculated as a point located $R$ with the angle $\alpha$
+  }
+  set $(X',Y')$ as the new location for the listing L
+ }
+ \caption{Coordinate displacement process for anonymisation purposes}
+\end{algorithm}
+
+In the figure \ref{fig:coordinates-displacement} we display the histogram with the displacement in meters for all listings in the city of Valencia, as average the displacement is 45 meters
+
+\begin{figure}
+  \caption{Coordinate displacement in meters Valencia. Source: own elaboration}
+  \centering
+  \includegraphics[width=6cm, height=4cm]{figures/coordinates/coordinates-valencia}
+  \label{fig:coordinates-displacement}
+\end{figure}
+
+
+% Define a new subcommand
+
+
+
+\begin{figure}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+& Original & Moved
+\\
+\hline
+Madrid &
+\includegraphics[width=3.5cm, height=2.8cm]{figures/points-post-madrid}
+&
+\includegraphics[width=4cm, height=2.8cm]{figures/points-post-madrid}
+\\
+%\hline
+Barcelona &
+\includegraphics[width=3cm, height=2.8cm]{figures/points-pre-barcelona}
+&
+\includegraphics[width=3cm, height=2.8cm]{figures/points-post-barcelona}
+\\
+Valencia &
+%\hline
+\includegraphics[width=3cm, height=2.8cm]{figures/points-pre-valencia}
+&
+\includegraphics[width=3cm, height=2.8cm]{figures/points-post-valencia}
+\\
+\hline
+\end{tabular}
+\end{figure}
+
+
+
+
+
+
+% \noindent [Offer a complete description of the experimental design and methods
+% used to acquire these data. Please provide any programs or code files
+% used for filtering and analyzing these data. It is very important that
+% this section is as comprehensive as possible. If you are submitting via
+% another Elsevier journal (a co-submission) you are encouraged to
+% provide more detail than in your accompanying research article. There
+% is no character limit for this section; however, no insight,
+% interpretation, or background should be included in this section.
+%
+% \noindent\textbf{Tip:} do not describe your data (figures, tables, etc.) in this section,
+% do this in the Data Description section above.]
 
 \section*{Ethics Statement}
 \noindent [Please refer to the journal's
@@ -323,24 +512,24 @@ here as well. See the online instruction available on:
 \end{verbatim}
 \fi
 
-\section*{References}
+% \section*{References}
 
-\noindent [References are limited (approx. 15) and excessive self-citation is not
-allowed. \textbf{If your data article is co-submitted via another Elsevier
-journal, please cite your associated research article here.}
-
-\noindent\textbf{Reference style:}
-Text:?Indicate references by number(s) in square brackets in line with
-the text. The actual authors can be referred to, but the reference
-number(s) must always be given.?
-
-\noindent Example: '..... as demonstrated [3,6]. Barnaby and Jones [8] obtained a different result ....'?
-
-\noindent [Use \verb+\cite+ command to cite a reference list item in text.
-
-\noindent These are examples for reference citations \cite{1}.
-\cite{2}.
-\cite{4}.]
+% \noindent [References are limited (approx. 15) and excessive self-citation is not
+% allowed. \textbf{If your data article is co-submitted via another Elsevier
+% journal, please cite your associated research article here.}
+%
+% \noindent\textbf{Reference style:}
+% Text:?Indicate references by number(s) in square brackets in line with
+% the text. The actual authors can be referred to, but the reference
+% number(s) must always be given.?
+%
+% \noindent Example: '..... as demonstrated [3,6]. Barnaby and Jones [8] obtained a different result ....'?
+%
+% \noindent [Use \verb+\cite+ command to cite a reference list item in text.
+%
+% \noindent These are examples for reference citations \cite{1}.
+% \cite{2}.
+% \cite{4}.]
 
 
 %% Numbered

@@ -1,4 +1,4 @@
-#' idealista18: A data package with real estate litings in Spain from the idealista data base.
+#' idealista18: A data package with real estate listings in Spain from the idealista data base.
 #'
 #' This package contains four quarterly extractions with the set of apartments listed on idealista during 2018,
 #' the package contains three data items for the three spanish cities of Madrid, Barcelona and Valencia:
