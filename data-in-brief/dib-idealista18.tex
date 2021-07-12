@@ -358,7 +358,14 @@ Given regulatory restriction idealista listings are slighly anonymized, in order
 
 % Year of construction is revised as well, given that original year of construction from listings are entered by users in the web site, therefore subject to errors and incomplete (a 40\% missing rate). To remove any issue we assign cadastral construction year from the nearest cadastral parcel whenever value has an outstanding value (date is after publication date or year of construction is before 1500) or when the field value was missing.
 
-Finally we carry out a spatial masking process described in the algorithm \ref{algo:coordinates-displacement}. It intends to keep spatial properties of the original data set. We essentially displace the coordinates of each listing with a minimum distance and a maximum distance with the restriction that every new location must fall in within the original neighborbood of the add. The process is described in the algorithm below:
+Finally we carry out a spatial masking process described in the algorithm \ref{algo:coordinates-displacement}. It intends to keep spatial properties of the original data set. We essentially displace the coordinates of each listing with a minimum distance and a maximum distance with the restriction that every new location must fall in within the original neighborbood of the add. As we can see in the figure \ref{fig:points-moved-image} the area where the new point (masked) would be located will be taken randomly within maximum and minimum displacement distances circles. In order to preserve the nature of the neighborhood the house we make sure the new point would fall in the original neighborhood, otherwise we look for a new masked place.
+
+\begin{figure}[ht]
+  \caption{Masking coordinates spatial range. Source: own elaboration}
+  \centering
+  \includegraphics[width=5cm, height=4.3cm]{figures/points-moved-image}
+  \label{fig:points-moved-image}
+\end{figure}
 
 \begin{algorithm}[H]
  \KwData{all idealista listings}
@@ -379,7 +386,7 @@ Finally we carry out a spatial masking process described in the algorithm \ref{a
 
 In the figure \ref{fig:coordinates-displacement} we display the histogram with the displacement in meters for all listings in the city of Valencia, as average the displacement is 45 meters.
 
-\begin{figure}
+\begin{figure}[h]
   \caption{Coordinate displacement in meters Valencia. Source: own elaboration}
   \centering
   \includegraphics[width=6cm, height=4cm]{figures/coordinates/coordinates-valencia}
@@ -397,10 +404,7 @@ In the figure \ref{fig:points-pre-post-all} we can see the spatial distribution 
   \label{fig:points-pre-post-all}
 \end{figure}
 
-
-
-
-
+The last item contains a list of Points of Interest for each city, in the case of Madrid it has the city center (Plaza del Sol), a number of points corresponding to the Paseo de la Castellana that is a major Avenue that cuts across the city from South to North, and a list of subway entraces (Metro). For Valencia we have the city center, a list of points for the main street called Basco Ibáñez plus the subway entrances. Similarly for Barcelona we have the City Center, points of the main street (Avenida Diagonal) and the subway entrances set.
 
 
 % \noindent [Offer a complete description of the experimental design and methods

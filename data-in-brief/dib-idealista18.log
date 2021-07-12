@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.7.4)  12 JUL 2021 09:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.7.4)  12 JUL 2021 10:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -707,22 +707,32 @@ Overfull \hbox (7.05386pt too wide) in alignment at lines 333--349
  [] [] [] 
  []
 
-[4] [5 <./figures/idealista18-all-polygons.png>]
-<figures/coordinates/coordinates-valencia.png, id=82, 505.89pt x 339.14203pt>
+[4]
+<figures/points-moved-image.png, id=74, 684.5575pt x 559.08875pt>
+File: figures/points-moved-image.png Graphic file (type png)
+<use figures/points-moved-image.png>
+Package pdftex.def Info: figures/points-moved-image.png  used on input line 366
+.
+(pdftex.def)             Requested size: 142.25716pt x 122.343pt.
+
+Overfull \vbox (96.33386pt too high) has occurred while \output is active []
+
+
+[5 <./figures/idealista18-all-polygons.png> <./figures/points-moved-image.png>]
+<figures/coordinates/coordinates-valencia.png, id=85, 505.89pt x 339.14203pt>
 File: figures/coordinates/coordinates-valencia.png Graphic file (type png)
 <use figures/coordinates/coordinates-valencia.png>
 Package pdftex.def Info: figures/coordinates/coordinates-valencia.png  used on 
-input line 385.
+input line 392.
 (pdftex.def)             Requested size: 170.71892pt x 113.80605pt.
-<figures/points-pre-post-all.png, id=84, 763.85374pt x 597.23125pt>
+<figures/points-pre-post-all.png, id=87, 763.85374pt x 597.23125pt>
 File: figures/points-pre-post-all.png Graphic file (type png)
 <use figures/points-pre-post-all.png>
-Package pdftex.def Info: figures/points-pre-post-all.png  used on input line 39
-6.
+Package pdftex.def Info: figures/points-pre-post-all.png  used on input line 40
+3.
 (pdftex.def)             Requested size: 227.62204pt x 177.96783pt.
- [6 <./figures/coordinates/coordinates-valencia.png> <./figures/points-pre-post
--all.png>]
-(./dib-idealista18.bbl
+[6 <./figures/coordinates/coordinates-valencia.png> <./figures/points-pre-post-
+all.png>] (./dib-idealista18.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 25--28
 []\OT1/ptm/m/n/8 OpenStreetMap con-trib-u-tors, Planet dump re-trieved from htt
 ps://planet.osm.org , [][]$\OT1/pcr/m/n/8 https : / / www .
@@ -737,10 +747,10 @@ Package rerunfilecheck Info: File `dib-idealista18.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 11751 strings out of 480477
- 171399 string characters out of 5899184
- 517787 words of memory out of 5000000
- 29201 multiletter control sequences out of 15000+600000
+ 11764 strings out of 480477
+ 171800 string characters out of 5899184
+ 517867 words of memory out of 5000000
+ 29212 multiletter control sequences out of 15000+600000
  442390 words of font info for 115 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  72i,15n,80p,1386b,484s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -755,10 +765,10 @@ ier/ucrr8a.pfb></home/vant/.TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.
 pfb></home/vant/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></home/van
 t/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></home/vant/.TinyTeX/tex
 mf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on dib-idealista18.pdf (7 pages, 385109 bytes).
+Output written on dib-idealista18.pdf (7 pages, 1262899 bytes).
 PDF statistics:
- 177 PDF objects out of 1000 (max. 8388607)
- 133 compressed objects within 2 object streams
- 41 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 181 PDF objects out of 1000 (max. 8388607)
+ 135 compressed objects within 2 object streams
+ 42 named destinations out of 1000 (max. 500000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

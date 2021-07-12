@@ -21,9 +21,9 @@
 \bibinfo{author}{{Registro Central del Catastro}},
   \bibinfo{title}{{https://www.sedecatastro.gob.es/ }}, \bibinfo{year}{2021}.
 %Type = Misc
-\bibitem[{{OpenStreetMap contributors}(2017)}]{OpenStreetMap}
+\bibitem[{{OpenStreetMap contributors}(2021)}]{OpenStreetMap}
 \bibinfo{author}{{OpenStreetMap contributors}}, \bibinfo{title}{{Planet dump
   retrieved from https://planet.osm.org }}, \bibinfo{howpublished}{\url{
-  https://www.openstreetmap.org }}, \bibinfo{year}{2017}.
+  https://www.openstreetmap.org }}, \bibinfo{year}{2021}.
 
 \end{thebibliography}
