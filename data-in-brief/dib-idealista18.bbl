@@ -12,11 +12,6 @@
 \providecommand{\bibinfo}[2]{#2}
 \ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
 %Type = Misc
-\bibitem[{{OpenStreetMap contributors}(2017)}]{OpenStreetMap}
-\bibinfo{author}{{OpenStreetMap contributors}}, \bibinfo{title}{{Planet dump
-  retrieved from https://planet.osm.org }}, \bibinfo{howpublished}{\url{
-  https://www.openstreetmap.org }}, \bibinfo{year}{2017}.
-%Type = Misc
 \bibitem[{{idealista}(2018)}]{idealista}
 \bibinfo{author}{{idealista}}, \bibinfo{title}{{http://www.idealista.com }},
   \bibinfo{howpublished}{\url{ http://www.idealista.com }},
@@ -25,5 +20,10 @@
 \bibitem[{{Registro Central del Catastro}(2021)}]{Catastro}
 \bibinfo{author}{{Registro Central del Catastro}},
   \bibinfo{title}{{https://www.sedecatastro.gob.es/ }}, \bibinfo{year}{2021}.
+%Type = Misc
+\bibitem[{{OpenStreetMap contributors}(2017)}]{OpenStreetMap}
+\bibinfo{author}{{OpenStreetMap contributors}}, \bibinfo{title}{{Planet dump
+  retrieved from https://planet.osm.org }}, \bibinfo{howpublished}{\url{
+  https://www.openstreetmap.org }}, \bibinfo{year}{2017}.
 
 \end{thebibliography}

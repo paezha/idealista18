@@ -157,44 +157,41 @@ Subject                & Geography, Economics\\
 \hline
 Specific subject area  & Spatial analysis, machine learning, hedonic price analysis\\
 \hline
-Type of data           & Table\newline\\
+Type of data           & Tables\newline\\
 %\clearpage
-How data were acquired & [State how the data were acquired: E.g. Microscope,
-                         SEM, NMR, mass spectrometry, survey* etc.\newline
-                         Instruments: E.g. hardware, software, program\newline
-                         Make and model and of the instruments used:\newline
-
-                         {\fontsize{7pt}{8pt}\selectfont
-                         *\,if you conducted a survey you must submit a copy of the
-                         survey(s) used (either provide these as supplementary material
-                         file or provide a URL link to the survey
-                         in this section of the table).
-                         If the survey is not written in English,
-                         please provide an English-language translation.}]\\
+How data were acquired & multi-family listing records given by idealista portal \cite{idealista}\newline
+                         Spanish central cadastral registry \cite{Catastro}\newline
+                         Open street map \cite{OpenStreetMap}\newline
+\\
 \hline
 Data format            & Spatially masked\\
 \hline
 Parameters for
 data\newline
-collection             & [Provide a brief description of which conditions were considered
-                         for data collection. Max 400 characters]\\
+collection             & Data has been directly downloaded from the sources, cadastral and idealista data has been merged based on geographical location for each record
+\\
+% [Provide a brief description of which conditions were considered
+%                          for data collection. Max 400 characters]
 
 \hline
 Description of
 data\newline
-collection             & [Provide a brief description of how these data were collected.
-                         Max 600 characters]\\
+collection             & idealista provided the complete record set \newline
+                         cadastral information has been downloaded the open records published quarterly\newline
+                         open street map has been downloaded from its open API
+\\
 \hline
 Data source location   & Institution: Idealista\newline
                          City/Town/Region: Madrid, Barcelona, Valencia\newline
                          Country: Spain\newline
-                         Latitude and longitude (and GPS coordinates, if possible) for collected samples/data:\newline
+                         Latitude and longitude samples/data: EPSG:4326\newline
+\\
 
-
-                         If you are describing secondary data, you are required to provide a list of
-                         the primary data sources used in the section.\newline
-
-                         Primary data sources:  ]\\
+%
+%                          If you are describing secondary data, you are required to provide a list of
+%                          the primary data sources used in the section.\newline
+%
+%                          Primary data sources:  ]\\
 \hline
 \hypertarget{target1}
 {Data accessibility}   & Repository name: GitHub\newline
@@ -233,10 +230,12 @@ article                & D. Rey Blanco, P. González Arbues, F. López Hernánde
 
 The data set is composed by three items for three major spanish cities: quarterly single family listings, neighboorhood polygons and a a set of Points of Interest from Open Street Map \cite{OpenStreetMap}. All spatial features, such as polygons and points, are expressed in geodetic coordinates using the \emph{EPSG:4326} coordinate reference system.
 
-The first block integrates property published ads,the files contain the complete offering for each of the four quarters in 2018 on idealista web site \cite{idealista}. Idealista is the major real estate listing portal in Spain and also present in other southern european countries as Italy and Portugal. Each record contains all attributes the listing ad has plus a number of additional attribues from the Spanish cadastre \cite{Catastro}, the names for all these variables start with the prefix \emph{CAD}. Cadastral features asssignment is done by assigning the features of the nearest parcel to the coordinates \emph{LATITUDE} and \emph{LONGITUDE}.
+The first block integrates property published ads,the files contain the complete offering for each of the four quarters in 2018 on idealista web site \cite{idealista}. Idealista is the major real estate listing portal in Spain and also present in other southern european countries as Italy and Portugal. Each record contains all attributes the listing ad has plus a number of additional attribues from the Spanish cadastre \cite{Catastro}, described in the table \ref{table:data-assets-variables}, the names for all these variables start with the prefix \emph{CAD}. Cadastral features asssignment is done by assigning the features of the nearest parcel to the coordinates \emph{LATITUDE} and \emph{LONGITUDE}.
 
 \begin{footnotesize}
 \begin{longtable}{p{40mm} c p{63mm}}
+\caption{Description of the variables in the listing data set}\\
+\label{table:data-assets-variables} \\
 \hline
 \hline
 % \endhead
@@ -293,6 +292,7 @@ In addition to the common features each city will have a set of spatial addition
 
 \begin{footnotesize}
 \begin{longtable}{l p{40mm} c p{63mm}}
+\caption{Description of variables of neighborhood polygons data set} \\
 \hline
 \hline
 % \endhead
@@ -327,10 +327,12 @@ The second part contains the polygons for the different neighborhoods for such c
   \label{fig:all-polygons}
 \end{figure}
 
-We have a total of 73 neigborhoods for Barcelona, 135 for Madrid and 73 for Valencia. Each neighborhood has also two additional variables:
+We have a total of 73 neigborhoods for Barcelona, 135 for Madrid and 73 for Valencia. Each neighborhood has also two additional variables described in the table \ref{table:data-additional-variables}.
 
 \begin{footnotesize}
 \begin{longtable}{p{40mm} c p{63mm}}
+\caption{Additional variables for each city} \\
+\label{table:data-additional-variables} \\
 \hline
 \hline
 % \endhead
@@ -356,7 +358,7 @@ Given regulatory restriction idealista listings are slighly anonymized, in order
 
 % Year of construction is revised as well, given that original year of construction from listings are entered by users in the web site, therefore subject to errors and incomplete (a 40\% missing rate). To remove any issue we assign cadastral construction year from the nearest cadastral parcel whenever value has an outstanding value (date is after publication date or year of construction is before 1500) or when the field value was missing.
 
-Finally we carry out a spatial masking process that intend to keep spatial properties of the original data set. We essentially displace the coordinates of each listing with a minimum distance and a maximum distance with the restriction that every new location must fall in within the original neighborbood of the add. The process is described in the algorithm below:
+Finally we carry out a spatial masking process described in the algorithm \ref{algo:coordinates-displacement}. It intends to keep spatial properties of the original data set. We essentially displace the coordinates of each listing with a minimum distance and a maximum distance with the restriction that every new location must fall in within the original neighborbood of the add. The process is described in the algorithm below:
 
 \begin{algorithm}[H]
  \KwData{all idealista listings}
@@ -372,9 +374,10 @@ Finally we carry out a spatial masking process that intend to keep spatial prope
   set $(X',Y')$ as the new location for the listing L
  }
  \caption{Coordinate displacement process for anonymisation purposes}
+ \label{algo:coordinates-displacement}
 \end{algorithm}
 
-In the figure \ref{fig:coordinates-displacement} we display the histogram with the displacement in meters for all listings in the city of Valencia, as average the displacement is 45 meters
+In the figure \ref{fig:coordinates-displacement} we display the histogram with the displacement in meters for all listings in the city of Valencia, as average the displacement is 45 meters.
 
 \begin{figure}
   \caption{Coordinate displacement in meters Valencia. Source: own elaboration}
@@ -385,36 +388,15 @@ In the figure \ref{fig:coordinates-displacement} we display the histogram with t
 
 
 % Define a new subcommand
+In the figure \ref{fig:points-pre-post-all} we can see the spatial distribution of the original records compared to spatial distribution after masking:
 
-
-
-\begin{figure}
-\centering
-\begin{tabular}{|c|c|c|}
-\hline
-& Original & Moved
-\\
-\hline
-Madrid &
-\includegraphics[width=3.5cm, height=2.8cm]{figures/points-post-madrid}
-&
-\includegraphics[width=4cm, height=2.8cm]{figures/points-post-madrid}
-\\
-%\hline
-Barcelona &
-\includegraphics[width=3cm, height=2.8cm]{figures/points-pre-barcelona}
-&
-\includegraphics[width=3cm, height=2.8cm]{figures/points-post-barcelona}
-\\
-Valencia &
-%\hline
-\includegraphics[width=3cm, height=2.8cm]{figures/points-pre-valencia}
-&
-\includegraphics[width=3cm, height=2.8cm]{figures/points-post-valencia}
-\\
-\hline
-\end{tabular}
+\begin{figure}[h]
+  \caption{Spatial distribution of ads (before and after masking). Source: own elaboration}
+  \centering
+  \includegraphics[width=8cm]{figures/points-pre-post-all}
+  \label{fig:points-pre-post-all}
 \end{figure}
+
 
 
 
@@ -453,64 +435,69 @@ National Institutes of Health guide for the care and use of Laboratory
 animals (NIH Publications No. 8023, revised 1978)]
 
 \section*{Acknowledgments}
-Acknowledgments should be inserted at the end of the paper, before the
-references, not as a footnote to the title. Use the unnumbered
-Acknowledgements Head style for the Acknowledgments heading.
+
+The authors thank Alessandro Galesi for his support in the paper revision and Juan Ramon Selva for collecting and cleaning the spatial data.
+
+% Acknowledgments should be inserted at the end of the paper, before the
+% references, not as a footnote to the title. Use the unnumbered
+% Acknowledgements Head style for the Acknowledgments heading.
 
 \section*{Declaration of Competing Interest}
 
-\noindent [All authors are required to report the following information:
-\begin{enumerate}
-\item[(1)] All third-party financial support for the work this article;
+The authors have no conflicts of interest to declare.
 
-\item[(2)] All financial relationships with any entity that could be
-viewed as relevant to data described in this manuscript;
-
-\item[(3)] All sources of revenue with relevance to this work where
-payments have been made to authors, or their institutions on their
-behalf, within the 36 months prior to submission;
-
-\item[(4)] Any other interactions with the sponsor, outside of the
-submitted work;
-
-\item[(5)] Any relevant patents or copyrights (planned, pending or
-issued);
-
-\item[(6)] Any other relationships or affiliations that may be
-perceived by readers to have influenced, or give the appearance of
-potentially influencing, what has been written in this article.
-\end{enumerate}
-As a general guideline, it is usually better to
-disclose a relationship than not. This information will be acknowledged
-at publication in the manuscript. If there is no known competing
-financial interests or personal relationships that could have appeared
-to influence the work reported in this paper, please include this
-statement.]
-
-\vskip12pt\noindent
-The authors declare that they have no known competing
-financial interests or personal relationships which have, or could be
-perceived to have, influenced the work reported in this article.
-
-\vskip12pt\noindent
-[If there are financial interests/personal relationships which may be
-considered as potential competing interests, please declare them here.]
-
-\subsection*{Note}
-\label{sec1}
-Any instructions relevant to the \verb+elsarticle.cls+ are applicable
-here as well. See the online instruction available on:
-\makeatletter
-\if@twocolumn
-\begin{verbatim}
- http://support.river-valley.com/wiki/
- index.php?title=Elsarticle.cls
-\end{verbatim}
-\else
-\begin{verbatim}
- http://support.river-valley.com/wiki/index.php?title=Elsarticle.cls
-\end{verbatim}
-\fi
+% \noindent [All authors are required to report the following information:
+% \begin{enumerate}
+% \item[(1)] All third-party financial support for the work this article;
+%
+% \item[(2)] All financial relationships with any entity that could be
+% viewed as relevant to data described in this manuscript;
+%
+% \item[(3)] All sources of revenue with relevance to this work where
+% payments have been made to authors, or their institutions on their
+% behalf, within the 36 months prior to submission;
+%
+% \item[(4)] Any other interactions with the sponsor, outside of the
+% submitted work;
+%
+% \item[(5)] Any relevant patents or copyrights (planned, pending or
+% issued);
+%
+% \item[(6)] Any other relationships or affiliations that may be
+% perceived by readers to have influenced, or give the appearance of
+% potentially influencing, what has been written in this article.
+% \end{enumerate}
+% As a general guideline, it is usually better to
+% disclose a relationship than not. This information will be acknowledged
+% at publication in the manuscript. If there is no known competing
+% financial interests or personal relationships that could have appeared
+% to influence the work reported in this paper, please include this
+% statement.]
+%
+% \vskip12pt\noindent
+% The authors declare that they have no known competing
+% financial interests or personal relationships which have, or could be
+% perceived to have, influenced the work reported in this article.
+%
+% \vskip12pt\noindent
+% [If there are financial interests/personal relationships which may be
+% considered as potential competing interests, please declare them here.]
+%
+% \subsection*{Note}
+% \label{sec1}
+% Any instructions relevant to the \verb+elsarticle.cls+ are applicable
+% here as well. See the online instruction available on:
+% \makeatletter
+% \if@twocolumn
+% \begin{verbatim}
+%  http://support.river-valley.com/wiki/
+%  index.php?title=Elsarticle.cls
+% \end{verbatim}
+% \else
+% \begin{verbatim}
+%  http://support.river-valley.com/wiki/index.php?title=Elsarticle.cls
+% \end{verbatim}
+% \fi
 
 % \section*{References}
 
