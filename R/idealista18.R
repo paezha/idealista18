@@ -16,7 +16,7 @@ NULL
 
 #' Sale prices of residential property in Barcelona in 2018.
 #'
-#' A dataset containing information about 84,280 real estate ads on idealista
+#' A dataset containing information about 84,280 real estate listings on idealista
 #' in Barcelona during 2018.
 #'
 #' @format An object of class `sf` (inherits from `data.frame`) with 84,280 rows and 57 variables:
@@ -78,7 +78,7 @@ NULL
 
 #' Sale prices of residential property in Madrid in 2018.
 #'
-#' A dataset containing information about 156,016 real estate transactions
+#' A dataset containing information about 156,016 real estate listings on idealista
 #' in Madrid during 2018.
 #'
 #' @format An object of class `sf` (inherits from `data.frame`) with 156,016 rows and 57 variables:
@@ -120,7 +120,8 @@ NULL
 #'   \item{CADASTRALQUALITYID}{Cadastral quality (source: cadastre)}
 #'   \item{BUILTTYPEID_1}{Dummy value for flat condition: 1 new development 0 otherwise (source: advertiser))}
 #'   \item{BUILTTYPEID_2}{Dummy value for flat condition: 1 second hand to be restored 0 otherwise (source: advertiser))}
-#'   \item{BUILTTYPEID_3}{Dummy value for flat condition: 1 second hand in good condition 0 otherwise (source: advertiser))}#'   \item{DISTANCE_TO_CITY_CENTER}{Distance to center of city in km}
+#'   \item{BUILTTYPEID_3}{Dummy value for flat condition: 1 second hand in good condition 0 otherwise (source: advertiser))}#'
+#'   \item{DISTANCE_TO_CITY_CENTER}{Distance to center of city in km}
 #'   \item{DISTANCE_TO_CASTELLANA}{Distance to Paseo de la Castellana in km; la Castellana is a major street that cuts across the city from South to North}
 #'   \item{geometry}{geometry of simple features}
 #'   }
@@ -139,8 +140,8 @@ NULL
 
 #' Sale prices of residential property in Valencia in 2018.
 #'
-#' A dataset containing information about 79,360 real estate transactions
-#' in Madrid during 2018.
+#' A dataset containing information about 79,360 real estate listings on idealista
+#' in Valencia during 2018.
 #'
 #' @format An object of class `sf` (inherits from `data.frame`) with 79,360 rows and 59 variables:
 #' \describe{
@@ -181,9 +182,10 @@ NULL
 #'   \item{CADASTRALQUALITYID}{Cadastral quality (source: cadastre)}
 #'   \item{BUILTTYPEID_1}{Dummy value for flat condition: 1 new development 0 otherwise (source: advertiser))}
 #'   \item{BUILTTYPEID_2}{Dummy value for flat condition: 1 second hand to be restored 0 otherwise (source: advertiser))}
-#'   \item{BUILTTYPEID_3}{Dummy value for flat condition: 1 second hand in good condition 0 otherwise (source: advertiser))}#'   \item{DISTANCE_TO_CITY_CENTER}{Distance to center of city in km}
-#'   \item{DISTANCE_TO_METRO}{Distance to METRO in km; DEFINE}
-#'   \item{DISTANCE_TO_BLASCO}{Distance to BLASCO in km; DEFINE}
+#'   \item{BUILTTYPEID_3}{Dummy value for flat condition: 1 second hand in good condition 0 otherwise (source: advertiser))}
+#'   \item{DISTANCE_TO_CITY_CENTER}{Distance to center of city in km}
+#'   \item{DISTANCE_TO_METRO}{Distance to the nearest subway entrance in km}
+#'   \item{DISTANCE_TO_BLASCO}{Distance to Blasco Ibáñez Avenue in km; Blasco Ibañez is a major street in the city}
 #'   \item{geometry}{geometry of simple features}
 #'   }
 #'
@@ -275,7 +277,7 @@ NULL
 #' @format A list with two objects:
 #' \describe{
 #'   \item{City_Center}{Coordinates of Barcelona's city center}
-#'   \item{Diagonal}{Avinguda Diagonal: Coordinates of Diagonal)}
+#'   \item{Diagonal}{Avinguda Diagonal: Coordinates of Diagonal Avenue)}
 #'   }
 #'
 #' @docType data
@@ -297,7 +299,7 @@ NULL
 #' @format A list with two objects:
 #' \describe{
 #'   \item{City_Center}{Coordinates of Madrid's city center}
-#'   \item{Castellana}{Paseo de la Castellana: Coordinates of la Castellana)}
+#'   \item{Castellana}{Paseo de la Castellana: Coordinates of Paseo de la Castellana street)}
 #'   }
 #'
 #' @docType data
@@ -320,7 +322,7 @@ NULL
 #' \describe{
 #'   \item{City_Center}{Coordinates of Valencia's city center}
 #'   \item{Metro}{Coordinates of Valencia's metro}
-#'   \item{Blasco}{Coordinates of Blasco)}
+#'   \item{Blasco}{Coordinates of Blasco Avenue)}
 #'   }
 #'
 #' @docType data

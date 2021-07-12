@@ -44,7 +44,8 @@ An object of class `sf` (inherits from `data.frame`) with 156,016 rows and 57 va
   \item{CADASTRALQUALITYID}{Cadastral quality (source: cadastre)}
   \item{BUILTTYPEID_1}{Dummy value for flat condition: 1 new development 0 otherwise (source: advertiser))}
   \item{BUILTTYPEID_2}{Dummy value for flat condition: 1 second hand to be restored 0 otherwise (source: advertiser))}
-  \item{BUILTTYPEID_3}{Dummy value for flat condition: 1 second hand in good condition 0 otherwise (source: advertiser))}#'   \item{DISTANCE_TO_CITY_CENTER}{Distance to center of city in km}
+  \item{BUILTTYPEID_3}{Dummy value for flat condition: 1 second hand in good condition 0 otherwise (source: advertiser))}#'
+  \item{DISTANCE_TO_CITY_CENTER}{Distance to center of city in km}
   \item{DISTANCE_TO_CASTELLANA}{Distance to Paseo de la Castellana in km; la Castellana is a major street that cuts across the city from South to North}
   \item{geometry}{geometry of simple features}
   }
@@ -60,7 +61,7 @@ data(Madrid_Sale)
 Madrid_Sale
 }
 \description{
-A dataset containing information about 156,016 real estate transactions
+A dataset containing information about 156,016 real estate listings on idealista
 in Madrid during 2018.
 }
 \examples{

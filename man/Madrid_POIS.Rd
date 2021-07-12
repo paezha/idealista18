@@ -8,7 +8,7 @@
 A list with two objects:
 \describe{
   \item{City_Center}{Coordinates of Madrid's city center}
-  \item{Castellana}{Paseo de la Castellana: Coordinates of la Castellana)}
+  \item{Castellana}{Paseo de la Castellana: Coordinates of Paseo de la Castellana street)}
   }
 
 An object of class \code{list} of length 3.

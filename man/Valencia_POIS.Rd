@@ -9,7 +9,7 @@ A list with three objects:
 \describe{
   \item{City_Center}{Coordinates of Valencia's city center}
   \item{Metro}{Coordinates of Valencia's metro}
-  \item{Blasco}{Coordinates of Blasco)}
+  \item{Blasco}{Coordinates of Blasco Avenue)}
   }
 
 An object of class \code{list} of length 3.

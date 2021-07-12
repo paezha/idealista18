@@ -4,7 +4,7 @@ Title: Idealista 2018 Data Package
 Version: 0.1.1
 Author: Antonio Paez
 Maintainer: Antonio Paez <paezha@mcmaster.ca>
-Description: This data package includes datasets of property values from Idealista. 
+Description: This data package includes datasets of real estate listing property on Idealista. 
     The datasets are for three major cities in Spain and the year 2018.
 Depends:
     dplyr,

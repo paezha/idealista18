@@ -61,7 +61,7 @@ data(Barcelona_Sale)
 Barcelona_Sale
 }
 \description{
-A dataset containing information about 84,280 real estate ads on idealista
+A dataset containing information about 84,280 real estate listings on idealista
 in Barcelona during 2018.
 }
 \examples{

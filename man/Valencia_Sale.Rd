@@ -44,9 +44,10 @@ An object of class `sf` (inherits from `data.frame`) with 79,360 rows and 59 var
   \item{CADASTRALQUALITYID}{Cadastral quality (source: cadastre)}
   \item{BUILTTYPEID_1}{Dummy value for flat condition: 1 new development 0 otherwise (source: advertiser))}
   \item{BUILTTYPEID_2}{Dummy value for flat condition: 1 second hand to be restored 0 otherwise (source: advertiser))}
-  \item{BUILTTYPEID_3}{Dummy value for flat condition: 1 second hand in good condition 0 otherwise (source: advertiser))}#'   \item{DISTANCE_TO_CITY_CENTER}{Distance to center of city in km}
-  \item{DISTANCE_TO_METRO}{Distance to METRO in km; DEFINE}
-  \item{DISTANCE_TO_BLASCO}{Distance to BLASCO in km; DEFINE}
+  \item{BUILTTYPEID_3}{Dummy value for flat condition: 1 second hand in good condition 0 otherwise (source: advertiser))}
+  \item{DISTANCE_TO_CITY_CENTER}{Distance to center of city in km}
+  \item{DISTANCE_TO_METRO}{Distance to the nearest subway entrance in km}
+  \item{DISTANCE_TO_BLASCO}{Distance to Blasco Ibáñez Avenue in km; Blasco Ibañez is a major street in the city}
   \item{geometry}{geometry of simple features}
   }
 
@@ -61,8 +62,8 @@ data(Valencia_Sale)
 Valencia_Sale
 }
 \description{
-A dataset containing information about 79,360 real estate transactions
-in Madrid during 2018.
+A dataset containing information about 79,360 real estate listings on idealista
+in Valencia during 2018.
 }
 \examples{
  library(idealista18)

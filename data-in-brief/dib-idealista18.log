@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.7.4)  12 JUL 2021 10:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.7.4)  13 JUL 2021 00:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -515,12 +515,12 @@ LaTeX Info: Redefining \nameref on input line 67.
 \openout4 = `dib-idealista18.out'.
 
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
-40.
+41.
 
 (/home/vant/.TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 140--140
+Underfull \hbox (badness 10000) in paragraph at lines 141--141
 
  []
 
@@ -531,214 +531,184 @@ on: found PDF version <1.7>, but at most version <1.5> allowed
 <elsevier-logo.pdf, id=4, 59.7432pt x 65.5248pt>
 File: elsevier-logo.pdf Graphic file (type pdf)
 <use elsevier-logo.pdf>
-Package pdftex.def Info: elsevier-logo.pdf  used on input line 140.
+Package pdftex.def Info: elsevier-logo.pdf  used on input line 141.
 (pdftex.def)             Requested size: 59.74303pt x 65.52463pt.
 LaTeX Font Info:    Trying to load font information for OT1+phv on input line 1
-40.
+41.
 (/home/vant/.TinyTeX/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
 )
 
-Package xcolor Warning: Incompatible color definition on input line 140.
+Package xcolor Warning: Incompatible color definition on input line 141.
 
 <dib-logo.pdf, id=7, 237.88875pt x 237.88875pt>
 File: dib-logo.pdf Graphic file (type pdf)
 <use dib-logo.pdf>
-Package pdftex.def Info: dib-logo.pdf  used on input line 140.
+Package pdftex.def Info: dib-logo.pdf  used on input line 141.
 (pdftex.def)             Requested size: 56.9057pt x 56.9057pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 140
+LaTeX Font Info:    Calculating math sizes for size <10.5> on input line 141.
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <10.5> not available
+(Font)              size <10.95> substituted on input line 141.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <10.5> not available
+(Font)              size <10.95> substituted on input line 141.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <10.5> not available
+(Font)              size <10.95> substituted on input line 141.
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 141
 .
 (/home/vant/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 140
+LaTeX Font Info:    Trying to load font information for U+msb on input line 141
 .
 
 (/home/vant/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+lasy on input line 14
-0.
+1.
 
 (/home/vant/.TinyTeX/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Calculating math sizes for size <10.5> on input line 140.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 140.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 140.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 140.
-
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 140.
+(Font)              size <10.95> substituted on input line 141.
 
-LaTeX Font Info:    Calculating math sizes for size <7.34996> on input line 140
+LaTeX Font Info:    Calculating math sizes for size <7.34996> on input line 141
 .
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.67497> not available
-(Font)              size <5> substituted on input line 140.
+(Font)              size <5> substituted on input line 141.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.67497> not available
-(Font)              size <5> substituted on input line 140.
+(Font)              size <5> substituted on input line 141.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.67497> not available
-(Font)              size <5> substituted on input line 140.
+(Font)              size <5> substituted on input line 141.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <3.67497> not available
-(Font)              size <5> substituted on input line 140.
+(Font)              size <5> substituted on input line 141.
 
 
-Underfull \hbox (badness 10000) in alignment at lines 140--140
+Underfull \hbox (badness 10000) in alignment at lines 141--141
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--140
+Underfull \hbox (badness 10000) in paragraph at lines 141--141
 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 140--140
+Underfull \hbox (badness 10000) in alignment at lines 141--141
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--140
+Underfull \hbox (badness 10000) in paragraph at lines 141--141
  
  []
 
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
-40.
+41.
 (/home/vant/.TinyTeX/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Overfull \hbox (1.94911pt too wide) in alignment at lines 151--153
+Overfull \hbox (1.94911pt too wide) in alignment at lines 152--154
  [] [] 
  []
 
 
-Overfull \hbox (1.94911pt too wide) in alignment at lines 153--155
+Overfull \hbox (1.94911pt too wide) in alignment at lines 154--156
  [] [] 
  []
 
 
-Overfull \hbox (1.94911pt too wide) in alignment at lines 155--204
+Overfull \hbox (1.94911pt too wide) in alignment at lines 156--205
  [] [] 
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 204.
+(hyperref)                removing `\<def>-command' on input line 205.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\comma' on input line 204.
+(hyperref)                removing `\cnotenum' on input line 205.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 204.
+(hyperref)                removing `\<def>-command' on input line 205.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@fnmark' on input line 204.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 204.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cnotenum' on input line 204.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 204.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@corref' on input line 204.
+(hyperref)                removing `\@corref' on input line 205.
 
 [1{/home/vant/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
- <./elsevier-logo.pdf> <./dib-logo.pdf>]
-Overfull \hbox (2.17535pt too wide) in paragraph at lines 214--215
-[]\OT1/ptm/m/n/10 The dataset can be used to ex-tend the topic of mar-ket seg-m
-ents au-to-matic or semi-automatic
- []
-
-[2]
-Overfull \hbox (23.9481pt too wide) in paragraph at lines 261--261
+ <./elsevier-logo.pdf> <./dib-logo.pdf>] [2]
+Overfull \hbox (23.9481pt too wide) in paragraph at lines 260--260
 []|\OT1/ptm/m/n/8 ISPARKINGSPACEINCLUDEDINPRICE| 
  []
 
 
-Overfull \hbox (7.05386pt too wide) in alignment at lines 236--288
+Overfull \hbox (7.05386pt too wide) in alignment at lines 235--287
  [] [] [] 
  []
 
 [3]
-Overfull \hbox (52.08562pt too wide) in alignment at lines 294--317
+Overfull \hbox (52.08562pt too wide) in alignment at lines 293--316
  [] [] [] [] 
  []
 
-<figures/idealista18-all-polygons.png, id=60, 835.12pt x 418.56375pt>
+[4]
+<figures/idealista18-all-polygons.png, id=66, 835.12pt x 418.56375pt>
 File: figures/idealista18-all-polygons.png Graphic file (type png)
 <use figures/idealista18-all-polygons.png>
 Package pdftex.def Info: figures/idealista18-all-polygons.png  used on input li
 ne 326.
 (pdftex.def)             Requested size: 255.45668pt x 128.0374pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
 Overfull \hbox (7.05386pt too wide) in alignment at lines 333--349
  [] [] [] 
  []
 
-[4]
-<figures/points-moved-image.png, id=74, 684.5575pt x 559.08875pt>
+[5 <./figures/idealista18-all-polygons.png>]
+<figures/points-moved-image.png, id=80, 684.5575pt x 559.08875pt>
 File: figures/points-moved-image.png Graphic file (type png)
 <use figures/points-moved-image.png>
-Package pdftex.def Info: figures/points-moved-image.png  used on input line 366
+Package pdftex.def Info: figures/points-moved-image.png  used on input line 361
 .
 (pdftex.def)             Requested size: 142.25716pt x 122.343pt.
-
-Overfull \vbox (96.33386pt too high) has occurred while \output is active []
-
-
-[5 <./figures/idealista18-all-polygons.png> <./figures/points-moved-image.png>]
-<figures/coordinates/coordinates-valencia.png, id=85, 505.89pt x 339.14203pt>
+<figures/coordinates/coordinates-valencia.png, id=83, 505.89pt x 339.14203pt>
 File: figures/coordinates/coordinates-valencia.png Graphic file (type png)
 <use figures/coordinates/coordinates-valencia.png>
 Package pdftex.def Info: figures/coordinates/coordinates-valencia.png  used on 
-input line 392.
+input line 390.
 (pdftex.def)             Requested size: 170.71892pt x 113.80605pt.
-<figures/points-pre-post-all.png, id=87, 763.85374pt x 597.23125pt>
+<figures/points-pre-post-all.png, id=85, 763.85374pt x 597.23125pt>
 File: figures/points-pre-post-all.png Graphic file (type png)
 <use figures/points-pre-post-all.png>
 Package pdftex.def Info: figures/points-pre-post-all.png  used on input line 40
-3.
+1.
 (pdftex.def)             Requested size: 227.62204pt x 177.96783pt.
-[6 <./figures/coordinates/coordinates-valencia.png> <./figures/points-pre-post-
-all.png>] (./dib-idealista18.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 25--28
+ [6 <./figures/points-moved-image.png>] (./dib-idealista18.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 25--29
 []\OT1/ptm/m/n/8 OpenStreetMap con-trib-u-tors, Planet dump re-trieved from htt
 ps://planet.osm.org , [][]$\OT1/pcr/m/n/8 https : / / www .
  []
 
-) [7] (./dib-idealista18.aux)
+) [7 <./figures/coordinates/coordinates-valencia.png> <./figures/points-pre-pos
+t-all.png>] (./dib-idealista18.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.32503pt have occurred.
@@ -747,28 +717,27 @@ Package rerunfilecheck Info: File `dib-idealista18.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 11764 strings out of 480477
- 171800 string characters out of 5899184
- 517867 words of memory out of 5000000
- 29212 multiletter control sequences out of 15000+600000
- 442390 words of font info for 115 fonts, out of 8000000 for 9000
+ 11756 strings out of 480477
+ 171762 string characters out of 5899184
+ 518894 words of memory out of 5000000
+ 29205 multiletter control sequences out of 15000+600000
+ 442324 words of font info for 110 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 72i,15n,80p,1386b,484s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 72i,15n,80p,1533b,514s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/home/vant/.TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}</home/vant/.Tiny
 TeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/vant/.TinyTeX/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/vant/.TinyTeX/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/vant/.TinyTeX/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr10.pfb></home/vant/.TinyTeX/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy6.pfb></home/vant/.TinyTeX/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmsy7.pfb></home/vant/.TinyTeX/texmf-dist/fonts/type1/urw/cour
-ier/ucrr8a.pfb></home/vant/.TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.
-pfb></home/vant/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></home/van
-t/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></home/vant/.TinyTeX/tex
-mf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on dib-idealista18.pdf (7 pages, 1262899 bytes).
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/vant/.TinyTeX/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/vant/.TinyTeX/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy6.pfb></home/vant/.TinyTeX/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy7.pfb></home/vant/.TinyTeX/texmf-dist/fonts/type1/ur
+w/courier/ucrr8a.pfb></home/vant/.TinyTeX/texmf-dist/fonts/type1/urw/helvetic/u
+hvr8a.pfb></home/vant/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></ho
+me/vant/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></home/vant/.TinyT
+eX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on dib-idealista18.pdf (7 pages, 1254502 bytes).
 PDF statistics:
- 181 PDF objects out of 1000 (max. 8388607)
- 135 compressed objects within 2 object streams
+ 174 PDF objects out of 1000 (max. 8388607)
+ 130 compressed objects within 2 object streams
  42 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
