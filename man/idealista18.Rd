@@ -12,10 +12,17 @@ the package contains three data items for the three spanish cities of Madrid, Ba
 * Polygons for each city neighborhood
 * Listing ads (referred also as assets)
 * Points of Interest for each city
+
+Escribir algo
 }
 \references{
 \url{https://github.com/paezha/Reproducible-Research-Workflow}
 }
 \author{
-Antonio Paez, School of Earth, Environment and Society, McMaster University \email{paezha@mcmaster.ca}
+\tabular{ll}{
+  David Rey \tab \email{drey@idealista.com} \cr
+  Pelayo Arbues \tab \email{pgarbues@idealista.com} \cr
+  Fernando López  \tab \email{fernando.lopez@upct.es} \cr
+  Antonio Páez \tab \email{paezha@gmail.com} \cr
+  }
 }
