@@ -76,7 +76,7 @@
 %For co-submission authors, the title should be unique,
 %i.e. not the same as your research paper.
 %A maximum of 250 characters is allowed.
-\title{idealista18: A data package with real estate information in three major Spanish markets from the Idealista database }%
+\title{A geo-referenced micro-data set of real estate listings for the three largest Spanish cities from the Idealista website}%
 % \title{idealista18: A data package with real estate information in three major Spanish markets from the Idealista database \tnoteref{tnote1} }%
 % \tnotetext[tnote1]{This is an example for title footnote coding.}
 %Tip: here are a few examples of recent suitable article titles - these are short and clear:
@@ -86,7 +86,7 @@
 
 %%Authors
 \author[1]{David \snm{Rey Blanco}}
-\author[1]{Pelayo \snm{González Arbues}}
+\author[1]{Pelayo \snm{González Arbués}}
 % \author[1]{Pelayo \snm{González Arbues}\fnref{fn1}}
 % \fntext[fn1]{This is author footnote for second author.}
 \author[2]{Fernando \snm{López Hernández}}
@@ -98,7 +98,7 @@
 
 %%Affiliations
 \address[1]{idealista, Plaza de las Cortes 5, 28014 Madrid, Spain}
-\address[2]{Facultad de CC de la Empresa, C/ Real, 3. 30201 Cartagena, Murcia (Spain)}
+\address[2]{Facultad de CC de la Empresa, Universidad Politécnica de Cartagena, C/ Real, 3. 30201 Cartagena, Murcia (Spain)}
 \address[3]{School of Earth, Environment and Society, McMaster University, 1280 Main St W, Hamilton, Ontario L8S 4K1 Canada}
 
 %\received{1 May 2013}
@@ -110,10 +110,9 @@
 
 \begin{abstract}
 %%%%
-This dataset contains three items for each of the three major cities in Spain: Madrid, Barcelona and Valencia. The first data set contains real estate listings published on idealista portal in 2018. All listings have been enriched with cadastral information (i.e. building year of construction, built quality materials grade) plus some geographical features such as distance to relevant city areas and the coordinates themselves. To comply with european personal protection laws, we have processeed some sensitive variables yet preserving their spatial properties. The second data sets contains the neighborhood boundaries for each city, and third sets comprise a set of key points of interest for each municipality.
-This dataset is suitable to house market analysis, hedonic house price models and other spatial research related with real estate markets.
+This data article shares an open data product with big geo-referenced micro-data sets of 2018 real estate listings in Spain. The observations are for the three largest cities in the country: Madrid (n = 94,815 observations), Barcelona (n = 61,486 observations) and Valencia (n = 33,622 observations). These data were originally published on \url{idealista.com} real estate website. The data sets include the coordinates of properties (latitude and longitude), asking prices of each listd dwelling, and several variables of indoor characteristics. The listings were enriched with official information (building year of construction and built quality materials grade) plus other relevant geographical features such as distance to urban points of interest. Along with real estate listings, the data product also includes neighborhood boundaries for each city. These data sets are companions to a paper that examines the potential of machine learning techniques for spatial market segmentation in hedonic price analysis. The data product is offered in the form of a fully documented `R` package. This open data product is available for scientific and educational purposes, in particular for geo-spatial studies.
 
-\textbf{<falta cita/referencia al artículo>}
+\textbf{<article reference to be inserted>}
 
 %\noindent[The Abstract should describe the data collection process, the analysis
 %performed, the data, and their reuse potential. It should not provide
@@ -135,7 +134,7 @@ This dataset is suitable to house market analysis, hedonic house price models an
 %\noindent\textbf{Tip:} Try Google Scholar to find which terms are most common in your
 %field. In biomedical fields, MeSH terms are a good 'common vocabulary'
 %to draw from]
-\KWD Property values\sep Spain\sep Spatial analysis\sep Machine learning\sep Hedonic price analysis
+\KWD Hedonic price analysis\sep Spain\sep Spatial econometrics\sep Machine learning\sep Geo-spatial analysis
 \end{keyword}
 
 \end{frontmatter}
@@ -158,18 +157,18 @@ Subject                & Geography, Economics\\
 \hline
 Specific subject area  & Spatial analysis, machine learning, hedonic price analysis\\
 \hline
-Type of data           & Tables\newline\\
+Type of data           & Tables: dataframes and `sf` objects in `R` format\newline\\
 %\clearpage
-How data were acquired & multi-family listing records given by idealista portal \cite{idealista}\newline
+How data were acquired & Dwelling listing records provided by \url{idealista.com} \cite{idealista}\newline
                          Spanish central cadastral registry \cite{Catastro}\newline
                          Open street map \cite{OpenStreetMap}\newline
 \\
 \hline
-Data format            & Spatially masked\\
+Data format            & `R` package, named \{idealista18\}\\
 \hline
 Parameters for
 data\newline
-collection             & Data has been directly downloaded from the sources, cadastral and idealista data has been merged based on geographical location for each record
+collection             & Data has been directly downloaded from the sources, cadastral and idealista website data has been merged based on geographical location for each record.
 \\
 % [Provide a brief description of which conditions were considered
 %                          for data collection. Max 400 characters]
@@ -196,7 +195,7 @@ Data source location   & Institution: Idealista\newline
 \hline
 \hypertarget{target1}
 {Data accessibility}   & Repository name: GitHub\newline
-                         Direct URL to data: https://github.com/paezha/idealista18\newline
+                         Direct URL to data: \url{https://github.com/paezha/idealista18}\newline
                          \\
 \hline
 Related
@@ -229,11 +228,13 @@ article                & D. Rey Blanco, P. González Arbues, F. López Hernánde
 % interpretation, background or conclusions should be included in this
 % section. Please include legends with any tables, figures or graphs.
 
-This data package is composed of data objects corresponding to three major Spanish cities: quarterly single family listings, neighboorhood polygons and a set key of Points of Interest for each city. All spatial features, such as polygons and points, are expressed in geodetic coordinates using the \emph{EPSG:4326} coordinate reference system. The first block of data integrates properties published on idealista web site \cite{idealista}; each file contains the complete offering for a city for the four quarters in 2018. Idealista is the major real estate listing portal in Spain and also present in other southern european countries as Italy and Portugal. Each record contains the key found in listing ad\footnote{we will use the term \emph{ad} or \emph{listing} interchangeably to refer to a house published on the portal} plus a number of additional attribues from the Spanish cadastre \cite{Catastro}. The latter are described in the table \ref{table:data-assets-variables}, and the names for all these variables start with the prefix \emph{CAD}. Cadastral features asssignment is done by assigning the features of the nearest parcel to the coordinates \emph{LATITUDE} and \emph{LONGITUDE}. The measure scales for each variable has been defined according the theoretical framework proposed by \cite{stevens1946theory} that defines four scales: nominal, ordinal, interval and ratio.
+This open data product \cite{arribas2021open} is composed of several data objects corresponding to three major Spanish cities: dwelling listings, neighboorhood polygons and a set of Points of Interest (POI) for each city\footnote{The data has been provided by Idealista, the major real estate listing website in Spain, and present in other southern european countries as Italy and Portugal.}. The data set is distributed in the form of an `R` package, named \{idealista18\}. All spatial objects such as polygons and points are distributed as simple features objects (class `sf` in `R`). Spatial objects include geodetic coordinates using the \emph{EPSG:4326} coordinate reference system.
+
+The first block of data integrates properties published on idealista real state website \cite{idealista}; each file contains the complete set of listings for each of the three cities in the package, corresponding to the four quarters of year 2018. Each record contains the key found in the listing ad\footnote{The term \emph{ad} or \emph{listing} is used interchangeably to refer to a property advertised on the website} plus a number of additional attribues from the Spanish cadastre \cite{Catastro}. Cadastral information is described in Table \ref{table:data-assets-variables}, including the the prefix \emph{CAD} in the variable name. Cadastral features asssignment is done by assigning the features of the nearest parcel to the coordinates \emph{LATITUDE} and \emph{LONGITUDE}. The measure scales for each variable are defined according to the theoretical framework proposed by \cite{stevens1946theory} that defines four scales: nominal, ordinal, interval and ratio.
 
 \begin{footnotesize}
 \begin{longtable}{p{40mm} c p{63mm}}
-\caption{Description of the variables in the listing data set}\\
+\caption{Description of the variables in the listing data sets}\\
 \label{table:data-assets-variables} \\
 \hline
 \hline
@@ -248,17 +249,15 @@ ASSETID & Identifier & Unique identifier of the advertisement\\
 PERIOD & Nominal (Date) & Expressed as YYYYMM, indicates the quarter when the ad was extracted. We used YYYY03 for the 1st quarter, YYYY06 the 2nd, YYYY09 for the 3rd and YYYY12 for the 4th\\
 PRICE & Interval & Asking price for the ad at idealista expressed in euros\\
 UNITPRICE & Interval & Asking price in euros per square meter (constructed area)\\
-ADTYPOLOGYID & Nominal & Residential building type: multi-family: \emph{home}, single-familiy: \emph{chalet}\\
-ADOPERATIONID & Nominal & Operation type for the ad: \emph{sale} or \emph{rent}\\
 ROOMNUMBER & Ordinal & Number of bedrooms\\
 BATHNUMBER & Ordinal & Number of bathrooms\\
 HASTERRACE & Nominal & Dummy variable for terrace (takes 1 if there is a terrace, 0 otherwise\\
 HASLIFT & Nominal & Dummy variable for lift (takes 1 if there is a lift in the building, 0 otherwise)\\
-HASAIRCONDITIONING & Nominal & Dummy variable for AA (takes 1 if there is a AA, 0 otherwise)\\
+HASAIRCONDITIONING & Nominal & Dummy variable for air conditioner (takes 1 if there is air conditioner, 0 otherwise)\\
 AMENITYID & Nominal & Indicates the amenities included (1 - no furniture, no kitchen amenities, 2 - kitchen amenities, no furniture, 3 - kitchen amenities, furniture)\\
 HASPARKINGSPACE & Nominal & Dummy variable for parking (takes 1 if parking is included in the Ad, 0 otherwise)\\
 ISPARKINGSPACEINCLUDEDINPRICE & Nominal & Dummy variable for parking (takes 1 if parking is included in the Ad, 0 otherwise)\\
-PARKINGSPACEPRICE & Interval & Price of parking space in euros\\
+PARKINGSPACEPRICE & Interval & Asking price of parking space in euros\\
 HASNORTHORIENTATION & Nominal & Dummy variable for orientation (takes 1 if orientation is North in the Ad, 0 otherwise) - Important note: orientation features are not orthogonal features, a house oriented to the north can be also oriented to the east\\
 HASSOUTHORIENTATION & Nominal & Dummy variable for orientation (takes 1 if orientation is South in the Ad, 0 otherwise) - Important note: orientation features are not orthogonal features, a house oriented to the north can be also oriented to the east\\
 HASEASTORIENTATION & Nominal & Dummy variable for orientation (takes 1 if orientation is East in the Ad, 0 otherwise) - Important note: orientation features are not orthogonal features, a house oriented to the north can be also oriented to the east\\
@@ -280,18 +279,20 @@ CADASTRALQUALITYID & Ordinal & Cadastral quality (source: cadastre). 0 Best - 10
 BUILTTYPEID\_1 & Nominal & Dummy value for flat condition: 1 new development and 0 otherwise\\
 BUILTTYPEID\_2 & Nominal & Dummy value for flat condition: 1 second hand to be restored 0 otherwise (\emph{source: advertiser})\\
 BUILTTYPEID\_3 & Nominal & Dummy value for flat condition: 1 second hand in good condition 0 otherwise (\emph{source: advertiser})\\
-DISTANCE\_TO\_CITY\_CENTER & Interval & Distance to center of city in Km\\
+LONGITUDE & Interval & Longitude, geographical coordinate\\
+LATITUDE & Interval & Latitude geographical coordinate\\
 geometry & Geometry & Geometry for the elements. A point with $X,Y$ coordinates\\
 \hline
 \hline
 \end{longtable}
 \end{footnotesize}
 
-In addition to the common features each city will have a set of spatial additional features, in particular refered to the distance to a major street.
+In addition to the information shown in Table \ref{table:data-assets-variables}, distances from each dwelling to Point of Interest are included. Table \ref{table:data-distance-variables} lists these variables for each city.
 
 \begin{footnotesize}
-\begin{longtable}{l p{40mm} c p{63mm}}
+\begin{longtable}{l p{35mm} c p{46mm}}
 \caption{Description of variables of neighborhood polygons data set} \\
+\label{table:data-distance-variables} \\
 \hline
 \hline
 % \endhead
@@ -301,14 +302,14 @@ In addition to the common features each city will have a set of spatial addition
 \textbf{City} & \textbf{Variable} & \textbf{Mesurement scale} & \textbf{Description}\\
 \hline
 & & &\\
-\emph{Madrid} & DISTANCE\_TO\_CASTELLANA & Interval & Distance in km to the Paseo de la Castellana Street \\
+\emph{Madrid} & DISTANCE\_TO\_CITY\_CENTER & Interval & Distance in Km to the city center (Puerta del Sol) \\ & DISTANCE\_TO\_METRO & Interval & Distance in Km to the nearest subway station \\ & DISTANCE\_TO\_CASTELLANA & Interval & Distance in Km to the Paseo de la Castellana Street \\
 & & &\\
 % \hline
-\emph{Valencia} & DISTANCE\_TO\_METRO & Interval & Distance in km to the nearest subway station \\
- & DISTANCE\_TO\_BLASCO & Interval & Distance in km to the Blasco Ibáñez Avenue \\
+\emph{Valencia} & DISTANCE\_TO\_CITY\_CENTER & Interval & Distance in Km to the city center (Plaza del Ayuntamiento) \\ & DISTANCE\_TO\_METRO & Interval & Distance in Km to the nearest subway station \\
+ & DISTANCE\_TO\_BLASCO & Interval & Distance in Km to the Blasco Ibáñez Avenue \\
 & & &\\
 % \hline
-\emph{Barcelona} & DISTANCE\_TO\_DIAGONAL & Interval & Distance in km to the Diagonal Avenue \\
+\emph{Barcelona} & DISTANCE\_TO\_CITY\_CENTER & Interval & Distance in Km to the city center (Plaza de España) \\ & DISTANCE\_TO\_METRO & Interval & Distance in Km to the nearest subway station \\ & DISTANCE\_TO\_DIAGONAL & Interval & Distance in Km to the Diagonal Avenue \\
 & & &\\
 \hline
 \hline
@@ -316,18 +317,18 @@ In addition to the common features each city will have a set of spatial addition
 \end{longtable}
 \end{footnotesize}
 
-The record count for each city is: 156,016 listings for Madrid and 84,280 for Barcelona and 79,360 for Valencia. It is important to note that the same listing can be found in more than one period, what means that a house was uploaded for sale in one quarter but was sold in a subsequent quarter.
+The record counts for each city in 2018 are: 94,815 listings for Madrid, 61,486 for Barcelona and 33,622 for Valencia. Note that the same listing can be found in more than one period when a property listed for sale in one quarter was sold in a subsequent quarter.
 
-The second part contains the polygons for the different neighborhoods for such cities as we can see in the figure \ref{fig:all-polygons}. This boundaries are based on the official boundaries but slighly adapted by idealista \footnote{the criterium used to adapt this division is double, if an area is small enough and similar enough to another they merge both areas, on the other hand if the official area is not homogeneous it is then divided in a series of new polygons}. In practical terms we can assume they are the same, since the website simply collapsed those areas if they are small enough in terms of number of ads. In the case of Madrid they just collapse four areas in two new ones.
+The second block of data include the spatial features of the three cities divided in neighborhoods. Figure \ref{fig:all-polygons} shows the different neighborhoods for the three cities. The boundaries are based on the official boundaries but slighly adapted by idealista \footnote{The criterion used to adapt this division is double, if an area is small enough and similar enough to another they merge both areas, on the other hand if the official area is not homogeneous it is then divided in a series of new polygons}. In practical terms we can assume they are the same, since the website simply collapses areas when they are sufficiently small in terms of number of ads. In the case of Madrid they just collapse four areas into two new ones.
 
 \begin{figure}[h]
-  \caption{Neighborhood boundaries for Madrid, Barcelona and Valencia. Source: own elaboration}
+  \caption{Neighborhood boundaries for Madrid, Barcelona and Valencia}
   \centering
-  \includegraphics[height=4.5cm]{figures/idealista18-all-polygons}
+  \includegraphics[height=6.5cm]{figures/idealista18-all-polygons}
   \label{fig:all-polygons}
 \end{figure}
 
-We have a total of 73 neigborhoods for Barcelona, 135 for Madrid and 73 for Valencia. Each neighborhood has also two additional variables described in the table \ref{table:data-additional-variables}.
+There are a total of 73 neigborhoods in Barcelona, 135 in Madrid and 73 in Valencia. Each neighborhood has also two additional variables described in the Table \ref{table:data-additional-variables}.
 
 \begin{footnotesize}
 \begin{longtable}{p{40mm} c p{63mm}}
@@ -350,10 +351,13 @@ LOCATIONNAME & nominal & Neighborhood name \\
 \end{footnotesize}
 % \noindent\textbf{Tip:} do not forget to describe any supplementary data files.]
 
+The last block of data included in the data package is a set of Point of Interest of each city in `R` list format. These lists include three elements: (i) the coordinates of the city center (see Table \ref{table:data-additional-variables} that identify the central business district); (ii) a set of points that define the main street of each city; and (iii) the coordinates of metro stations.
+
+
 \section*{Experimental Design, Materials and Methods}
 % Year of construction is revised as well, given that original year of construction from listings are entered by users in the web site, therefore subject to errors and incomplete (a 40\% missing rate). To remove any issue we assign cadastral construction year from the nearest cadastral parcel whenever value has an outstanding value (date is after publication date or year of construction is before 1500) or when the field value was missing.
 
-The data encompassed three major cities in Spain: Madrid, Barcelona and Valencia, for each municipality we provide listing prices for multi-familiy homes on a quarterly basis. The files contain the complete offering for each of the four quarters in 2018 on idealista web site \cite{idealista}. Idealista is the major real estate listing portal in Spain and also present in other southern european countries as Italy and Portugal.Given the spanish regulatory restrictions idealista listings are slighly anonymized, in order to agree regulatory requirements guaranteeing their attributes and spatial properties. This process take two steps, the first consists of the obfuscation of prices adding or substracting a random percentage of their original values ranging from -2.5\% to +2.5\%. Since asking prices are not normally a completely continuous magnitude (sale prices are usually multiples of 1000 and rent prices are of 10), after the first price modification we finally align prices to multiples of 1000.Finally we carry out a spatial masking process that intends to keep spatial properties of the original data set. As we can see in the figure \ref{fig:points-moved-image} the area where the new point (masked) would be located will be taken randomly within maximum and minimum displacement distances circles. In order to preserve the nature of the neighborhood the house we make sure the new point would fall in the original neighborhood, otherwise we look for a new masked place.
+As noted above, the data package contains the complete offering in three major Spanish cities for each of the four quarters of 2018, as drawn from idealista web site \cite{idealista}. To comply with Spanish regulations, the listings are slightly modified to preserve their anonimity. The masking process consists of two steps, as follows: first the prices are obfuscated with the addition or substraction of a random percentage of their original values ranging from -2.5\% to +2.5\%. Since asking prices are not normally a completely continuous variable (sale prices are usually multiples of 1000 and rent prices are of 10), after the first price modification we finally align prices to multiples of 1000. Secondly, a spatial masking process was also implemented with the intention of keeping spatial properties of the original data set. The coordinates of each listing were displaced using a stochastic procedure. Effectively, the listings were recoded using coordinates contained in a maximm and minimum displacement circles, as shown in Figure \ref{fig:points-moved-image}. To preserve membership in a neighborhood, the spatial masking procedure was constrained to ensure that the masked coordinates are in the original neighborhood of the listing.
 
 \begin{figure}[!ht]
   \caption{Masking coordinates spatial range. Source: own elaboration}
@@ -362,7 +366,7 @@ The data encompassed three major cities in Spain: Madrid, Barcelona and Valencia
   \label{fig:points-moved-image}
 \end{figure}
 
-The algorithm \ref{algo:coordinates-displacement} iteratively  displace the coordinates of each listing with a minimum distance and a maximum distance with the restriction that every new location must fall in within the original neighborbood of the listing.
+The algorithm \ref{algo:coordinates-displacement} iteratively displaces the coordinates of each listing with a minimum distance and a maximum distance with the restriction that the new coordinates do not fall in a different neighborhood. This ensures that neighborhood attributes are preserved.
 
 
 \begin{algorithm}[!ht]
@@ -382,7 +386,7 @@ The algorithm \ref{algo:coordinates-displacement} iteratively  displace the coor
  \label{algo:coordinates-displacement}
 \end{algorithm}
 
-In the figure \ref{fig:coordinates-displacement} we display the histogram with the displacement in meters for all listings in the city of Valencia, as average the displacement is 45 meters.
+Figure \ref{fig:coordinates-displacement} shows the histogram of displacements in meters for all listings in the city of Valencia; the average distance between the original and masked coordinates is 45 meters.
 
 \begin{figure}[!ht]
   \caption{Coordinate displacement in meters Valencia. Source: own elaboration}
@@ -393,12 +397,12 @@ In the figure \ref{fig:coordinates-displacement} we display the histogram with t
 
 
 % Define a new subcommand
-In the figure \ref{fig:points-pre-post-all} we can see the spatial distribution of the original records compared to spatial distribution after masking.
+Figure \ref{fig:points-pre-post-all} shows the spatial distribution of the original records compared to spatial distribution after masking.
 
 \begin{figure}[!ht]
   \caption{Spatial distribution of ads (before and after masking). Source: own elaboration}
   \centering
-  \includegraphics[width=8cm]{figures/points-pre-post-all}
+  \includegraphics[width=12cm]{figures/points-pre-post-all}
   \label{fig:points-pre-post-all}
 \end{figure}
 
@@ -437,7 +441,7 @@ In the figure \ref{fig:points-pre-post-all} we can see the spatial distribution 
 
 \section*{Acknowledgments}
 
-The authors thank Alessandro Galesi for his support in the paper revision and Juan Ramon Selva for collecting and cleaning the spatial data.
+The authors wish to thank Alessandro Galesi for his support in the paper revision and Juan Ramon Selva for collecting and cleaning the spatial data.
 
 % Acknowledgments should be inserted at the end of the paper, before the
 % references, not as a footnote to the title. Use the unnumbered
@@ -445,7 +449,7 @@ The authors thank Alessandro Galesi for his support in the paper revision and Ju
 
 \section*{Declaration of Competing Interest}
 
-The authors declare that they have no known competing financial interests or personal relationships which have, or could be perceived to have, influenced the work reported in this article.
+David Rey Blanco and Pelayo González Arbués are emplyed by idealista. They have been granted permission to share the data presented in this articule. None of the authors have known competing financial interests or personal relationships which have, or could be perceived to have, influenced the work reported in this article.
 
 % \noindent [All authors are required to report the following information:
 % \begin{enumerate}
