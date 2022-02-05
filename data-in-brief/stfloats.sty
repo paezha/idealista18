@@ -1,0 +1,586 @@
+%%
+%% This is file `stfloats.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% stfloats.dtx  (with options: `package')
+%% 
+%% Copyright (C) 1997-2017 by Sigitas Tolu\v{s}is <sigitas@vtex.lt>
+%% VTeX UAB, Mokslininku 2a, Vilnius, Lithuania
+%% --------------------------------------------------------------------------
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% PURPOSE:   Improve float mechanism and baselineskip settings
+%%
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesPackage{stfloats}
+    [2017/03/27 v3.3 Improve float mechanism and baselineskip settings]
+\gdef\@dblbotlist{}
+\newcount\@dblbotnum
+\newcount\c@dblbotnumber
+\setcounter{dblbotnumber}{2}
+\def\@dbflt#1{\@ifnextchar[{\@xdblfloat{#1}}{\@xdblfloat{#1}[tbp]}}
+\def\@dblfloatplacement{%
+    \global\@dbltopnum\c@dbltopnumber
+    \global\@dblbotnum\c@dblbotnumber
+    \global\@dbltoproom\dbltopfraction\@colht
+    \@textmin\@colht
+    \advance\@textmin -\@dbltoproom
+    \@fpmin\dblfloatpagefraction\textheight
+    \@fptop\@dblfptop
+    \@fpsep\@dblfpsep
+    \@fpbot\@dblfpbot
+    \def\f@depth{1sp}%
+    }
+\newif\if@before@latex@release
+\def\tmp@reserved@a#1#2#3#4#5\@nil{%
+    \ifnum #1#2#3#4<2015\relax
+        \@before@latex@releasetrue
+    \else
+        \@before@latex@releasefalse
+    \fi
+    }
+\expandafter\tmp@reserved@a\fmtversion\@nil
+\if@before@latex@release
+    %%% < 2015 start
+    \def\@addtodblcol{%
+        \begingroup
+            \@insertfalse
+            \@setfloattypecounts
+            \@getfpsbit \tw@
+            \ifodd\@tempcnta
+                \@flsetnum \@dbltopnum
+                \ifnum \@dbltopnum>\z@
+                    \@tempswafalse
+                    \ifdim \@dbltoproom>\ht\@currbox
+                        \@tempswatrue
+                    \else
+                        \ifnum \@fpstype<\sixt@@n
+                            \advance\@dbltoproom \@textmin
+                            \ifdim \@dbltoproom>\ht\@currbox
+                                \@tempswatrue
+                            \fi
+                            \advance\@dbltoproom -\@textmin
+                        \fi
+                    \fi
+                    \if@tempswa
+                        \@bitor \@currtype \@dbldeferlist
+                        \if@test
+                        \else
+                            \@bitor \@currtype \@dblbotlist
+                            \if@test
+                            \else
+                                \@tempdima -\ht\@currbox
+                                \advance\@tempdima
+                                  -\ifx \@dbltoplist\@empty \dbltextfloatsep \else
+                                                            \dblfloatsep \fi
+                                \global \advance \@dbltoproom \@tempdima
+                                \global \advance \@colht \@tempdima
+                                \global \advance \@dbltopnum \m@ne
+                                \@cons \@dbltoplist \@currbox
+                                \@inserttrue
+                            \fi
+                        \fi
+                    \fi
+                \fi
+            \fi
+            \if@insert
+            \else
+                \@getfpsbit 4\relax
+                \ifodd\@tempcnta
+                    \@flsetnum \@dblbotnum
+                    \ifnum \@dblbotnum>\z@
+                        \@tempswafalse
+                        \ifdim \@dbltoproom>\ht\@currbox
+                            \@tempswatrue
+                        \else
+                            \ifnum \@fpstype<\sixt@@n
+                                \advance \@dbltoproom \@textmin
+                                \ifdim \@dbltoproom>\ht\@currbox
+                                    \@tempswatrue
+                                \fi
+                                \advance \@dbltoproom -\@textmin
+                            \fi
+                        \fi
+                        \if@tempswa
+                            \@bitor \@currtype \@dbldeferlist
+                            \if@test
+                            \else
+                                \@tempdima -\ht\@currbox
+                                \advance\@tempdima
+                                  -\ifx \@dblbotlist\@empty \dbltextfloatsep \else
+                                                            \dblfloatsep \fi
+                                \global \advance \@dbltoproom \@tempdima
+                                \global \advance \@colht \@tempdima
+                                \global \advance \@dblbotnum \m@ne
+                                \@cons \@dblbotlist \@currbox
+                                \@inserttrue
+                            \fi
+                        \fi
+                    \fi
+                \fi
+                \if@insert
+                \else
+                    \@cons\@dbldeferlist\@currbox
+                \fi
+            \fi
+        \endgroup
+        }
+    \def\@doclearpage{%
+        \ifvoid\footins
+            \ifvbox\@kludgeins
+                {\setbox \@tempboxa \box \@kludgeins}%
+            \fi
+            \setbox\@tempboxa\vsplit\@cclv to\z@ \unvbox\@tempboxa
+            \setbox\@tempboxa\box\@cclv
+            \xdef\@deferlist{\@toplist\@botlist\@deferlist}%
+            \global \let \@toplist \@empty
+            \global \let \@botlist \@empty
+            \global \@colroom \@colht
+            \ifx \@currlist\@empty
+            \else
+                \@latexerr{Float(s) lost}\@ehb
+                \global \let \@currlist \@empty
+            \fi
+            \@makefcolumn\@deferlist
+            \@whilesw\if@fcolmade \fi{\@opcol\@makefcolumn\@deferlist}%
+            \if@twocolumn
+                \if@firstcolumn
+                    \xdef\@dbldeferlist{\@dbltoplist\@dblbotlist\@dbldeferlist}%
+                    \global \let \@dbltoplist \@empty
+                    \global \let \@dblbotlist \@empty
+                    \global \@colht \textheight
+                    \begingroup
+                        \@dblfloatplacement
+                        \@makefcolumn\@dbldeferlist
+                        \@whilesw\if@fcolmade \fi{\@outputpage
+                                                  \@makefcolumn\@dbldeferlist}%
+                    \endgroup
+                \else
+                    \vbox{}\clearpage
+                \fi
+            \fi
+        \else
+            \setbox\@cclv\vbox{\box\@cclv\vfil}%
+            \@makecol\@opcol
+            \clearpage
+        \fi
+        }
+    %%% < 2015 end
+\else
+    %%% > 2015 start
+    \def\@addtodblcol{%
+        \begingroup
+            \@insertfalse
+            \@setfloattypecounts
+            \@getfpsbit \tw@
+            \ifodd\@tempcnta
+                \@flsetnum \@dbltopnum
+                \ifnum \@dbltopnum>\z@
+                    \@tempswafalse
+                    \ifdim \@dbltoproom>\ht\@currbox
+                        \@tempswatrue
+                    \else
+                        \ifnum \@fpstype<\sixt@@n
+                            \advance \@dbltoproom \@textmin
+                            \ifdim \@dbltoproom>\ht\@currbox
+                                \@tempswatrue
+                            \fi
+                            \advance \@dbltoproom -\@textmin
+                        \fi
+                    \fi
+                    \if@tempswa
+                        \@bitor \@currtype \@deferlist
+                        \@testwrongwidth\@currbox
+                        \if@test
+                        \else
+                            \@bitor \@currtype \@dblbotlist
+                            \if@test
+                            \else
+                                \@tempdima -\ht\@currbox
+                                \advance\@tempdima
+                                  -\ifx \@dbltoplist\@empty \dbltextfloatsep \else
+                                                            \dblfloatsep \fi
+                                \global \advance \@dbltoproom \@tempdima
+                                \global \advance \@colht \@tempdima
+                                \global \advance \@dbltopnum \m@ne
+                                \@cons \@dbltoplist \@currbox
+                                \@inserttrue
+                            \fi
+                        \fi
+                    \fi
+                \fi
+            \fi
+            \if@insert
+            \else
+                \@getfpsbit 4\relax
+                \ifodd\@tempcnta
+                    \@flsetnum \@dblbotnum
+                    \ifnum \@dblbotnum>\z@
+                        \@tempswafalse
+                        \ifdim \@dbltoproom>\ht\@currbox
+                            \@tempswatrue
+                        \else
+                            \ifnum \@fpstype<\sixt@@n
+                              \advance \@dbltoproom \@textmin
+                              \ifdim \@dbltoproom>\ht\@currbox
+                                  \@tempswatrue
+                              \fi
+                              \advance \@dbltoproom -\@textmin
+                            \fi
+                        \fi
+                        \if@tempswa
+                            \@bitor \@currtype \@deferlist
+                            \@testwrongwidth\@currbox
+                            \if@test
+                            \else
+                                \@tempdima -\ht\@currbox
+                                \advance\@tempdima
+                                  -\ifx \@dblbotlist\@empty \dbltextfloatsep \else
+                                                           \dblfloatsep \fi
+                                \global \advance \@dbltoproom \@tempdima
+                                \global \advance \@colht \@tempdima
+                                \global \advance \@dblbotnum \m@ne
+                                \@cons \@dblbotlist \@currbox
+                                \@inserttrue
+                            \fi
+                        \fi
+                    \fi
+                \fi
+                \if@insert
+                \else
+                    \@cons\@deferlist\@currbox
+                \fi
+            \fi
+        \endgroup
+        }
+    \def\@addtocurcol{%
+        \@insertfalse
+        \@setfloattypecounts
+        \ifnum \@fpstype=8
+        \else
+            \ifnum \@fpstype=24
+            \else
+                \@flsettextmin
+                \advance \@textmin \@textfloatsheight
+                \@reqcolroom \@pageht
+                \ifdim \@textmin>\@reqcolroom
+                    \@reqcolroom \@textmin
+                \fi
+                \advance \@reqcolroom \ht\@currbox
+                \ifdim \@colroom>\@reqcolroom
+                    \@flsetnum \@colnum
+                    \ifnum \@colnum>\z@
+                        \@bitor\@currtype\@deferlist
+                        \if@test
+                        \else
+                            \@testwrongwidth\@currbox
+                            \if@test
+                                \if@firstcolumn
+                                    \@getfpsbit \tw@
+                                    \ifodd\@tempcnta
+                                        \@flsetnum \@dbltopnum
+                                        \ifnum \@dbltopnum>\z@
+                                            \@tempswafalse
+                                            \ifdim \@dbltoproom>\ht\@currbox
+                                                \@tempswatrue
+                                            \else
+                                                \ifnum \@fpstype<\sixt@@n
+                                                    \advance \@dbltoproom \@textmin
+                                                    \ifdim \@dbltoproom>\ht\@currbox
+                                                        \@tempswatrue
+                                                    \fi
+                                                    \advance \@dbltoproom -\@textmin
+                                                \fi
+                                            \fi
+                                            \if@tempswa
+                                                \@bitor\@currtype{\@toplist\@midlist\@botlist\@dblbotlist}%
+                                                \if@test
+                                                \else
+                                                    \@tempdima -\ht\@currbox
+                                                    \advance\@tempdima
+                                                      -\ifx \@dbltoplist\@empty \dbltextfloatsep \else
+                                                                          \dblfloatsep \fi
+                                                    \global \advance \@dbltoproom \@tempdima
+                                                    \global \advance \@colht \@tempdima
+                                                    \global \advance \@colroom \@tempdima
+                                                    \global \advance \@dbltopnum \m@ne
+                                                    \@cons \@dbltoplist \@currbox
+                                                    \@inserttrue
+                                                \fi
+                                            \fi
+                                        \fi
+                                    \else
+                                        \@getfpsbit 4\relax
+                                        \ifodd\@tempcnta
+                                            \@flsetnum \@dblbotnum
+                                            \ifnum \@dblbotnum>\z@
+                                                \@tempswafalse
+                                                \ifdim \@dbltoproom>\ht\@currbox
+                                                    \@tempswatrue
+                                                \else
+                                                    \ifnum \@fpstype<\sixt@@n
+                                                        \advance \@dbltoproom \@textmin
+                                                        \ifdim \@dbltoproom>\ht\@currbox
+                                                            \@tempswatrue
+                                                        \fi
+                                                        \advance \@dbltoproom -\@textmin
+                                                    \fi
+                                                \fi
+                                                \if@tempswa
+                                                    \@tempdima -\ht\@currbox
+                                                    \advance\@tempdima
+                                                      -\ifx \@dblbotlist\@empty \dbltextfloatsep \else
+                                                                        \dblfloatsep \fi
+                                                    \global \advance \@dbltoproom \@tempdima
+                                                    \global \advance \@colht \@tempdima
+                                                    \global \advance \@colroom \@tempdima
+                                                    \global \advance \@dblbotnum \m@ne
+                                                    \@cons \@dblbotlist \@currbox
+                                                    \@inserttrue
+                                                \fi
+                                            \fi
+                                        \fi
+                                    \fi
+                                \fi
+                            \else
+                                \@bitor\@currtype\@botlist
+                                \if@test
+                                    \@addtobot
+                                \else
+                                    \ifodd \count\@currbox
+                                        \advance \@reqcolroom \intextsep
+                                        \ifdim \@colroom>\@reqcolroom
+                                            \global \advance \@colnum \m@ne
+                                            \global \advance \@textfloatsheight \ht\@currbox
+                                            \global \advance \@textfloatsheight 2\intextsep
+                                            \@cons \@midlist \@currbox
+                                            \if@nobreak
+                                                \nobreak
+                                                \@nobreakfalse
+                                                \everypar{}%
+                                            \else
+                                                \addpenalty \interlinepenalty
+                                            \fi
+                                            \vskip \intextsep
+                                            \box\@currbox
+                                            \penalty\interlinepenalty
+                                            \vskip\intextsep
+                                            \ifnum\outputpenalty <-\@Mii \vskip -\parskip\fi
+                                            \outputpenalty \z@
+                                            \@inserttrue
+                                        \fi
+                                    \fi
+                                    \if@insert
+                                    \else
+                                        \@addtotoporbot
+                                    \fi
+                                \fi
+                            \fi
+                        \fi
+                    \fi
+                \fi
+            \fi
+        \fi
+        \if@insert
+        \else
+            \@resethfps
+            \@cons\@deferlist\@currbox
+        \fi
+        }%
+    \def\@addtotoporbot{%
+        \@getfpsbit \tw@
+        \ifodd \@tempcnta
+            \@flsetnum \@topnum
+            \ifnum \@topnum>\z@
+                \@tempswafalse
+                \@flcheckspace \@toproom \@toplist
+                \if@tempswa
+                    \@bitor\@currtype{\@midlist\@botlist\@dblbotlist}%
+                    \if@test
+                    \else
+                        \@flupdates \@topnum \@toproom \@toplist
+                        \@inserttrue
+                    \fi
+                \fi
+            \fi
+        \fi
+        \if@insert
+        \else
+            \@addtobot
+        \fi
+        }
+    \def\@addtobot{%
+        \@getfpsbit 4\relax
+        \ifodd \@tempcnta
+            \@flsetnum \@botnum
+            \ifnum \@botnum>\z@
+                \@tempswafalse
+                \@flcheckspace \@botroom \@botlist
+                \if@tempswa
+                    \@bitor\@currtype{\@dblbotlist}%
+                    \if@test
+                    \else
+                        \global \maxdepth \z@
+                        \@flupdates \@botnum \@botroom \@botlist
+                        \@inserttrue
+                    \fi
+                \fi
+            \fi
+        \fi
+        }
+    \def\@doclearpage{%
+        \ifvoid\footins
+            \ifvbox\@kludgeins
+                {\setbox \@tempboxa \box \@kludgeins}%
+            \fi
+            \setbox\@tempboxa\vsplit\@cclv to\z@ \unvbox\@tempboxa
+            \setbox\@tempboxa\box\@cclv
+            \xdef\@deferlist{\@toplist\@botlist\@deferlist}%
+            \global \let \@toplist \@empty
+            \global \let \@botlist \@empty
+            \global \@colroom \@colht
+            \ifx \@currlist\@empty
+            \else
+                \@latexerr{Float(s) lost}\@ehb
+                \global \let \@currlist \@empty
+            \fi
+            \@makefcolumn\@deferlist
+            \@whilesw\if@fcolmade \fi{\@opcol\@makefcolumn\@deferlist}%
+            \if@twocolumn
+                \if@firstcolumn
+                    \xdef\@deferlist{\@dbltoplist\@dblbotlist\@deferlist}%
+                    \global \let \@dbltoplist \@empty
+                    \global \let \@dblbotlist \@empty
+                    \global \@colht \textheight
+                    \begingroup
+                        \@dblfloatplacement
+                        \@makefcolumn\@deferlist
+                        \@whilesw\if@fcolmade \fi{\@outputpage
+                                                  \@makefcolumn\@deferlist}%
+                    \endgroup
+                \else
+                    \vbox{}\clearpage
+                \fi
+            \fi
+            \ifx\@deferlist\@empty \else\clearpage \fi
+        \else
+            \setbox\@cclv\vbox{\box\@cclv\vfil}%
+            \@makecol\@opcol
+            \clearpage
+        \fi
+        }
+    %%% > 2015 end
+\fi
+\def\@combinedblfloats{%
+    \ifx \@dbltoplist\@empty \else \@cdblflt \fi
+    \ifx \@dblbotlist\@empty \else \@cdblflb \fi
+    }
+\def\@cdblflt{%
+    \setbox\@tempboxa \vbox{}%
+    \let \@elt \@comdblflelt
+    \@dbltoplist
+    \let \@elt \relax
+    \xdef \@freelist {\@freelist\@dbltoplist}%
+    \global\let \@dbltoplist \@empty
+    \setbox\@outputbox \vbox% to\textheight
+        {%\boxmaxdepth\maxdepth   %% probably not needed, CAR
+         \unvbox\@tempboxa\vskip-\dblfloatsep
+         \ifnum \@dbltopnum>\m@ne
+             \dblfigrule
+         \fi
+         \vskip \dbltextfloatsep
+         \unvbox \@outputbox
+        }%
+    }
+\def\@cdblflb{%
+    \setbox\@tempboxa \vbox{}%
+    \let \@elt \@comdblflelt
+    \@dblbotlist
+    \let \@elt \relax
+    \xdef \@freelist {\@freelist\@dblbotlist}%
+    \global\let \@dblbotlist \@empty
+    \setbox\@outputbox \vbox% to\textheight
+        {%\boxmaxdepth\maxdepth   %% probably not needed, CAR
+         \unvbox\@outputbox
+         \vskip \dbltextfloatsep
+         \ifnum \@dblbotnum>\m@ne
+             \dblfigrule
+         \fi
+         \unvbox\@tempboxa
+         \vskip -\dblfloatsep
+         }%
+    }
+\global\let\org@makecol\@makecol
+\gdef\fn@makecol{%
+    \setbox\@outputbox \box\@cclv
+    \let\@elt\relax
+    \xdef\@freelist{\@freelist\@midlist}%
+    \global \let \@midlist \@empty
+    \@combinefloats
+    \ifvoid\footins
+    \else
+        \setbox\@outputbox \vbox {%
+            \boxmaxdepth \@maxdepth
+            \unvbox \@outputbox
+            \vskip \skip\footins
+            \color@begingroup
+                \normalcolor
+                \footnoterule
+                \unvbox \footins
+            \color@endgroup
+            }%
+    \fi
+    \ifvbox\@kludgeins
+        \@makespecialcolbox
+    \else
+        \setbox\@outputbox \vbox to\@colht {%
+            \@texttop
+            \dimen@ \dp\@outputbox
+            \unvbox \@outputbox
+            \vskip -\dimen@
+            \@textbottom
+            }%
+    \fi
+    \global \maxdepth \@maxdepth
+    }
+\def\fnbelowfloat{\global\let\@makecol\fn@makecol}
+\def\fnunderfloat{\global\let\@makecol\org@makecol}
+\def\set@floatfontsize#1#2#3{%
+    \@defaultunits\@tempdimb#2\p@\relax\@nnil
+    \edef\f@size{\strip@pt\@tempdimb}%
+    \@defaultunits\@tempskipa#3\p@\relax\@nnil
+    \edef\f@baselineskip{\the\@tempskipa}%
+    \edef\f@linespread{#1}%
+    \let\baselinestretch\f@linespread
+    \def\size@update{%
+        \baselineskip\f@baselineskip
+        \@tempskipa\baselineskip\relax\baselineskip=1\baselineskip
+        \advance\@tempskipa by-\baselineskip\baselineskip\f@baselineskip
+         \baselineskip\f@linespread\baselineskip
+         \advance\@tempskipa by\baselineskip\baselineskip\@tempskipa
+         \normalbaselineskip\baselineskip
+         \setbox\strutbox\hbox{%
+             \vrule\@height.7\baselineskip
+                  \@depth.3\baselineskip
+                  \@width\z@}%
+         \let\size@update\relax
+        }%
+    }
+\let\set@@@fontsize\set@fontsize
+\def\setbaselinefloat{\let\set@fontsize\set@floatfontsize}
+\def\setbaselinefixed{%
+    \@tempdima=\baselinestretch\p@
+    \edef\baselinestretch{\strip@pt\@tempdima}%
+    \let\set@fontsize\set@@@fontsize
+    }
+\endinput
+%%
+%% End of file `stfloats.sty'.

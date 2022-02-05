@@ -34,8 +34,6 @@ NULL
 #'   \item{PERIOD}{Date YYYYMM, indicates the quarter when the ad was extracted we used YYYY03 for the 1st Q, YYYY06 the 2nd, YYYY09 for the 3rd and YYYY12 for the 4th}
 #'   \item{PRICE}{Asking price for the ad at idealista expressed in euros}
 #'   \item{UNITPRICE}{Price in euros per square meter}
-#'   \item{ADTYPOLOGYID}{Asset Typology (home, chalet)}
-#'   \item{ADOPERATIONID}{Asset Operation (rent, sales)}
 #'   \item{CONSTRUCTEDAREA}{Home built area in sq.m}
 #'   \item{ROOMNUMBER}{Number of bedrooms}
 #'   \item{BATHNUMBER}{Number of bathrooms}
@@ -95,9 +93,7 @@ NULL
 #'   \item{ASSETID}{Unique identifier of the asset}
 #'   \item{PERIOD}{Date YYYYMM, indicates the quarter when the ad was extracted we used YYYY03 for the 1st Q, YYYY06 the 2nd, YYYY09 for the 3rd and YYYY12 for the 4th}
 #'   \item{PRICE}{Price at idealista expressed in euros}
-#'   \item{UNITPRICE}{Price in euros per square meter}
-#'   \item{ADTYPOLOGYID}{Asset Typology (home, chalet)}
-#'   \item{ADOPERATIONID}{Asset Operation (rent, sales)}
+#'   \item{UNITPRICE}{Price in euros per square meter}}
 #'   \item{CONSTRUCTEDAREA}{Home built area in sq.m}
 #'   \item{ROOMNUMBER}{Number of bedrooms}
 #'   \item{BATHNUMBER}{Number of bathrooms}
@@ -158,8 +154,6 @@ NULL
 #'   \item{PERIOD}{Date YYYYMM, indicates the quarter when the ad was extracted we used YYYY03 for the 1st Q, YYYY06 the 2nd, YYYY09 for the 3rd and YYYY12 for the 4th}
 #'   \item{PRICE}{Price at idealista expressed in euros}
 #'   \item{UNITPRICE}{Price in euros per square meter}
-#'   \item{ADTYPOLOGYID}{Asset Typology (home, chalet)}
-#'   \item{ADOPERATIONID}{Asset Operation (rent, sales)}
 #'   \item{CONSTRUCTEDAREA}{Home built area in sq.m}
 #'   \item{ROOMNUMBER}{Number of bedrooms}
 #'   \item{BATHNUMBER}{Number of bathrooms}

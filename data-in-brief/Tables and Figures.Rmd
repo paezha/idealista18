@@ -1,0 +1,98 @@
+---
+title: "Tables and Figures"
+author: "Fernando & Compay"
+date: "2/4/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Descriptive table
+
+```{r total, echo = FALSE, message = FALSE}
+library(idealista18)
+library(kableExtra)
+library(xtable)
+library(sf)
+H <- t(cbind(table(Barcelona_Sale$PERIOD),table(Madrid_Sale$PERIOD),table(Valencia_Sale$PERIOD)))
+H <-rbind(H,colSums(H))
+text_tbl <- data.frame(
+City = c("Barcelona","Madrid","Valencia","Total Ads"),
+H,
+check.names = FALSE)
+
+xtable::xtable(text_tbl, digits=0, caption = "List of dummy variables with the percentage of dwelling with a specific characteristic. See the help facility in the \\textbf{idealista18} R package for details and formal definitions. Some dummy variables has been excluded of this table for save space. \\label{tab:Dummy-variables}") %>%
+xtable2kable(include.rownames = FALSE) %>%
+kable_styling(full_width = F) %>%
+column_spec(1, width = "12em", italic = FALSE) %>%
+column_spec(2, width = "14em") %>%
+column_spec(3, width = "2em", latex_column_spec = "c") %>%
+column_spec(4, width = "2em", latex_column_spec = "c") %>%
+column_spec(5, width = "2em", latex_column_spec = "c")
+```
+
+
+
+
+```{r table-dummy-variables, echo = FALSE, message = FALSE}
+library(idealista18)
+library(kableExtra)
+library(xtable)
+library(sf)
+dummyvariables <- c(4,5,6,7,27,30,31,37,38,39)
+text_tbl <- data.frame(
+Variable = names(st_drop_geometry(Barcelona_Sale[dummyvariables])),
+"Sort Description" = c("Asking price per m^2 (euros)","Surface (m^2)",
+                       "Number of bedrooms","Number of bathrooms",
+                       "Año construcción","Construction year",
+                       "Max build floor",
+                       "Distance to city center","Distance to subway station","Distance to main street"),
+# Barcelona
+Barcelona = colMeans(st_drop_geometry(Barcelona_Sale[dummyvariables])),
+# Madrid
+Madrid = colMeans(st_drop_geometry(Madrid_Sale[dummyvariables])),
+# Valencia
+"Valencia"=colMeans(st_drop_geometry(Valencia_Sale[dummyvariables])),
+check.names = FALSE)
+
+xtable::xtable(text_tbl, caption = "List of dummy variables with the percentage of dwelling with a specific characteristic. See the help facility in the \\textbf{idealista18} R package for details and formal definitions. Some dummy variables has been excluded of this table for save space. \\label{tab:Dummy-variables}") %>%
+xtable2kable(include.rownames = FALSE) %>%
+kable_styling(full_width = F) %>%
+column_spec(1, width = "12em", italic = FALSE) %>%
+column_spec(2, width = "14em") %>%
+column_spec(3, width = "2em", latex_column_spec = "c") %>%
+column_spec(4, width = "2em", latex_column_spec = "c") %>%
+column_spec(5, width = "2em", latex_column_spec = "c")
+```
+
+
+
+```{r table-variables, echo = FALSE, message = FALSE}
+library(idealista18)
+library(kableExtra)
+library(xtable)
+library(sf)
+dummyvariables <- c(8,9,10,12,13,15)
+text_tbl <- data.frame(
+Variable = names(st_drop_geometry(Barcelona_Sale[dummyvariables])),
+"Sort Description" = c("=1 if has terrace","=1 if has lift","=1 if has AA",
+                       "=1 if has parking","=1 if has parking include in price","=1 if has north orientation"),
+# Barcelona
+mean = colMeans(st_drop_geometry(Barcelona_Sale[dummyvariables])),
+# Madrid
+mean = colMeans(st_drop_geometry(Barcelona_Sale[dummyvariables])),
+# Valencia
+"mean"=colMeans(st_drop_geometry(Barcelona_Sale[dummyvariables])),
+check.names = FALSE)
+
+xtable::xtable(text_tbl, caption = "List of dummy varaibles. See the help facility in the \\textbf{idealista18} package for details and formal definitions \\label{tab:Variables}") %>%
+xtable2kable(include.rownames = FALSE) %>%
+kable_styling(full_width = F) %>%
+column_spec(1, width = "18em", italic = FALSE) %>%
+column_spec(2, width = "16em") %>%
+column_spec(3, width = "2em", latex_column_spec = "c") %>%
+column_spec(4, width = "2em", latex_column_spec = "c") %>%
+column_spec(5, width = "2em", latex_column_spec = "c")
+```
