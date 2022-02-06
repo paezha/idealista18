@@ -34,15 +34,19 @@
 %% Final pdf
 \documentclass[times,final]{elsarticle}
 %%
-%\documentclass[times,final,longtitle]{elsarticle}
+% \documentclass[times,final,longtitle]{elsarticle}
 %%
 
 %%
+
+\newcommand{\pkg}[1]{{\normalfont\fontseries{b}\selectfont #1}} \let\proglang=\textsf \let\code=\texttt
+
 %% Stylefile to load DIB template
 \usepackage{dib}
 \usepackage{framed,multirow}
 \usepackage[linesnumbered,lined,boxed,commentsnumbered]{algorithm2e}
 \usepackage{graphicx}
+
 
 %% The amssymb package provides various useful mathematical symbols
 \usepackage{amssymb}
@@ -86,24 +90,21 @@
 %%Calgary Preschool Magnetic Resonance Imaging (MRI) Dataset]
 
 %%Authors
-\author[1]{Author \snm{One}}
-\author[2]{Author \snm{Two}}
-%\author[1]{David \snm{Rey Blanco}}
-%\author[2]{Pelayo \snm{Arbués González}}
+\author[1]{David \snm{Rey Blanco}}
+\author[1]{Pelayo \snm{González Arbues}}
 % \author[1]{Pelayo \snm{González Arbues}\fnref{fn1}}
 % \fntext[fn1]{This is author footnote for second author.}
-%\author[3]{Fernando \snm{López Hernández}}
-%\author[4]{Antonio \snm{Páez}\corref{cor1}}
+\author[2]{Fernando \snm{López Hernández}}
+\author[3]{Antonio \snm{Páez}\corref{cor1}}
 %% Fourth author's email
-%\ead{paezha@mcmaster.ca}
-%\cortext[cor1]{Corresponding author:
-%  Tel.: +1-905-525-9140 ext 26099}
+\ead{paezha@mcmaster.ca}
+\cortext[cor1]{Corresponding author:
+  Tel.: +1-905-525-9140 ext 26099}
 
 %%Affiliations
-%%\address[1]{idealista, Plaza de las Cortes 5, 28014 Madrid, Spain}
-%%\address[2]{Facultad de CC de la Empresa, Universidad Politécnica de Cartagena, C/ Real, 3. 30201 Cartagena, Murcia (Spain)}
-%%\address[3]{School of Earth, Environment and Society, McMaster University, 1280 Main St W, Hamilton, Ontario L8S 4K1 Canada}
-
+\address[1]{idealista, Plaza de las Cortes 5, 28014 Madrid, Spain}
+\address[2]{Facultad de CC de la Empresa, C/ Real, 3. 30201 Cartagena, Murcia (Spain)}
+\address[3]{School of Earth, Environment and Society, McMaster University, 1280 Main St W, Hamilton, Ontario L8S 4K1 Canada}
 %\received{1 May 2013}
 %\finalform{10 May 2013}
 %\accepted{13 May 2013}
@@ -113,21 +114,7 @@
 
 \begin{abstract}
 %%%%
-This data article shares an open data product with big geo-referenced micro-data sets of 2018 real estate listings in Spain. The observations are for the three largest cities in the country: Madrid (n = 94,815 observations), Barcelona (n = 61,486 observations) and Valencia (n = 33,622 observations). These data were originally published on \url{idealista.com} real estate website. The data sets include the coordinates of properties (latitude and longitude), asking prices of each listd dwelling, and several variables of indoor characteristics. The listings were enriched with official information (building year of construction and built quality materials grade) plus other relevant geographical features such as distance to urban points of interest. Along with real estate listings, the data product also includes neighborhood boundaries for each city. These data sets are companions to a paper that examines the potential of machine learning techniques for spatial market segmentation in hedonic price analysis. The data product is offered in the form of a fully documented `R` package. This open data product is available for scientific and educational purposes, in particular for geo-spatial studies.
-
-\textbf{article reference to be inserted}
-
-%\noindent[The Abstract should describe the data collection process, the analysis
-%performed, the data, and their reuse potential. It should not provide
-%conclusions or interpretive insights. If your article is being
-%submitted via another Elsevier journal as a co-submission, please cite
-%this research article in the abstract.
-
-%\noindent\textbf{Tip:} do not use words such as
-%`study', `results', and `conclusions' because a data article should be
-%describing your data only.  Min 100 words - Max 500 words.]
-
-%%%%
+This data article shares an open data product with big geo-referenced micro-data sets of 2018 real estate listings in Spain. These data were originally published on \url{idealista.com} real estate website. The observations are for the three largest Spanish cities: Madrid (n = 94,815 observations), Barcelona (n = 61,486 observations) and Valencia (n = 33,622 observations). The data sets include the coordinates of properties (latitude and longitude), asking prices of each listd dwelling, and several variables of indoor characteristics. The listings were enriched with official information (building year of construction and built quality materials grade) plus other relevant geographical features such as distance to urban points of interest. Along with real estate listings, the data product also includes neighborhood boundaries for each city. The data product is offered in the form of a fully documented \proglang{R} package. This open data product is available for scientific and educational purposes, in particular for geo-spatial studies.
 \end{abstract}
 
 \begin{keyword}
@@ -145,29 +132,28 @@ This data article shares an open data product with big geo-referenced micro-data
 %% For linenumbers
 %\linenumbers
 
-{\fontsize{7.5pt}{9pt}\selectfont
-%%%
-\noindent\textbf{Specifications Table}
 
-Every section of this table is mandatory.
-Please enter information in the right-hand column and remove all the instructions
+
+{\fontsize{7.5pt}{9pt}
+
+
+%%%
+\textbf{Specifications Table}
+
 \begin{longtable}{|p{33mm}|p{94mm}|}
 \hline
 \endhead
 \hline
 \endfoot
 Subject                & Geography, Economics\\
-\hline
 Specific subject area  & Spatial analysis, machine learning, hedonic price analysis\\
-\hline
-Type of data           & Tables: dataframes and `sf` objects in `R` format\newline\\
+Type of data           & Tables: dataframes and `sf` objects in `R` format\\
 %\clearpage
 How data were acquired & Dwelling listing records provided by \url{idealista.com} \cite{idealista}\newline
                          Spanish central cadastral registry \cite{Catastro}\newline
-                         Open street map \cite{OpenStreetMap}\newline
-\\
+                         Open street map \cite{OpenStreetMap}\\
 \hline
-Data format            & `R` package, named \{idealista18\}\\
+Data format            & `R` package, named \pkg{idealista18}\\
 \hline
 Parameters for
 data\newline
@@ -180,15 +166,13 @@ collection             & Data has been directly downloaded from the sources, cad
 Description of
 data\newline
 collection             & idealista provided the complete record set \newline
-                         cadastral information has been downloaded the open records published quarterly\newline
-                         open street map has been downloaded from its open API
+                         cadastral information has been downloaded the open records published quarterly. Open street map has been downloaded from its open API
 \\
 \hline
 Data source location   & Institution: Idealista\newline
                          City/Town/Region: Madrid, Barcelona, Valencia\newline
                          Country: Spain\newline
-                         Latitude and longitude samples/data: EPSG:4326\newline
-\\
+                         Latitude and longitude samples/data: EPSG:4326\\
 
 %
 %                          If you are describing secondary data, you are required to provide a list of
@@ -198,8 +182,7 @@ Data source location   & Institution: Idealista\newline
 \hline
 \hypertarget{target1}
 {Data accessibility}   & Repository name: GitHub\newline
-                         Direct URL to data: \url{https://github.com/paezha/idealista18}\newline
-                         \\
+                         Direct URL to data: \url{https://github.com/paezha/idealista18}\\
 \hline
 Related
 research\newline
@@ -231,15 +214,16 @@ article                & Author One et al., Using machine learning to identify s
 % interpretation, background or conclusions should be included in this
 % section. Please include legends with any tables, figures or graphs.
 
-This open data product \cite{arribas2021open} is composed of several data objects corresponding to three major Spanish cities: dwelling listings, neighboorhood polygons and a set of Points of Interest (POI) for each city\footnote{The data has been provided by Idealista, the major real estate listing website in Spain, and present in other southern european countries as Italy and Portugal.}. The data set is distributed in the form of an `R` package, named \{idealista18\}. All spatial objects such as polygons and points are distributed as simple features objects (class `sf` in `R`). Spatial objects include geodetic coordinates using the \emph{EPSG:4326} coordinate reference system.
+This open data product \cite{arribas2021open} is composed of several data objects corresponding to three major Spanish cities: dwelling listings, neighboorhood polygons and a set of points of interest (POI) for each city\footnote{The data has been provided by Idealista, the major real estate listing website in Spain, and present in other southern european countries as Italy and Portugal.}. The data set is distributed in the form of an `R` package, named \pkg{idealista18}. All spatial objects such as polygons and points are distributed as simple features objects (class `sf` in proglang{R}). Spatial objects include geodetic coordinates using the \emph{EPSG:4326} coordinate reference system.
 
-The first block of data integrates properties published on idealista real state website \cite{idealista}; each file contains the complete set of listings for each of the three cities in the package, corresponding to the four quarters of year 2018. Each record contains the key found in the listing ad\footnote{The term \emph{ad} or \emph{listing} is used interchangeably to refer to a property advertised on the website} plus a number of additional attribues from the Spanish cadastre \cite{Catastro}. Cadastral information is described in Table \ref{table:data-assets-variables}, including the the prefix \emph{CAD} in the variable name. Cadastral features asssignment is done by assigning the features of the nearest parcel to the coordinates \emph{LATITUDE} and \emph{LONGITUDE}. The measure scales for each variable are defined according to the theoretical framework proposed by \cite{stevens1946theory} that defines four scales: nominal, ordinal, interval and ratio.
+The first block of data, integrates properties published on idealista real state website \cite{idealista}. Each file contains the complete set of listings for each of the three cities in the package, corresponding to the four quarters of year 2018. Each record contains the key found in the listing ad\footnote{The term \emph{ad} or \emph{listing} is used interchangeably to refer to a property advertised on the website} plus a number of additional attribues from the Spanish cadastre \cite{Catastro}. Cadastral information is described in Table \ref{table:data-assets-variables}, including the the prefix \emph{CAD} in the variable name. Cadastral features asssignment is done by assigning the features of the nearest parcel to the coordinates \emph{LATITUDE} and \emph{LONGITUDE}. The measure scales for each variable are defined according to the theoretical framework proposed by \cite{stevens1946theory} that defines four scales: nominal, ordinal, interval and ratio.
+
 
 \begin{footnotesize}
 \begin{longtable}{p{40mm} c p{63mm}}
-\caption{Description of the variables in the listing data sets}\\
+
 \label{table:data-assets-variables} \\
-\hline
+\caption{Description of the variables in the listing data sets}\\
 \hline
 % \endhead
 % \hline
