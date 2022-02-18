@@ -237,7 +237,7 @@ This paper describes a data product of a geo-referenced micro-data set of Spain‚
 
 # Declaration of Competing Interest
 
-The authors wish to thank Alessandro Galesi for his support in the paper revision and  Juan  Ram√≥n  Selva  for  collecting  and  cleaning  the  spatial  data.  This  work  has been partially funded by the Spanish Ministry of Economy and Competitiveness Grant PID2019-107800GB-100.
+Author One and author Two are employed by Idealista. They have been granted permission to share the data presented in this article. None of the authors have financial interests or personal relationships which have, or could be perceived to have, influenced the work reported in this article.
 
 # Acknowledgments
 
