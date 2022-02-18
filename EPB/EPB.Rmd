@@ -4,7 +4,7 @@ runninghead: Rey-Blanco \emph{et al}.
 author:
 - name: D. Rey-Blanco
   num: 1
-- name: P. González-Arbues
+- name: P. Arbues
   num: 1
 - name: F. López
   num: 2
