@@ -175,7 +175,7 @@ NULL
 #'   \item{HASGARDEN}{Dummy variable for garden (takes 1 if there is a garden in the building, 0 otherwise)}
 #'   \item{ISDUPLEX}{Dummy variable for duplex (takes 1 if it is a duplex, 0 otherwise)}
 #'   \item{ISSTUDIO}{Dummy variable for bachelor apartment (studio in Spanish) (takes 1 if it is a single-person apartment, 0 otherwise)}
-#'   \item{ISINTOPFLOOR}{Dummy variable indicating if the apartment is located in the top floor (takes 1 on the top floor 0 otherwise)}
+#'   \item{ISINTOPFLOOR}{Dummy variable indicating if the apartment is located on the top floor (takes 1 on the top floor 0 otherwise)}
 #'   \item{CONSTRUCTIONYEAR}{Construction year (source: advertiser)}
 #'   \item{FLOORCLEAN}{Indicates flat floornumber starting from the 0 value for groung floor (source: advertiser)}
 #'   \item{FLATLOCATIONID}{Indicates the kind of views the flat has (1 - external, 2 - internal)}
