@@ -3,15 +3,27 @@ Type: Package
 Title: Idealista 2018 Data Package
 Version: 0.1.1
 Date: 2021-07-17
-Author: David Rey, Pelayo Arbues, Fernando Lopez, Antonio Paez
-Maintainer: The package maintainer <fernando.lopez@upct.es>
-Description: This data package includes datasets of real estate listing property on Idealista. 
-    The datasets are for three major cities in Spain and the year 2018.
+Authors@R: 
+    c(person("David", "Rey", , "drey@idealista.com", role = c("aut"),
+           comment = c(ORCID = "0000-0002-3549-1714")),
+           person("Pelayo", "Arbues", , "pgarbues@idealista.com", role = c("aut"),
+           comment = c(ORCID = "0000-0001-9639-1074")),
+           person("Fernando", "Lopez", , "fernando.lopez@upct.es", role = c("aut"),
+           comment = c(ORCID = "0000-0002-5397-9748")),
+           person("Antonio", "Paez", , "paezha@mcmaster.ca", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-6912-9919")))
+Description: Open data product with real estate listings from Idealista. 
+    The datasets are for three major cities in Spain and the year 2018
 Depends:
     R (>= 3.5.0)
 Suggests: 
+    dplyr,
+    ggplot2,
+    kableExtra,
     knitr,
-    rmarkdown
+    rmarkdown,
+    sf,
+    skimr
 License: CC BY-NC-SA 4.0
 Encoding: UTF-8
 LazyData: true

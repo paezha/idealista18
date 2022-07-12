@@ -16,10 +16,25 @@ knitr::opts_chunk$set(
 # idealista18
 
 <!-- badges: start -->
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC BY--NC--SA 4.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_GB)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC BY--NC--SA 4.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_GB)  
+
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+
+[![GitHub Stars](https://img.shields.io/github/stars/paezha/edashop?style=social)](https://github.com/paezha/idealista18/stargazers)
+
+![GitHub search hit counter: R](https://img.shields.io/github/search/paezha/idealista18/real-estate)  
+![GitHub search hit counter: exploratory](https://img.shields.io/github/search/paezha/idealista18/spatial)
+![GitHub search hit counter: data](https://img.shields.io/github/search/paezha/idealista18/data)
+![GitHub search hit counter: analysis](https://img.shields.io/github/search/paezha/idealista18/Spain)
+![GitHub search hit counter: workshop](https://img.shields.io/github/search/paezha/idealista18/open-data-products)  
+
+![GitHub issues](https://img.shields.io/github/issues/paezha/idealista18)
+![GitHub release](https://img.shields.io/github/release-date/paezha/idealista18)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/paezha/idealista18)
+![GitHub last commit](https://img.shields.io/github/last-commit/paezha/idealista18)
 <!-- badges: end -->
 
-The package idealista18 includes real estate data for three major markets in Spain (Barcelona, Madrid, and Valencia) for the year 2018.
+{idealista18} is an open data product with big geo-referenced micro-data sets of 2018 real estate listings in Spain. These data were originally published on the idealista.com real estate website. The data sets are for the three largest cities in Spain: Madrid (n = 94,815 observations), Barcelona (n = 61,486 observations), and Valencia (n = 33,622 observations), and include approximate coordinates of properties (latitude and longitude), asking prices of each listed dwelling, and several variables of indoor characteristics. The listings were enriched with official information from the Spanish cadastre (e.g., building material quality) plus other relevant geographical features, such as distance to urban points of interest. Along with the real estate listings, the data product also includes neighborhood boundaries for each city. The data sets are offered as a fully documented R package and are available for scientific and educational purposes, particularly for geo-spatial studies.
 
 ## Installation
 
@@ -37,12 +52,46 @@ You can install the package from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("paezha/idealista18")
 ```
-## Example
+# Data description
 
-This is a basic example which shows you how to solve a common problem:
+There are nine data objects in the package: three objects for each of the cities included. For each city, dwelling listings, neighborhood polygons, and a set of points of interest have been included in the R package. The following subsections describe each object. A full description of the data is available in the help section of the package.
 
-```{r example}
-library(idealista18)
-## basic example code
+```{r}
+library(dplyr) # A Grammar of Data Manipulation
+library(ggplot2) # Create Elegant Data Visualisations Using the Grammar of Graphics
+library(idealista18) # Idealista 2018 Data Package
+#library(kableExtra) # Construct Complex Table with 'kable' and Pipe Syntax
+library(sf) # Simple Features for R
+library(skimr) 
 ```
 
+## Dwelling listings
+
+The dwelling listing of each city includes a set of characteristics for each dwelling published on the idealista real estate website as an ad. The dwelling listing has been included in the ‘idealista18’ package as an sf object. The name of the sf object containing the dwelling listing includes the name of the city, followed by '_Sale' (e.g., Madrid_Sale) and includes a total of 42 variables. Each sf object includes the complete set of listings corresponding to the four quarters of the year 2018. Table \ref{tab:number-ads} shows the number of dwelling listing ads included in the data set for each city and quarter. The record counts for each city are: 94,815 listings for Madrid, 61,486 for Barcelona, and 33,622 for Valencia. Note that the same dwelling may be found in more than one period when a property listed for sale in one quarter was sold in a subsequent quarter. The variable ASSETID, included in the sf objects, is the unique identifier of the dwelling.
+
+```{r}
+Madrid_Sale |>
+  sf::st_drop_geometry() |> 
+  skimr::skim()
+```
+
+```{r}
+Barcelona_Sale |>
+  sf::st_drop_geometry() |> 
+  skimr::skim()
+```
+
+```{r}
+Valencia_Sale |>
+  sf::st_drop_geometry() |> 
+  skimr::skim()
+```
+## Neighboorhood polygons
+
+The second block of data included in the ‘idealista18’ R package is the spatial features of the three cities divided into neighborhoods. There is an sf object for each city with the name of the city and the suffix '_Polygons'. Figure \ref{fig:all-polygons} shows the quantile maps of the number of dwellings in the listing for the different neighborhoods in the three cities. The neighborhoods are based on the official boundaries but slightly changed by Idealista\footnote{There are two criteria used to make this division. If an area is small enough and similar enough to another, the two areas are merged, and, if the official area is not homogeneous, it is divided into a series of new polygons.}. In practical terms, we can assume they are the same since the website combines areas when there are few ads for that area. In the case of Madrid, they combined four areas into two.
+
+There are a total of 69 neighborhoods in Barcelona, 135 in Madrid, and 73 in Valencia. The sf object includes a unique identifier (LOCATIONID) and the neighborhood name (LOCATIONNAME).
+
+## Points of Interest
+
+The last block of data included in the data package is a set of Points of Interest in each city as an object of the class list. The name of the list includes the name of the city with the suffix '_POIS'. These lists include three elements: (i) the coordinates of the city center, the central business district; (ii) a set of coordinates that define the main street of each city; and (iii) the coordinates of the metro stations.
