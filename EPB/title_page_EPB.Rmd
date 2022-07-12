@@ -1,0 +1,35 @@
+---
+title: A geo-referenced micro-data set of real estate listings for Spain’s three largest cities
+runninghead: Rey-Blanco \emph{et al}.
+author:
+- name: D. Rey-Blanco
+  num: 1
+- name: P. Arbues
+  num: 1
+- name: F. López
+  num: 2
+- name: A. Páez*
+  num: 3
+address:
+- num: 1
+  org: Idealista, Plaza de las Cortes 5, 28014 Madrid, Spain
+- num: 2
+  org: Facultad de CC de la Empresa, C/ Real, 3. 30201 Cartagena, Murcia, Spain
+- num: 3
+  org: School of Earth, Environment and Society, McMaster University, 1280 Main St W, Hamilton, Ontario L8S 4K1 Canada
+corrauth: "Antonio Páez, School of Earth, Environment and Society, McMaster University, 1280 Main St W, Hamilton, Ontario L8S 4K1 Canada."
+email: paezha@mcmaster.ca
+abstract: "This article shares an open data product with big geo-referenced micro-data sets of 2018 real estate listings in Spain. These data were originally published on the idealista.com real estate website. The observations were obtained for the three largest cities in Spain: Madrid (n = 94,815 observations), Barcelona (n = 61,486 observations), and Valencia (n = 33,622 observations). The data sets include the coordinates of properties (latitude and longitude), asking prices of each listed dwelling, and several variables of indoor characteristics. The listings were enriched with official information from the Spanish cadastre (e.g., building material quality) plus other relevant geographical features, such as distance to urban points of interest. Along with the real estate listings, the data product also includes neighborhood boundaries for each city. The data product is offered as a fully documented R package and is available for scientific and educational purposes, particularly for geo-spatial studies"
+keywords: Housing market; idealista.com; geo-referenced data; point-level data; open data; Spain
+classoption:
+  - Royal
+  - times
+
+output:
+  rticles::sage_article:
+    keep_tex: yes
+
+header-includes:
+  - \usepackage[linesnumbered,lined,boxed,commentsnumbered]{algorithm2e}
+---
+
