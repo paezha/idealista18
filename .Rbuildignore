@@ -3,3 +3,9 @@
 ^data-in-brief$
 ^README\.Rmd$
 ^LICENSE\.md$
+^EPB$
+^editorial-materials$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$

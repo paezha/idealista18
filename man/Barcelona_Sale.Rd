@@ -11,8 +11,6 @@ An object of class `sf` (inherits from `data.frame`) with 84,280 rows and 57 var
   \item{PERIOD}{Date YYYYMM, indicates the quarter when the ad was extracted we used YYYY03 for the 1st Q, YYYY06 the 2nd, YYYY09 for the 3rd and YYYY12 for the 4th}
   \item{PRICE}{Asking price for the ad at idealista expressed in euros}
   \item{UNITPRICE}{Price in euros per square meter}
-  \item{ADTYPOLOGYID}{Asset Typology (home, chalet)}
-  \item{ADOPERATIONID}{Asset Operation (rent, sales)}
   \item{CONSTRUCTEDAREA}{Home built area in sq.m}
   \item{ROOMNUMBER}{Number of bedrooms}
   \item{BATHNUMBER}{Number of bathrooms}
@@ -50,7 +48,7 @@ An object of class `sf` (inherits from `data.frame`) with 84,280 rows and 57 var
   \item{geometry}{geometry of simple features}
   }
 
-An object of class \code{sf} (inherits from \code{data.frame}) with 61486 rows and 44 columns.
+An object of class \code{sf} (inherits from \code{data.frame}) with 61486 rows and 42 columns.
 }
 \source{
 Idealista (https://www.idealista.com/)

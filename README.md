@@ -4,6 +4,9 @@
 # idealista18
 
 <!-- badges: start -->
+
+[![License: CC BY-NC-SA
+4.0](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_GB)
 <!-- badges: end -->
 
 The package idealista18 includes real estate data for three major
@@ -32,15 +35,5 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(idealista18)
-#> Loading required package: dplyr
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
-#> Loading required package: Metrics
 ## basic example code
 ```

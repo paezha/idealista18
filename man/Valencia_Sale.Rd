@@ -11,8 +11,6 @@ An object of class `sf` (inherits from `data.frame`) with 79,360 rows and 59 var
   \item{PERIOD}{Date YYYYMM, indicates the quarter when the ad was extracted we used YYYY03 for the 1st Q, YYYY06 the 2nd, YYYY09 for the 3rd and YYYY12 for the 4th}
   \item{PRICE}{Price at idealista expressed in euros}
   \item{UNITPRICE}{Price in euros per square meter}
-  \item{ADTYPOLOGYID}{Asset Typology (home, chalet)}
-  \item{ADOPERATIONID}{Asset Operation (rent, sales)}
   \item{CONSTRUCTEDAREA}{Home built area in sq.m}
   \item{ROOMNUMBER}{Number of bedrooms}
   \item{BATHNUMBER}{Number of bathrooms}
@@ -34,7 +32,7 @@ An object of class `sf` (inherits from `data.frame`) with 79,360 rows and 59 var
   \item{HASGARDEN}{Dummy variable for garden (takes 1 if there is a garden in the building, 0 otherwise)}
   \item{ISDUPLEX}{Dummy variable for duplex (takes 1 if it is a duplex, 0 otherwise)}
   \item{ISSTUDIO}{Dummy variable for bachelor apartment (studio in Spanish) (takes 1 if it is a single-person apartment, 0 otherwise)}
-  \item{ISINTOPFLOOR}{Dummy variable indicating if the apartment is located in the top floor (takes 1 on the top floor 0 otherwise)}
+  \item{ISINTOPFLOOR}{Dummy variable indicating if the apartment is located on the top floor (takes 1 on the top floor 0 otherwise)}
   \item{CONSTRUCTIONYEAR}{Construction year (source: advertiser)}
   \item{FLOORCLEAN}{Indicates flat floornumber starting from the 0 value for groung floor (source: advertiser)}
   \item{FLATLOCATIONID}{Indicates the kind of views the flat has (1 - external, 2 - internal)}
@@ -51,7 +49,7 @@ An object of class `sf` (inherits from `data.frame`) with 79,360 rows and 59 var
   \item{geometry}{geometry of simple features}
   }
 
-An object of class \code{sf} (inherits from \code{data.frame}) with 33622 rows and 44 columns.
+An object of class \code{sf} (inherits from \code{data.frame}) with 33622 rows and 42 columns.
 }
 \source{
 Idealista (https://www.idealista.com/)

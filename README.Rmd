@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # idealista18
 
 <!-- badges: start -->
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC BY--NC--SA 4.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_GB)
 <!-- badges: end -->
 
 The package idealista18 includes real estate data for three major markets in Spain (Barcelona, Madrid, and Valencia) for the year 2018.
