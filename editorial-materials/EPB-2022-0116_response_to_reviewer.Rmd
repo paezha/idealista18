@@ -24,7 +24,12 @@ set.seed(1234)
 
 > 1.	Please reference the package and dataset and include in the text and in the package the license under which the data is released. The Idealista18 github site is unclear on how to access the data with the package.
 
+We really appreciate this suggestion. We have included the license under which the data is distributed in the main text of the introduction. We are also working to publish the dataset via the R package usign CRAN.
+
+
 > 2.	Please state your anticipated research impacts from the publication of this data set in the introduction.  It would be useful to state how this one-year relocated, and randomised house price data might be best used by academics in research and teaching. The relocated and randomised data may be difficult to further enrich with other variables, the authors need to show how the 44 variables is enough for future users.
+
+Thanks for this comment. We have added discussed these concerns in the introduction. 
 
 >3.	The method of randomisation is described but it would be advantageous to publish the code for this so that researchers can evaluate the impact of this kind of randomisation on this and other data sets. Does the method, as seems likely, have a differential effect on data from high density areas as compared with low?
 To what extent are analyses likely to be confined to neighbourhood levels of resolution given the method of spatial randomisation? It would be useful to have some idea of the size of the neighbourhoods to facilitate comparison with other spatial data sets
@@ -38,6 +43,7 @@ To what extent are analyses likely to be confined to neighbourhood levels of res
 >7.	Please kindly add in a usage notes section how this data can be useful for the EPB audience. For example, introduce how this anonymised house price data can be integrated with other data and research.
 The original data could be a nice data set for a series of housing related papers. If the authors are unable to publish this original asking price, it maybe worthwhile to publish the research based on this data rather than using the randomised data. House price is locationally sensitive, but both the location and price data in this manuscript are altered by anonymisation. The authors need to show for which analyses the data remains valid despite anonymisation.
 
+We have added some examples of research topics that can be addressed with this dataset  in the introduction. 
 
 # References
 
