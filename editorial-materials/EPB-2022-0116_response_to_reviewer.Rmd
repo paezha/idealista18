@@ -24,7 +24,7 @@ set.seed(1234)
 
 > 1.	Please reference the package and dataset and include in the text and in the package the license under which the data is released. The Idealista18 github site is unclear on how to access the data with the package.
 
-We really appreciate this suggestion. We have included the license under which the data is distributed in the main text of the introduction. We are also working to publish the dataset via the R package usign CRAN.
+We really appreciate this suggestion. We have included the license under which the data is distributed in the main text of the introduction. We are also working to publish the dataset via the R package usign CRAN. In addition we have also created a [microsite](https://paezha.github.io/idealista18/) for the package that shows how to access the data. 
 
 
 > 2.	Please state your anticipated research impacts from the publication of this data set in the introduction.  It would be useful to state how this one-year relocated, and randomised house price data might be best used by academics in research and teaching. The relocated and randomised data may be difficult to further enrich with other variables, the authors need to show how the 44 variables is enough for future users.
