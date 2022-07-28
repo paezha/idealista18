@@ -38,6 +38,8 @@ To what extent are analyses likely to be confined to neighbourhood levels of res
 
 >5.	It would be useful for the authors to evaluate the datasets in the light of the FAIR guiding principles for research data stewardship (findability, accessibility, interoperability, and reusability).
 
+ANTONIO WILL RESPOND TO THIS COMMENT.
+
 >6.	Given the asking price has resized the original asking price with a random percentage between -2.5% and +2.5%, please elaborate on how this influences quantitative research results and findings with this data.
 
 >7.	Please kindly add in a usage notes section how this data can be useful for the EPB audience. For example, introduce how this anonymised house price data can be integrated with other data and research.
