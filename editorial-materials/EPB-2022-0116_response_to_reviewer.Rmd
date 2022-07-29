@@ -34,11 +34,18 @@ Thanks for this comment. We have added discussed these concerns in the introduct
 >3.	The method of randomisation is described but it would be advantageous to publish the code for this so that researchers can evaluate the impact of this kind of randomisation on this and other data sets. Does the method, as seems likely, have a differential effect on data from high density areas as compared with low?
 To what extent are analyses likely to be confined to neighbourhood levels of resolution given the method of spatial randomisation? It would be useful to have some idea of the size of the neighbourhoods to facilitate comparison with other spatial data sets
 
+We impose a key constraint in the relocation process that is keeping the listing in the same neighborhood. For the process clarity sake we released the anonymization process in the R package code on github. [microsite](https://paezha.github.io/idealista18/anonymization)
+
+
 >4.	More details on the data collection methods of Idealista would be useful in interpreting the data. Does Idealista concentrate on particular market segments or not? Are the list prices good indicators of actual sale prices? Are there sources from which actual paid prices could be identified?
+
+Idealista covers fairy well all segments in spanish market, individual and profesional adverstiser. Although listing prices reflects the reality of real estate markets from the offer persperctive, strong correlation of idealista and transaction prices can be established see [Banco de España](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3400031). 
 
 >5.	It would be useful for the authors to evaluate the datasets in the light of the FAIR guiding principles for research data stewardship (findability, accessibility, interoperability, and reusability).
 
 >6.	Given the asking price has resized the original asking price with a random percentage between -2.5% and +2.5%, please elaborate on how this influences quantitative research results and findings with this data.
+
+It should not affect much given it is random noise.
 
 >7.	Please kindly add in a usage notes section how this data can be useful for the EPB audience. For example, introduce how this anonymised house price data can be integrated with other data and research.
 The original data could be a nice data set for a series of housing related papers. If the authors are unable to publish this original asking price, it maybe worthwhile to publish the research based on this data rather than using the randomised data. House price is locationally sensitive, but both the location and price data in this manuscript are altered by anonymisation. The authors need to show for which analyses the data remains valid despite anonymisation.
