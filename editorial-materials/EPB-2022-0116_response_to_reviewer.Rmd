@@ -39,13 +39,20 @@ We impose a key constraint in the relocation process that is keeping the listing
 
 >4.	More details on the data collection methods of Idealista would be useful in interpreting the data. Does Idealista concentrate on particular market segments or not? Are the list prices good indicators of actual sale prices? Are there sources from which actual paid prices could be identified?
 
-Idealista covers fairy well all segments in spanish market, individual and profesional adverstiser. Although listing prices reflects the reality of real estate markets from the offer persperctive, strong correlation of idealista and transaction prices can be established see [Banco de España](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3400031). 
+Idealista covers fairly well all segments in the spanish market, individual and professional advertisers. Although listing prices reflects the reality of real estate markets from the offer perspective, strong correlation between idealista and transaction prices can be established see [Banco de España](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3400031). 
+
+The main real estate portals in Spain are idealista and Fotocasa, further away are Habitaclia and Milanuncios, the latter focusing almost exclusively on private individuals. In September 2021, according to data
+from Similarweb, in Spain, there were a total of 103 million page views on real estate portals, out of page views on real estate portals, of which the four main portals, idealista, Fotocasa, Habitaclia, and Pisos.com, in that order, accounted for 94% of the traffic.
+
+Another relevant feature of this sector is that it is highly concentrated, idealista being the leader by far with 58.6 million visits (57% of the total traffic)  versus its immediate competitor with 19.9 million visits (19.3 % of total traffic). In terms of the evolution over time of interest in the content of each portal, based on data from Google Trends, the leadership of idealista Trends, the leadership of idealista has been shared from 2004 to 2015, subsequently consolidating idealista as the leader by a wide margin.
 
 >5.	It would be useful for the authors to evaluate the datasets in the light of the FAIR guiding principles for research data stewardship (findability, accessibility, interoperability, and reusability).
 
 >6.	Given the asking price has resized the original asking price with a random percentage between -2.5% and +2.5%, please elaborate on how this influences quantitative research results and findings with this data.
 
-It should not affect much given it is random noise.
+We are aware that performing data obfuscation in our dataset has a trade-off between data privacy and data utility. The data anonymization process maintains data utility and data properties for most empirical research as we are adding a white noise perturbation to the original prices and coordinates. This dataset is expected to be used to compare different valuation algorithms and in this sense, the random disturbances in the data should not cause major concerns.
+
+However, for some applications researchers should proceed with care with this dataset. We would like to warn researchers that the spatial perturbation we introduced in the data might impact the computation of travel times between the properties' location and Point of Interest coordinates. In this case, travel times wouldn't be completely accurate although they are likely to be good enough for most accessibility measure computations. 
 
 >7.	Please kindly add in a usage notes section how this data can be useful for the EPB audience. For example, introduce how this anonymised house price data can be integrated with other data and research.
 The original data could be a nice data set for a series of housing related papers. If the authors are unable to publish this original asking price, it maybe worthwhile to publish the research based on this data rather than using the randomised data. House price is locationally sensitive, but both the location and price data in this manuscript are altered by anonymisation. The authors need to show for which analyses the data remains valid despite anonymisation.
