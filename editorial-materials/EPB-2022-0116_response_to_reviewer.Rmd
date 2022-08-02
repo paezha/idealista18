@@ -29,7 +29,7 @@ We really appreciate this suggestion. We have included the license under which t
 
 > 2.	Please state your anticipated research impacts from the publication of this data set in the introduction.  It would be useful to state how this one-year relocated, and randomised house price data might be best used by academics in research and teaching. The relocated and randomised data may be difficult to further enrich with other variables, the authors need to show how the 44 variables is enough for future users.
 
-Thanks for this comment. We have added discussed these concerns in the introduction. 
+Thanks for this comment. We have added a discussion about these concerns in the introduction. 
 
 >3.	The method of randomisation is described but it would be advantageous to publish the code for this so that researchers can evaluate the impact of this kind of randomisation on this and other data sets. Does the method, as seems likely, have a differential effect on data from high density areas as compared with low?
 To what extent are analyses likely to be confined to neighbourhood levels of resolution given the method of spatial randomisation? It would be useful to have some idea of the size of the neighbourhoods to facilitate comparison with other spatial data sets
