@@ -2,14 +2,14 @@ citHeader("To cite idealista18 in publications use:")
 
 citEntry(
   entry    = "Article"",
-  title    = "A geo\-referenced micro\-data set of real estate listings for Spain's three largest cities",
-  author   = "Rey-Blanco, David and Arbues, Pelayo and Lopez, Fernando and Paez, Antonio",
+  title    = "A geo-referenced micro-data set of real estate listings for Spain\'s three largest cities",
+  author   = c(as.person("David Rey-Blanco"), as.person("Pelayo Arbues"), as.person("Fernando Lopez"), as.person("Antonio Paez")),
   journal  = "Environment and Planning B: Urban Analytics and City Science",
-  year     = "2022",
-  volume   = "",
-  number   = "",
-  pages    = "",
-  url      = "",
+  year     = 2022,
+  volume   = ,
+  number   = ,
+  pages    = ,
+  url      = ,
   textVersion = paste(
 
   )
