@@ -24,7 +24,7 @@ Suggests:
     rmarkdown,
     sf,
     skimr
-License: [ODbLv1.0](https://opendatacommons.org/licenses/odbl/1-0/)
+License: ODbLv1.0
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
