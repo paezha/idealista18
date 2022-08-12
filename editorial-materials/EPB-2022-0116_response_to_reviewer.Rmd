@@ -1,6 +1,5 @@
 ---
-title: "Using machine learning to identify spatial market segments: A reproducible study of major Spanish markets - Response to referees"
-bibliography: bibliography.bib
+title: "A geo-referenced micro-data set of real estate listings for Spain’s three largest cities - Response to referees"
 output: pdf_document
 ---
 
@@ -59,7 +58,5 @@ However, for some applications researchers should proceed with care with this da
 The original data could be a nice data set for a series of housing related papers. If the authors are unable to publish this original asking price, it maybe worthwhile to publish the research based on this data rather than using the randomised data. House price is locationally sensitive, but both the location and price data in this manuscript are altered by anonymisation. The authors need to show for which analyses the data remains valid despite anonymisation.
 
 We have added some examples of research topics that can be addressed with this dataset in the introduction. 
-
-# References
 
 

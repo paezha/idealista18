@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # idealista18
 
 <!-- badges: start -->
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/license-ODbLv1.0-blue.svg)](https://opendatacommons.org/licenses/odbl/1-0/)  
+[![License: ODbLv1.0](https://img.shields.io/badge/license-ODbLv1.0-blue.svg)](https://opendatacommons.org/licenses/odbl/1-0/)  
 
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 
