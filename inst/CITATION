@@ -1,14 +1,14 @@
 citHeader("To cite package idealista18 in publications, please use:")
 
 citEntry(entry="Article",
-  author = "{David Rey Blanco}",
+  author = "{David Rey-Blanco} and {Pelayo Arbues} and {Fernando Lopez} and {Antonio Paez}",
   title = "{A geo-referenced micro-data set of real estate listings for Spain’s three largest cities}",
   year = 2018,
   journal = "{Environment and Planning B}",
-  doi = "10.32614/RJ-2018-009",
-  url = "https://doi.org/10.32614/RJ-2018-009",
-  pages = "439--446",
-  volume = 10,
-  number = 1,
+  doi = "XX.XXXX/XX.xx",
+  url = "https://doi.org/",
+  pages = "XX--XX",
+  volume = XX,
+  number = X,
   textVersion = "Rey-Blanco, D., 2022. Title. Environment and Planning B XX (X), XXX-XXX, https://doi.org/"
 )
