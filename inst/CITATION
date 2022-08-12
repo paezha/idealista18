@@ -6,9 +6,9 @@ citEntry(entry="Article",
   year = 2018,
   journal = "{Environment and Planning B}",
   doi = "10.32614/RJ-2018-009",
-  url = "https://doi.org/",
-  pages = "XX--XX",
-  volume = XX,
-  number = X,
+  url = "https://doi.org/10.32614/RJ-2018-009",
+  pages = "439--446",
+  volume = 10,
+  number = 1,
   textVersion = "Rey-Blanco, D., 2022. Title. Environment and Planning B XX (X), XXX-XXX, https://doi.org/"
 )
