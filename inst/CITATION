@@ -1,11 +1,11 @@
 citHeader("To cite idealista18 in publications use:")
 
 citEntry(
-  entry    = "Article"",
-  title    = "my title",
-  author   = c(as.person("David Rey-Blanco"), as.person("Pelayo Arbues"), as.person("Fernando Lopez"), as.person("Antonio Paez")),
-  journal  = "Environment and Planning B: Urban Analytics and City Science",
-  year     = 2022,
+  entry    = "Article",
+  title    = ,
+  author   = ,
+  journal  = ,
+  year     = ,
   volume   = ,
   number   = ,
   pages    = ,
