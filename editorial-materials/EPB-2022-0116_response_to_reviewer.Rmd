@@ -26,7 +26,6 @@ set.seed(1234)
 
 We really appreciate this suggestion. We have included the license under which the data is distributed in the main text of the introduction. We are also working to publish the dataset via the R package usign CRAN. In addition we have also created a [microsite](https://paezha.github.io/idealista18/) for the package that shows how to access the data. 
 
-
 > 2.	Please state your anticipated research impacts from the publication of this data set in the introduction.  It would be useful to state how this one-year relocated, and randomised house price data might be best used by academics in research and teaching. The relocated and randomised data may be difficult to further enrich with other variables, the authors need to show how the 44 variables is enough for future users.
 
 Thanks for this comment. We have added a discussion about these concerns in the introduction. 
@@ -36,10 +35,9 @@ To what extent are analyses likely to be confined to neighbourhood levels of res
 
 The possible advese effects due to mislocation assets after coordinate randomisation is mitigated by the imposition of a boundary constraint in the relocation process. This constraint keeps the listing in the same neighborhood it belonged before relocation. For the process clarity sake we released the anonymization process in the R package code on github. [microsite](https://paezha.github.io/idealista18/anonymization)
 
-
 >4.	More details on the data collection methods of Idealista would be useful in interpreting the data. Does Idealista concentrate on particular market segments or not? Are the list prices good indicators of actual sale prices? Are there sources from which actual paid prices could be identified?
 
-Idealista covers fairly well all segments in the spanish market, both individual and professional advertisers. This dataset comprehends information about listing prices, thus it contains the market situation from the offer. 
+Idealista covers fairly well all segments in the Spanish market, both individual and professional advertisers. This dataset comprehends information about listing prices, thus it contains the market situation from the offer. 
 
 Nevertheless, actual sale prices information is not publicly available as it is information that can only be accessed by paying high fees to Colegio de Registradores. However listing prices reflect quite well the (transaction) reality of real estate markets using the offer perspective, they keep strong correlation between idealista and transaction prices can be established see [Banco de España](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3400031). Even though a great extent of correlation does exist between official transactional and asking records, both databases can be taken as complementary and are of great interest when studying asking-transaction price gaps or the relation between listing site demand variables (ie. ad contacts or ad views) and price gaps.
 
@@ -49,7 +47,7 @@ Another relevant feature of this sector is that it is highly concentrated, ideal
 
 >5.	It would be useful for the authors to evaluate the datasets in the light of the FAIR guiding principles for research data stewardship (findability, accessibility, interoperability, and reusability).
 
-ANTONIO WILL RESPOND TO THIS COMMENT.
+We discuss our efforts to comply with FAIR guiding principles in the data description of the revised paper.
 
 >6.	Given the asking price has resized the original asking price with a random percentage between -2.5% and +2.5%, please elaborate on how this influences quantitative research results and findings with this data.
 
@@ -60,7 +58,7 @@ However, for some applications researchers should proceed with care with this da
 >7.	Please kindly add in a usage notes section how this data can be useful for the EPB audience. For example, introduce how this anonymised house price data can be integrated with other data and research.
 The original data could be a nice data set for a series of housing related papers. If the authors are unable to publish this original asking price, it maybe worthwhile to publish the research based on this data rather than using the randomised data. House price is locationally sensitive, but both the location and price data in this manuscript are altered by anonymisation. The authors need to show for which analyses the data remains valid despite anonymisation.
 
-We have added some examples of research topics that can be addressed with this dataset  in the introduction. 
+We have added some examples of research topics that can be addressed with this dataset in the introduction. 
 
 # References
 

@@ -13,7 +13,7 @@ Authors@R:
            person("Antonio", "Paez", , "paezha@mcmaster.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-6912-9919")))
 Description: Open data product with real estate listings from Idealista. 
-    The datasets are for three major cities in Spain and the year 2018
+    The datasets are for year 2018 and three major cities in Spain: Barcelona, Madrid, and Valencia.
 Depends:
     R (>= 3.5.0)
 Suggests: 
@@ -24,7 +24,7 @@ Suggests:
     rmarkdown,
     sf,
     skimr
-License: CC BY-NC-SA 4.0
+License: ODbLv1.0
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
