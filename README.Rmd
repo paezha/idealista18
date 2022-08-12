@@ -86,6 +86,9 @@ Valencia_Sale |>
   sf::st_drop_geometry() |> 
   skimr::skim()
 ```
+
+Due to data protection requirements, coordinates and prices have been anonymized by introducing as slight degree of random noise, for more details about this process please find the process code in the folder named "anonyzation". 
+
 ## Neighboorhood polygons
 
 The second block of data included in the ‘idealista18’ R package is the spatial features of the three cities divided into neighborhoods. There is an sf object for each city with the name of the city and the suffix '_Polygons'. Figure \ref{fig:all-polygons} shows the quantile maps of the number of dwellings in the listing for the different neighborhoods in the three cities. The neighborhoods are based on the official boundaries but slightly changed by Idealista\footnote{There are two criteria used to make this division. If an area is small enough and similar enough to another, the two areas are merged, and, if the official area is not homogeneous, it is divided into a series of new polygons.}. In practical terms, we can assume they are the same since the website combines areas when there are few ads for that area. In the case of Madrid, they combined four areas into two.
