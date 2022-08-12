@@ -10,14 +10,14 @@
 #'
 #' @docType package
 #' @name idealista18
-#' @details Escribir algo
+#' @details "Open data product with real estate listings from Idealista. The datasets are for year 2018 and three major cities in Spain: Barcelona, Madrid, and Valencia."
 #'
 #' @author
 #'   \tabular{ll}{
 #'   David Rey \tab \email{drey@@idealista.com} \cr
 #'   Pelayo Arbues \tab \email{pgarbues@@idealista.com} \cr
 #'   Fernando López  \tab \email{fernando.lopez@@upct.es} \cr
-#'   Antonio Páez \tab \email{paezha@@gmail.com} \cr
+#'   Antonio Páez \tab \email{paezha@@mcmaster.ca} \cr
 #'   }
 #'
 #' @references \url{https://github.com/paezha/Reproducible-Research-Workflow}

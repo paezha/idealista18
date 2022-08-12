@@ -1,3 +1,4 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # idealista18
@@ -5,7 +6,7 @@
 <!-- badges: start -->
 
 [![License: CC BY-NC-SA
-4.0](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_GB)
+4.0](https://img.shields.io/badge/license-ODbLv1.0-blue.svg)](https://opendatacommons.org/licenses/odbl/1-0/)
 
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
@@ -322,6 +323,11 @@ Data summary
 | DISTANCE_TO_BLASCO            |         0 |          1.00 |      2.07 |      1.09 |      0.00 |      1.22 |      2.01 |      2.84 |       5.02 | ▅▇▇▅▁ |
 | LONGITUDE                     |         0 |          1.00 |     -0.38 |      0.02 |     -0.42 |     -0.39 |     -0.38 |     -0.37 |      -0.32 | ▂▇▇▂▂ |
 | LATITUDE                      |         0 |          1.00 |     39.47 |      0.01 |     39.44 |     39.46 |     39.47 |     39.48 |      39.50 | ▂▆▇▃▃ |
+
+Due to data protection requirements, coordinates and prices have been
+anonymized by introducing as slight degree of random noise, for more
+details about this process please find the process code in the folder
+named “anonyzation”.
 
 ## Neighboorhood polygons
 

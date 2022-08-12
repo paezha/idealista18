@@ -1,6 +1,7 @@
-## ODC Open Database License (ODbL)
+ODC Open Database License (ODbL)
+==================================
 
-### Preamble
+# Preamble
 
 The Open Database License (ODbL) is a license agreement intended to
 allow users to freely share, modify, and use this Database while
@@ -38,7 +39,7 @@ You (as defined below)
 
 agree as follows: 
 
-### 1.0 Definitions of Capitalised Words
+# 1.0 Definitions of Capitalised Words
 
 "Collective Database" - Means this Database in unmodified form as part
 of a collection of independent databases in themselves that together are
@@ -122,7 +123,7 @@ exercise rights under this License despite a previous violation.
 
 Words in the singular include the plural and vice versa.
 
-### 2.0 What this License covers
+# 2.0 What this License covers
 
 2.1. Legal effect of this document. This License is:
 
@@ -177,7 +178,7 @@ License would not apply to copyright over individual images, which could
 have their own separate licenses, or one single license covering all of
 the rights over the images.  
 
-### 3.0 Rights granted
+# 3.0 Rights granted
 
 3.1 Subject to the terms and conditions of this License, the Licensor
 grants to You a worldwide, royalty-free, non-exclusive, terminable (but
@@ -232,7 +233,7 @@ this Database may be multiple-licensed, and so You may have the choice
 of using alternative licenses for this Database. Subject to Section
 10.4, all other rights not expressly granted by Licensor are reserved.
 
-### 4.0 Conditions of Use
+# 4.0 Conditions of Use
 
 4.1 The rights granted in Section 3 above are expressly made subject to
 Your complying with the following conditions of use. These are important
@@ -391,7 +392,7 @@ by You or another Person at Your direction. You may not impose any
 further restrictions on the exercise of the rights granted or affirmed
 under this License.
 
-### 5.0 Moral rights
+# 5.0 Moral rights
 
 5.1 Moral rights. This section covers moral rights, including any rights
 to be identified as the author of the Database or to object to treatment
@@ -417,7 +418,7 @@ Please note that some jurisdictions do not allow for the waiver of moral
 rights, and so moral rights may still subsist over the Database in some
 jurisdictions.
 
-### 6.0 Fair dealing, Database exceptions, and other rights not affected 
+# 6.0 Fair dealing, Database exceptions, and other rights not affected 
 
 6.1 This License does not affect any rights that You or anyone else may
 independently have under any applicable law to make any use of this
@@ -441,7 +442,7 @@ Re-utilisation of insubstantial parts of the Contents may however amount
 to the Extraction or Re-utilisation of a Substantial part of the
 Contents.
 
-### 7.0 Warranties and Disclaimer
+# 7.0 Warranties and Disclaimer
 
 7.1 The Database is licensed by the Licensor "as is" and without any
 warranty of any kind, either express, implied, or arising by statute,
@@ -452,7 +453,7 @@ errors, fitness for a particular purpose, merchantability, or otherwise.
 Some jurisdictions do not allow the exclusion of implied warranties, so
 this exclusion may not apply to You.
 
-### 8.0 Limitation of liability
+# 8.0 Limitation of liability
 
 8.1 Subject to any liability that may not be excluded or limited by law,
 the Licensor is not liable for, and expressly excludes, all liability
@@ -469,7 +470,7 @@ damages.
 direct financial loss to the extent it is caused by proved negligence on
 the part of the Licensor.
 
-### 9.0 Termination of Your rights under this License
+# 9.0 Termination of Your rights under this License
 
 9.1 Any breach by You of the terms and conditions of this License
 automatically terminates this License with immediate effect and without
@@ -514,7 +515,7 @@ required to be, granted under the terms of this License), and this
 License will continue in full force and effect unless terminated as
 stated above.
 
-### 10.0 General
+# 10.0 General
 
 10.1 If any provision of this License is held to be invalid or
 unenforceable, that must not affect the validity or enforceability of

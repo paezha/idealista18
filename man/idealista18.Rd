@@ -13,7 +13,7 @@ the package contains three data items for the three spanish cities of Madrid, Ba
 * Listing ads (referred also as assets)
 * Points of Interest for each city
 
-Escribir algo
+"Open data product with real estate listings from Idealista. The datasets are for year 2018 and three major cities in Spain: Barcelona, Madrid, and Valencia."
 }
 \references{
 \url{https://github.com/paezha/Reproducible-Research-Workflow}
@@ -23,6 +23,6 @@ Escribir algo
   David Rey \tab \email{drey@idealista.com} \cr
   Pelayo Arbues \tab \email{pgarbues@idealista.com} \cr
   Fernando López  \tab \email{fernando.lopez@upct.es} \cr
-  Antonio Páez \tab \email{paezha@gmail.com} \cr
+  Antonio Páez \tab \email{paezha@mcmaster.ca} \cr
   }
 }
