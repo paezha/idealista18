@@ -23,6 +23,31 @@
 #' @references \url{https://github.com/paezha/Reproducible-Research-Workflow}
 NULL
 
+#' Total number of properties by district in 2018.
+#'
+#' A dataset containing information about the number of properties by district in Barcelona, Madrid, and Valencia during 2018 according to the cadastre. Districts are collections of neighborhoods.
+#'
+#' @format An object of class `sf` (inherits from `data.frame`) with 50 rows and 5 variables:
+#' \describe{
+#'   \item{District}{Number of district}
+#'   \item{N_CADASTRE}{Date YYYYMM, indicates the quarter when the ad was extracted we used YYYY03 for the 1st Q, YYYY06 the 2nd, YYYY09 for the 3rd and YYYY12 for the 4th}
+#'   \item{N}{Asking price for the ad at idealista expressed in euros}
+#'   \item{CITY}{Price in euros per square meter}
+#'   \item{geometry}{geometry of simple features in latitude and longitude}
+#'   }
+#'
+#' @docType data
+#' @keywords datasets
+#' @name properties_by_district
+#' @usage data(properties_by_district)
+#' @source Idealista (https://www.idealista.com/)
+"properties_by_district"
+#' @examples
+#'  library(idealista18)
+#'  data(properties_by_district)
+#'  summary(properties_by_district$N)
+"properties_by_district"
+
 #' Sale prices of residential property in Barcelona in 2018.
 #'
 #' A dataset containing information about 84,280 real estate listings on idealista
@@ -68,7 +93,7 @@ NULL
 #'   \item{BUILTTYPEID_3}{Dummy value for flat condition: 1 second hand in good condition 0 otherwise (source: advertiser))}
 #'   \item{DISTANCE_TO_CITY_CENTER}{Distance to center of city in km}
 #'   \item{DISTANCE_TO_DIAGONAL}{Distance to Avinguda Diagonal in km; Diagonal is a major street that cuts across the city diagonally to the street grid}
-#'   \item{geometry}{geometry of simple features}
+#'   \item{geometry}{geometry of simple features in latitude and longitude}
 #'   }
 #'
 #' @docType data
@@ -93,7 +118,7 @@ NULL
 #'   \item{ASSETID}{Unique identifier of the asset}
 #'   \item{PERIOD}{Date YYYYMM, indicates the quarter when the ad was extracted we used YYYY03 for the 1st Q, YYYY06 the 2nd, YYYY09 for the 3rd and YYYY12 for the 4th}
 #'   \item{PRICE}{Price at idealista expressed in euros}
-#'   \item{UNITPRICE}{Price in euros per square meter}}
+#'   \item{UNITPRICE}{Price in euros per square meter}
 #'   \item{CONSTRUCTEDAREA}{Home built area in sq.m}
 #'   \item{ROOMNUMBER}{Number of bedrooms}
 #'   \item{BATHNUMBER}{Number of bathrooms}

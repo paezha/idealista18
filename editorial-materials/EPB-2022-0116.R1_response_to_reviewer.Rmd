@@ -1,0 +1,329 @@
+---
+title: "A geo-referenced micro-data set of real estate listings for Spain’s three largest cities - Response to referees"
+output: pdf_document
+bibliography: bibEPB.bib
+---
+
+<!--
+```{r install-data-package, include = FALSE}
+# Run only once if needed to install data package `sobiEquity`
+if (!require("idealista18", character.only = TRUE)) {
+      devtools::install_github("https://github.com/paezha/idealista18")
+  }
+```
+
+```{r setup,  cache=FALSE, warning = FALSE, include=FALSE, message = FALSE}
+library(idealista18)
+library(tidyverse)
+
+set.seed(1234)
+```
+-->
+
+Referee: 1
+
+> Comments to the Author  
+
+> Dear Authors, Thank you for the opportunity to review this paper. I would appreciate it if you would highlight the changed text in the next submission. Otherwise it is difficult to identify which parts have changed. The unknown quality of this one year randomised data is the main issue for potential users and I repeat my suggestion that this data should be validated for the benefit potential readers and users. Below is a list of comments and questions which  need to be addressed.
+
+> 1.Please clearly state the nature of the data in the abstract. It is worthwhile to mention the relocated and randomised dataset in the abstract. This house price dataset only has 189,923 records, which could be not really be described as a big dataset as you describe it in the abstract. Except the authors could provide an evidence/reference on why this is big dataset.
+
+**Response:** 
+
+We appreciate your comment. There are a few publicly available datasets for hedonic price analysis, but they tend to be smaller. For example, @bonifaci2015real includes $n=1,042$ observations for Padua, in Italy; @delgiudice2018housing share a dataset with $n=576$ observations relating to rental prices in Naples, Italy; @solano2019dataset present a dataset with $n=1,623$ daily rental prices in Seville, Spain; and the dataset of @fuerst2020real includes $n=4,201$ property prices geocoded to the level of nine regions in England and Wales. The most similar in terms of geographical disaggregation and sample size is the dataset of @song2021hedonic which includes transactions for four cities in South Korea, namely Busan ($n=61,152$), Daegu ($n=32,363$), Daejeon ($n=21,114$), and Gwangju ($n=25,984$). In response to your comment we drop the terminology of "big data" and describe our dataset as "large" instead.  
+
+>2. Please check the typographical errors before your next submission. For example, the “thirdr” in your table1.
+
+**Response:** 
+
+Thank you for highlighting this. We have carefully proof-read the document for typos and other errors.
+
+>3. Please use part of your answer to my previous fourth question in the manuscript. Your answer is quite useful for your future users, especially those researchers who are not familiar with house price data in Spain. I quote your previous answer below:
+
+> “idealista covers fairly well all segments in the Spanish market, both individual and professional advertisers. This dataset comprehends information about listing prices, thus it contains the market situation from the offer. Nevertheless, actual sale prices information is not publicly available as it is information that can only be accessed by paying high fees to Colegio de Registradores. However listing prices reflect quite well the (transaction) reality of real estate markets using the offer perspective, they keep strong correlation between idealista and transaction prices can be established see Banco de España. Even though a great extent of correlation does exist between official transactional and asking records, both databases can be taken as complementary and are of great interest when studying asking-transaction price gaps or the relation between listing site demand variables (ie. ad contacts or ad views) and price gaps. The main real estate portals in Spain are idealista and Fotocasa, further away are Habitaclia and Milanuncios, the latter focusing almost exclusively on private individuals. In September 2021, according to data from Similarweb (a site specialized in sites’ traffic volume comparison), in Spain, there were a total of 103 million page views on real estate portals, out of page views on real estate portals, of which the four main portals, idealista, Fotocasa, Habitaclia, and Pisos.com, in that order, accounted for 94% of the traffic. Another relevant feature of this sector is that it is highly concentrated, idealista being the leader by far with 58.6 monthly million visits (57% of the total traffic) versus its immediate competitor with 19.9 million visits (19.3 % of total traffic). In terms of the evolution over time of interest in the content of each portal, based on data from Google Trends, the leadership of idealista Trends, the leadership of idealist”
+
+**Response:**
+
+Thank you for this suggestion. We have adapted this answer to expand the text in the section "Data Description".
+
+>4.For data description, it is worth showing solid evidence of the quality of this dataset. For example, what is the data coverage of this data compared to all the residential properties in the city?  Listing the advertised volume is not very helpful for users who wish to understand the quality.
+
+Thank you. We appreciate your comment. To provide better context about the coverage of the {idealista18} dataset Table \ref{tab:transactions} now shows the number of listings with respect to the total residential stock in each city (in 2018). Globally, the number of listings to the total housing stock is around 7%. Additional information about the number of free-market home purchases can be obtained from the Spanish National Institute. Globally, the number of listingss 2,7 times the number of transactions.
+
+To provide some context about the coverage of the {idealista18} dataset Table \ref{tab:transactions} shows the number of listings with respect to the total residential stock in each city in 2018. As seen in the table, the number of listings ranges between 6.1% of the total number of properties (in Madrid) and 8.1% (in Valencia). Information from Instituto Nacional de Estadistica^[\url{https://www.ine.es/jaxiT3/Tabla.htm?t=6150&L=1}] shows that the number of listings in the {idealista18} package correspond to 81.3\% of recorded real estate transactions in Barcelona, 80.8\% in Madrid, and 91.1\% in Valencia.
+
+```{=tex}
+\begin{table}[!ht]
+    \centering
+      \caption{Total properties and transactionst three Spanish cities. Year 2018} 
+  \label{tab:transactions} 
+    \begin{tabular}{lccccc}
+        City & Total properties (P) & Total transactions (T) & Listings (L) & L/P & T/L \\
+        \hline
+        Barcelona &  789,740  &  56,012  &  61,329  & 7.8\% & 81.3\%  \\ 
+        Madrid &  1,545,397  &  76,603  &  94,802  & 6.1\%  & 80.8\% \\ 
+        Valencia &  416,004  &  30,615  &  33,593  & 8.1\% & 91.1\% \\ 
+        \hline
+        Total &  2,751,141  &  163,230  &  189,724  & 6.9\% & 86.0\% \\ 
+        \hline
+        \multicolumn{6}{l}{{\footnotesize \textbf{Sources}}}\\
+        \multicolumn{6}{l}{{\footnotesize Total properties (P): Ministerio Español de Hacienda y Función Pública}}\\
+        \multicolumn{6}{l}{{\footnotesize Total transactions (T): Instituto Nacional de Estadística}}\\
+    \end{tabular}
+\end{table}
+```
+
+>5. Given the asking price is a resized version of the original asking price with a random percentage between -2.5% and +2.5%, please elaborate on how this influences your quantitative research results and findings. Please provide critical evidence to explain how this randomised price will not influence academic research. For example, how does the house price variation at local level change after the price is randomised. To what degree will this influence a typical hedonic house price research approach? I am concerned about whether this randomised data could bias conclusions.
+
+**Response:**
+
+We appreciate the opportunity to explain this issue, as it may be of interest to academic researchers. Adding a small amount of random noise ($\pm 2.5$) to the prices has the effect of increasing the variance of estimates, but does not affect the mean. This is a well-known result in algebra of random variables.
+
+Prices ($P$) in the dataset are calculated as the sum of two random variables, the raw price ($RP$) and some random noise ($\eta$) drawn from a uniform distribution as follows:
+$$
+
+$$
+
+The mean of the raw price is:
+$$
+\mathrm{E}[RP] = \frac{1}{N}\sum_{i=1}^N R_i
+$$
+
+The mean of the white noise is zero by design:
+$$
+\mathrm{E}[\eta] = 0
+$$
+
+We know that the expectation of the sum of two random variables is:
+$$
+\mathrm{E}[P] = \mathrm{E}[RP + \eta] = \mathrm{E}[RP] + \mathrm{E}[\eta]
+$$
+
+\noindent and since $\mathrm{E}[\eta] = 0$ it follows that the prices are unbiased.
+
+The variance of the sum of two random variables is:
+$$
+\mathrm{V}[P] = \mathrm{V}[RP + \eta] = \mathrm{V}[RP] + 2\mathrm{Cov}[RP,\eta] + \mathrm{V}[\eta]
+$$
+
+The variance of $\eta$ is:
+$$
+\mathrm{V}[\eta]=\frac{1}{12}\big(0.025 - (-0.25)\big)^2
+$$
+
+>6. In figure 1, is it possible to standardise this data rather than showing only the number of dwelling records in your house price data? I guess the city centre always has high advertised volumes but it also has a high density of dwellings. It is worthwhile to show values standardised by the number of dwellings. 
+
+**Response:** After this comment we included a new figure to display the percentage of listings relative to the total number of dwellings by district.
+
+```{r, echo = FALSE,message=FALSE, fig.width=5, fig.cap="\\label{fig:districts}Percentage of listings relative to total number of dwellings by district. Boundary for Barcelona (Top), Madrid (Center), and Valencia (Bottom)."}
+library(idealista18)
+library(dplyr)
+library(ggplot2)
+library(sf)
+library(gridExtra)
+
+data("properties_by_district")
+
+# Barcelona
+Barcelona_prop <- properties_by_district |>
+  filter(CITY == "Barcelona") |>
+  mutate(proportion = N/N_CADASTRE)
+
+q <- quantile(Barcelona_prop$proportion)
+pq <- round(q * 100, 2)
+
+Barcelona_prop <- Barcelona_prop |>
+  mutate(Quantile = case_when(proportion <= q[2] ~ glue("[{pq[1]}%-{pq[2]}%)"),
+                              proportion > q[2] & proportion <= q[3] ~ glue("[{pq[2]}%-{pq[3]}%)"),
+                              proportion > q[3] & proportion <= q[4] ~ glue("[{pq[3]}%-{pq[4]}%)"),
+                              proportion > q[4] ~ glue("[{pq[4]}%-{pq[5]}%)")))
+
+plot4 <- ggplot(data = Barcelona_prop) +
+  geom_sf(aes(fill = Quantile),
+          color = "black",
+          size=.2) +
+  theme_bw(base_size = 6) +
+  scale_fill_manual(values=c("#FFFEDE",
+                             "#FFDFA2",
+                             "#FFA93F",
+                             "#D5610D"))+
+  theme(plot.margin=unit(c(0.1, 0.1, 0.1, 0.1),
+                         "cm"),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.key.size = unit(0.2, 'cm'),
+        text = element_text(size=4))
+
+# Madrid
+Madrid_prop <- properties_by_district |>
+  filter(CITY == "Madrid") |>
+  mutate(proportion = N/N_CADASTRE)
+
+q <- quantile(Madrid_prop$proportion)
+pq <- round(q * 100, 2)
+
+Madrid_prop <- Madrid_prop |>
+  mutate(Quantile = case_when(proportion <= q[2] ~ glue("[{pq[1]}%-{pq[2]}%)"),
+                              proportion > q[2] & proportion <= q[3] ~ glue("[{pq[2]}%-{pq[3]}%)"),
+                              proportion > q[3] & proportion <= q[4] ~ glue("[{pq[3]}%-{pq[4]}%)"),
+                              proportion > q[4] ~ glue("[{pq[4]}%-{pq[5]}%)")))
+
+
+plot5 <- ggplot(data = Madrid_prop) +
+  geom_sf(aes(fill = Quantile),
+          color = "black",
+          size=.2) +
+  theme_bw(base_size = 6) +
+  scale_fill_manual(values=c("#FFFEDE",
+                             "#FFDFA2",
+                             "#FFA93F",
+                             "#D5610D"))+
+  theme(plot.margin=unit(c(0.1, 0.1, 0.1, 0.1),
+                         "cm"),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.key.size = unit(0.2, 'cm'),
+        text = element_text(size=4))
+
+# Valencia
+Valencia_prop <- properties_by_district |>
+  filter(CITY == "Valencia") |>
+  mutate(proportion = N/N_CADASTRE)
+
+q <- quantile(Valencia_prop$proportion)
+pq <- round(q * 100, 2)
+
+Valencia_prop <- Valencia_prop |>
+  mutate(Quantile = case_when(proportion <= q[2] ~ glue("[{pq[1]}%-{pq[2]}%)"),
+                              proportion > q[2] & proportion <= q[3] ~ glue("[{pq[2]}%-{pq[3]}%)"),
+                              proportion > q[3] & proportion <= q[4] ~ glue("[{pq[3]}%-{pq[4]}%)"),
+                              proportion > q[4] ~ glue("[{pq[4]}%-{pq[5]}%)")))
+
+
+plot6 <- ggplot(data = Valencia_prop) +
+  geom_sf(aes(fill = Quantile),
+          color = "black",
+          size=.2) +
+  theme_bw(base_size = 6) +
+  scale_fill_manual(values=c("#FFFEDE",
+                             "#FFDFA2",
+                             "#FFA93F",
+                             "#D5610D"))+
+  theme(plot.margin=unit(c(0.1, 0.1, 0.1, 0.1),
+                         "cm"),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.key.size = unit(0.2, 'cm'),
+        text = element_text(size=4))
+
+# Arrange plots
+grid.arrange(plot4, plot5, plot6, 
+             ncol = 1, 
+             nrow = 3)
+```
+
+---
+
+*Dear Authors,* *Thank you for the opportunity to review this paper. I would appreciate it if you would highlight the changed text in the next submission. Otherwise it is difficult to identify which parts have changed. The unknown quality of this one year randomised data is the main issue for potential users and I repeat my suggestion that this data should be validated for the benefit potential readers and users. Below is a list of comments and questions which need to be addressed.*
+
+> **Answer:** Thnak you.
+> In the new version of the manuscrip, the changes are writen in red.
+
+## First Comment
+
+>Please clearly state the nature of the data in the abstract. It is worthwhile to mention the relocated and randomised dataset in the abstract. This house price dataset only has 189,923 records, which could be not really be described as a big dataset as you describe it in the abstract. Except the authors could provide an evidence/reference on why this is big dataset.
+
+
+
+## Second Comment
+
+2.  *Please check the typographical errors before your next submission. For example, the "thirdr" in your table1.*
+
+> **Answer:** Thank you.
+> A native English speaker has reviewed the document.
+
+## Third Comment
+
+3.  *Please use part of your answer to my previous fourth question in the manuscript. Your answer is quite useful for your future users, especially those researchers who are not familiar with house price data in Spain. I quote your previous answer below:*
+
+*"dealista covers fairly well all segments in the Spanish market, both individual and professional advertisers. This dataset comprehends information about listing prices, thus it contains the market situation from the offer. Nevertheless, actual sale prices information is not publicly available as it is information that can only be accessed by paying high fees to Colegio de Registradores. However listing prices reflect quite well the (transaction) reality of real estate markets using the offer perspective, they keep strong correlation between idealista and transaction prices can be established see Banco de España. Even though a great extent of correlation does exist between official transactional and asking records, both databases can be taken as complementary and are of great interest when studying asking-transaction price gaps or the relation between listing site demand variables (ie. ad contacts or ad views) and price gaps. The main real estate portals in Spain are idealista and Fotocasa, further away are Habitaclia and Milanuncios, the latter focusing almost exclusively on private individuals. In September 2021, according to data from Similarweb (a site specialized in sites' traffic volume comparison), in Spain, there were a total of 103 million page views on real estate portals, out of page views on real estate portals, of which the four main portals, idealista, Fotocasa, Habitaclia, and Pisos.com, in that order, accounted for 94% of the traffic. Another relevant feature of this sector is that it is highly concentrated, idealista being the leader by far with 58.6 monthly million visits (57% of the total traffic) versus its immediate competitor with 19.9 million visits (19.3 % of total traffic). In terms of the evolution over time of interest in the content of each portal, based on data from Google Trends, the leadership of idealista Trends, the leadership of idealist"*
+
+> **Answer:** Thank you. We include it.
+
+## Fourth Comment
+
+4.*For data description, it is worth showing solid evidence of the quality of this dataset. For example, what is the data coverage of this data compared to all the residential properties in the city? Listing the advertised volume is not very helpful for users who wish to understand the quality.*
+
+> **Answer:** 
+## Fifth Comment
+
+5.  *Given the asking price is a resized version of the original asking price with a random percentage between -2.5% and +2.5%, please elaborate on how this influences your quantitative research results and findings.* **Please provide critical evidence to explain how this randomised price will not influence academic research.** *For example, how does the house price variation at local level change after the price is randomised. To what degree will this influence a typical hedonic house price research approach? I am concerned about whether this randomised data could bias conclusions.*
+
+> **Answer:** Of course, the results of any econometric model will be differents if the original data are used.
+> Unfortunally, the data protection laws in Spain, specifically the Organic Law on the Protection of Personal Data and the Guarantee of Digital Rights (LOPDGDD) and the General Data Protection Regulation (GDPR) of the European Union, establish that personal data, including information on the location of a home, is protected and must be treated confidentially.
+> It is not permitted to disclose the specific location of a home without the explicit consent of the owner or person who has the right to dispose of it.
+
+> The small changes in the prices will be, in mean, a small impact on the results.
+
+## Sixth Comment
+
+6.  *In figure 1, is it possible to standardise this data rather than showing only the number of dwelling records in your house price data? I guess the city centre always has high advertised volumes but it also has a high density of dwellings. It is worthwhile to show values standardised by the number of dwellings*
+
+
+```{r, eval = FALSE, include = FALSE, message=FALSE, fig.width=5, }
+library(readxl)
+library(idealista18)
+library(dplyr)
+library(ggplot2)
+library(sf)
+library("gridExtra")
+Data <- read_excel("Adds_by_Distrits_idealista18.xlsx")
+Data$Por <- Data$N*100/Data$N_CADASTRE
+Barcelona_Polygons$District <- as.numeric(substr(Barcelona_Polygons$LOCATIONID,23,24))
+Barcelona_District <- Barcelona_Polygons %>% group_by(District) %>% summarise(District = unique(District))
+Madrid_Polygons$District <- as.numeric(substr(Madrid_Polygons$LOCATIONID,23,24))
+Madrid_District <- Madrid_Polygons %>% group_by(District) %>% summarise(District = unique(District))
+Valencia_Polygons$District <- as.numeric(substr(Valencia_Polygons$LOCATIONID,23,24))
+Valencia_District <- Valencia_Polygons %>% group_by(District) %>% summarise(District = unique(District))
+
+Data.bar <- Data[Data$CITY=="Barcelona",]
+Data.mad <- Data[Data$CITY=="Madrid",]
+Data.val <- Data[Data$CITY=="Valencia",]
+
+Barcelona_District <- merge(Barcelona_District,Data.bar,by="District")
+q <- quantile(Barcelona_District$Por)
+Barcelona_District$Quantile<- as.factor((Barcelona_District$Por > q[2]) + (Barcelona_District$Por > q[3]) +(Barcelona_District$Por >= q[4]) + 1)
+levels(Barcelona_District$Quantile) <- c("(4.7%,5.7%]","(5.7,6.9]","(6.9,8.2]","(8.2,14.9]")
+plot.d1 <- ggplot(data = Barcelona_District) +
+  geom_sf(aes(fill = Quantile),size=.2) +
+  theme_bw(base_size = 6) +
+  scale_fill_discrete("") +
+    scale_fill_manual(name = "",values=c("#D4E7F1","#6DAFD3","#2470B2","darkblue")) +
+  theme_bw(base_size = 6) +
+  theme(plot.margin=unit(c(0.1,0.1,0.1,0.1),"cm"),legend.position = "bottom",
+        legend.key.size = unit(.2, 'cm'),text = element_text(size=4))
+
+Madrid_District <- merge(Madrid_District,Data.mad,by="District")
+q <- quantile(Madrid_District$Por)
+Madrid_District$Quantile<- as.factor((Madrid_District$Por > q[2]) + (Madrid_District$Por > q[3]) +(Madrid_District$Por >= q[4]) + 1)
+plot.d2 <- ggplot(data = Madrid_District) +
+  geom_sf(aes(fill = Quantile),size=.2) +
+  theme_bw(base_size = 6) +
+  scale_fill_manual(name = "",values=c("#D4E7F1","#6DAFD3","#2470B2","darkblue")) +
+  theme(plot.margin=unit(c(0.1,0.1,0.1,0.1),"cm"),legend.position = "bottom",
+        legend.key.size = unit(.2, 'cm'),text = element_text(size=4))
+
+Valencia_District <- merge(Valencia_District,Data.val,by="District")
+q <- quantile(Valencia_District$Por)
+#levels(B$Quartile) <- c("Q1: (1200,4050]","Q2: (4050,5450]","Q3: (5450,8290]","Q4: (8290,830000]")
+Valencia_District$Quantile<- as.factor((Valencia_District$Por > q[2]) + (Valencia_District$Por > q[3]) +(Valencia_District$Por >= q[4]) + 1)
+plot.d3 <- ggplot(data = Valencia_District) +
+  geom_sf(aes(fill = Quantile),size=.2) +
+  theme_bw(base_size = 6) +
+  ylim(39.405,39.52) +
+  scale_fill_manual(name = "",values=c("#D4E7F1","#6DAFD3","#2470B2","darkblue"))+
+  theme(plot.margin=unit(c(0.1,0.1,0.1,0.1),"cm"),legend.position = "bottom",
+        legend.key.size = unit(.2, 'cm'),text = element_text(size=4))
+grid.arrange(plot.d1, plot.d2, plot.d3, ncol = 3, nrow = 1)
+```
+

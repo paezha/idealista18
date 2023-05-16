@@ -45,7 +45,7 @@ An object of class `sf` (inherits from `data.frame`) with 84,280 rows and 57 var
   \item{BUILTTYPEID_3}{Dummy value for flat condition: 1 second hand in good condition 0 otherwise (source: advertiser))}
   \item{DISTANCE_TO_CITY_CENTER}{Distance to center of city in km}
   \item{DISTANCE_TO_DIAGONAL}{Distance to Avinguda Diagonal in km; Diagonal is a major street that cuts across the city diagonally to the street grid}
-  \item{geometry}{geometry of simple features}
+  \item{geometry}{geometry of simple features in latitude and longitude}
   }
 
 An object of class \code{sf} (inherits from \code{data.frame}) with 61486 rows and 42 columns.

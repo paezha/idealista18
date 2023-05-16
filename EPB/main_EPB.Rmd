@@ -1,11 +1,11 @@
 ---
-title: A geo-referenced micro-data set of real estate listings for Spain’s three largest cities
+title: A geo-referenced micro-data set of real estate listings for Spain's three largest cities
 runninghead: author \emph{et al}.
 author:
 - name: 
-abstract: "This article shares an open data product with big geo-referenced micro-data sets of 2018 real estate listings in Spain. These data were originally published on the idealista.com real estate website. The observations were obtained for the three largest cities in Spain: Madrid (n = 94,815 observations), Barcelona (n = 61,486 observations), and Valencia (n = 33,622 observations). The data sets include the coordinates of properties (latitude and longitude), asking prices of each listed dwelling, and several variables of indoor characteristics. The listings were enriched with official information from the Spanish cadastre (e.g., building material quality) plus other relevant geographical features, such as distance to urban points of interest. Along with the real estate listings, the data product also includes neighborhood boundaries for each city. The data product is offered as a fully documented R package and is available for scientific and educational purposes, particularly for geo-spatial studies"
+abstract: "This article presents an open data product with large geo-referenced micro-data sets of 2018 real estate listings in Spain. These data were originally published on the idealista.com real estate website. The observations were obtained for the three largest cities in Spain: Madrid (n = 94,815 observations), Barcelona (n = 61,486 observations), and Valencia (n = 33,622 observations). The data sets include the coordinates of properties (latitude and longitude), asking prices of each listed dwelling, and several variables of indoor characteristics. The listings were enriched with official information from the Spanish cadastre (e.g., building material quality) plus other relevant geographical features, such as distance to urban points of interest. Along with the real estate listings, the data product also includes neighborhood boundaries for each city. The data product is offered as a fully documented R package and is available for scientific and educational purposes, particularly for geo-spatial studies"
 
-keywords: Housing market; idealista.com; geo-referenced data; point-level data; open data; Spain
+keywords: Housing prices; hedonic price analysis; idealista.com; geo-referenced data; point-level data; open data; Spain
 classoption:
   - Royal
   - times
@@ -20,57 +20,116 @@ header-includes:
   - \usepackage[linesnumbered,lined,boxed,commentsnumbered]{algorithm2e}
 ---
 
+```{r load-packages, include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(glue)
+library(gridExtra)
+library(idealista18)
+library(kableExtra)
+library(xtable)
+library(sf)
+```
+
+```{r load-data, include=FALSE}
+# Listings
+data("Barcelona_Sale")
+data("Madrid_Sale")
+data("Valencia_Sale")
+
+# Polygons
+data("Barcelona_Polygons")
+data("Madrid_Polygons")
+data("Valencia_Polygons")
+
+# Points of interest
+data("Barcelona_POIS")
+data("Madrid_POIS")
+data("Valencia_POIS")
+
+# Districts
+data("properties_by_district")
+```
+
+
 # Introduction
 
-Interest in the characteristics of the housing market and housing prices has been a growing area of research in recent decades, generating a vast amount of theoretical and empirical literature. Including the spatial component to analyze the real estate market and incorporating geographic variables has significantly improved the understanding of this market. But to really understand the characteristics of the housing market, it is essential to have information/data at the point level. Therefore, it is becoming common for spatial analysis of urban environments to be developed with geo- referenced micro-data sets [@lopez2015]. However, the availability of this type of open data at the point level is limited, and not many data sets contain latitude/longitude coordinates for each dwelling. In some cases, researchers have had to resort to web scraping processes to obtain the large volumes of information that permit robust analyses [@gupta2022take; @arbia2020spatial; @Li2019; @lopez2015].  These  web  scraping  processes  can  include  missing  data, download errors, duplicate records, etc. Furthermore, the authors of this research do not generally share the data sets.
+Interest in the characteristics of the housing market and housing prices has been a growing area of research in recent decades, generating a vast amount of theoretical and empirical literature. Including the spatial component to analyze the real estate market and incorporating geographic variables has significantly improved the understanding of this market: to this end, it is essential to have information/data at the point level. Therefore, it is becoming common for spatial analysis of urban environments to be use micro-data, geo-referenced as points [@lopez2015]. In some cases, researchers have had to resort to webscraping processes to obtain data for research [e.g., @gupta2022take; @arbia2020spatial; @Li2019; @lopez2015]. Alas, webscraping is a chancy process prone to download errors, missing  data, duplicated records, etc. Furthermore, researchers do not always share their webscrapped datasets, which limits reproducibility of their research. As we witness a growing interest in openness and reproducibility in geographical data science [@arribasl2021editorial; @paez2021open; @brunsdon2021opening], it  becomes increasingly urgent to have open data products to support research [@arribas2021].
 
-We are also witnessing a growing interest in open data in geography and data science [@arribasl2021editorial; @arribas2021] using reproducible or replicable  research  [@paez2021open; @brunsdon2021opening]. But  to  work  openly in  science, it  is  necessary to  have  free software and open data. While great efforts have been made to make free software available to researchers (e.g., R or Python), data regarding real estate markets tend to be treated as confidential, and there are still few open micro-data sets of housing markets available [@Song2021].
+Some researchers have already responded to this need for publicly available, geo-referenced datasets to support open, reproducible research. A few such datasets are now available to support the analysis of real estate markets, but they are sometimes geo-referenced at the level of large geographical zones, such as @fuerst2020real, an open dataset that includes $n=4,201$ property prices geocoded to the level of nine regions in England and Wales. Other datasets are geo-coded as points, including @bonifaci2015real, which includes $n=1,042$ observations for Padua, in Italy; @delgiudice2018housing, who share a dataset with $n=576$ observations relating to rental prices in Naples, Italy; and @solano2019dataset present a dataset with $n=1,623$ daily rental prices in Seville, Spain.
 
-To contribute to the growing inventory of international micro-data sets of real estate markets, this paper introduces an open micro-data set of geo-referenced dwelling listings. The data have been provided by the Idealista company\footnote{Idealista is the major real estate listing website in Spain, and present in other southern european countries as Italy and Portugal} and contain information about 189,923 dwellings located in Spain’s three largest cities. To date, this data product is the biggest open geo-referenced micro-data set of the housing market in Spain. Moreover, the data set has been supplied directly by Idealista, and therefore is clean and free of download errors. However, in order to be able to share publicly the data we have slightly modified some variables by applying some random noise which will not bias the main results derived from its usage. 
+To contribute to the growing inventory of international micro-data sets of real estate markets, this paper introduces an open micro-data set of geo-referenced dwelling listings. The data have been provided by the Idealista company\footnote{Idealista is the major real estate listing website in Spain, and present in other southern european countries as Italy and Portugal} and contain information about 189,923 dwellings located in Spain's three largest cities. To date, this data product is one of the largest open geo-referenced micro-data set of the housing market in the world. The most similar in terms of geographical disaggregation and sample size is the dataset of @song2021hedonic which includes transactions for four cities in South Korea, namely Busan ($n=61,152$), Daegu ($n=32,363$), Daejeon ($n=21,114$), and Gwangju ($n=25,984$). It is certainly the largest in Spain. 
 
-This micro-data set is expected to be used as a benchmark dataset to test empirical methods in a reproducible fashion. Applied and theoretical researchers on real estate mass appraisal and valuation methods might use this dataset to canonically compare the performance of their proposed comparable and hedonic models, among others. The data can also be used to study the segmentation of housing submarkets and related topics such as the impact of suburban areas on house prices. The listings have been enriched with official information from the Spanish cadastre along with other relevant geographical features, such as distance to urban points of interest. In any case, the data might be easily extended by spatially joining other datasets that contain information at administrative, census tract, or postal code levels.
 
-The data set is distributed as an R package, name {idealista18}, which can be accessed from a public Github repository\footnote{The direct URL to the GitHub repository is \url{https://github.com/paezha/idealista18}}. The database idealista18 is made available under the \href{http://opendatacommons.org/licenses/odbl/1.0/}{Open Database License}. For transparency, we also share the randomisation process applied to the original data in the aforementioned Github repository. 
+The data set has been supplied directly by Idealista, and therefore is clean and free of download errors. However, in order to be able to share publicly the data we have slightly modified some variables by applying some random noise which will not bias the main results derived from its usage. 
+
+This micro-data set can be used to benchmark new analytical methods in a reproducible fashion. Applied and theoretical researchers on real estate mass appraisal and valuation methods might use this dataset to canonically compare the performance of their proposed comparable and hedonic models, among others. The data can also be used to study the segmentation of housing submarkets and related topics such as the impact of suburban areas on house prices. The listings have been enriched with official information from the Spanish cadastre along with other relevant geographical features, such as distance to urban points of interest. In any case, the data might be easily extended by spatially joining other datasets that contain information at administrative, census tract, or postal code levels.
+
+The data set is distributed as an `R` package, named {idealista18}, which can be accessed from a public Github repository\footnote{\url{https://github.com/paezha/idealista18}}. The open data product is made available under the \href{http://opendatacommons.org/licenses/odbl/1.0/}{Open Database License}. For transparency, we also share the randomisation process applied to the original data in the aforementioned Github repository. 
 
 <!-- @cohen2008spatial (508 observations) -->
 <!-- @lazrak2014market (19000 observations) -->
 
 # Data description
 
-The open data product {idealista18} is an R package composed of nine objects, three objects for each of the three main Spanish cities: Barcelona, Madrid, and Valencia. For each city, dwelling listings, neighborhood polygons, and a set of points of interest have been included in the R package. The following subsections describe each object. A full description of the data is available in the help section of the package. We have strived to the best of our ability to comply with FAIR principles regarding research data [@Wilkinson2016fair]: upon publication, the dataset has a persistent digital object identifier; publication as a data article makes the data findable; the data and metadata are packaged together and protocols for help files in the R ecosystem mean that documentation is easily searchable; distribution as an R package means that only open software is needed to access the data; and a public repository documents all data processes followed to generate the distributed open data product.
+The open data product {idealista18} is an `R` package composed of nine objects, three objects for each of the three main Spanish cities: Barcelona, Madrid, and Valencia. For each city, dwelling listings, neighborhood polygons, and a set of points of interest have been included in the package. 
+
+The data provider (idealista.com) is a leading real estate portal in Spain, on par with Fotocasa. Smaller portals include Habitaclia and Milanuncios, the latter focusing almost exclusively on individual (i.e., non-professional) advertisers. In September 2021, according to data from Similarweb (a site specialized in sites' traffic volume comparison), there were a total of 103 million page views on real estate portals in Spain. Of this, 94% of traffic was concentrated on four portals, of which idealista was the most important, followed by Fotocasa, Habitaclia, and Pisos.com. Traffic is also highly concentrated, and idealista.com was the the leader by far with 58.6 monthly million visits (57% of the total traffic) compared to its closest competitor with 19.9 million visits (19.3 % of total traffic).
+
+As a result of its share of advertisments, idealista.com covers fairly well all segments of the Spanish market, including both individual and professional advertisers. This dataset includes information about listing prices, and therefore represents the market situation from the perspective of asking prices. This is a necessary compromise in the present case, since actual sale prices are not publicly available, and the information can only be accessed by paying high fees to Colegio de Registradores. However listing prices reflect quite well the (transaction) reality of real estate markets, and correlations between idealista listings and transaction prices can be established see [Banco de España](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3400031). Official transactions and asking prices can be taken as complementary and are of great interest when studying asking-transaction price gaps or the relation between listing site demand variables (i.e., ad contacts or ad views) and price gaps. 
+
+To provide some context about the coverage of the {idealista18} dataset Table \ref{tab:transactions} shows the number of listings with respect to the total residential stock in each city in 2018. As seen in the table, the number of listings ranges between 6.1% of the total number of properties (in Madrid) and 8.1% (in Valencia). Information from Instituto Nacional de Estadistica^[\url{https://www.ine.es/jaxiT3/Tabla.htm?t=6150&L=1}] shows that the number of listings in the {idealista18} package correspond to 81.3\% of recorded real estate transactions in Barcelona, 80.8\% in Madrid, and 91.1\% in Valencia.
+
+```{=tex}
+\begin{table}[!ht]
+    \centering
+      \caption{Total properties and transactionst three Spanish cities. Year 2018} 
+  \label{tab:transactions} 
+    \begin{tabular}{lccccc}
+        City & Total properties (P) & Total transactions (T) & Listings (L) & L/P & T/L \\
+        \hline
+        Barcelona &  789,740  &  56,012  &  61,329  & 7.8\% & 81.3\%  \\ 
+        Madrid &  1,545,397  &  76,603  &  94,802  & 6.1\%  & 80.8\% \\ 
+        Valencia &  416,004  &  30,615  &  33,593  & 8.1\% & 91.1\% \\ 
+        \hline
+        Total &  2,751,141  &  163,230  &  189,724  & 6.9\% & 86.0\% \\ 
+        \hline
+        \multicolumn{6}{l}{{\footnotesize \textbf{Sources}}}\\
+        \multicolumn{6}{l}{{\footnotesize Total properties (P): Ministerio Español de Hacienda y Función Pública}}\\
+        \multicolumn{6}{l}{{\footnotesize Total transactions (T): Instituto Nacional de Estadística}}\\
+    \end{tabular}
+\end{table}
+```
+
+The following subsections describe each object. A full description of the data is available in the help section of the package. We have tried to the best of our ability to comply with FAIR principles regarding research data [@Wilkinson2016fair]: upon publication, the dataset has a persistent digital object identifier; publication as a data article makes the data findable; the data and metadata are packaged together and protocols for help files in the R ecosystem mean that documentation is easily searchable; distribution as an R package means that only open software is needed to access the data; and a public repository documents all data processes followed to generate the distributed open data product.
 
 ## Dwelling listings
 
-The dwelling listing of each city includes a set of characteristics for each dwelling published on the idealista real estate website as an ad. The dwelling listing has been included in the ‘idealista18’ package as an sf object [@Pebesma]. The name of the sf object containing the dwelling listing includes the name of the city, followed by '_Sale' (e.g., Madrid_Sale) and includes a total of 42 variables. Each sf object includes the complete set of listings corresponding to the four quarters of the year 2018. Table \ref{tab:number-ads} shows the number of dwelling listing ads included in the data set for each city and quarter. The record counts for each city are: 94,815 listings for Madrid, 61,486 for Barcelona, and 33,622 for Valencia. Note that the same dwelling may be found in more than one period when a property listed for sale in one quarter was sold in a subsequent quarter. The variable ASSETID, included in the sf objects, is the unique identifier of the dwelling.
-
+The dwelling listing of each city includes a set of characteristics for each dwelling published on the idealista real estate website as an ad. The dwelling listing has been included in the {idealista18} package as a simple features (sf) object [@Pebesma] with point geometry in latitude and longitude. The name of each sf object with the list of dwellings is the name of the city followed by '_Sale' (e.g., Madrid_Sale). Each data object includes a total of 42 variables and the complete set of listings corresponding to the four quarters of 2018. Table \ref{tab:number-ads} shows the number of dwelling listing ads included in the data set for each city and quarter. The record counts for each city are: 94,815 listings for Madrid, 61,486 for Barcelona, and 33,622 for Valencia. Note that the same dwelling may be found in more than one period when a property listed for sale in one quarter was sold in a subsequent quarter. The variable ASSETID, included in the sf objects, is the unique identifier of the dwelling.
 
 ```{r number-ads, echo = FALSE, message = FALSE}
-library(idealista18)
-library(kableExtra)
-library(xtable)
-library(sf)
 H <- t(cbind(table(Barcelona_Sale$PERIOD),table(Madrid_Sale$PERIOD),table(Valencia_Sale$PERIOD)))
 H <- cbind(H,rowSums(H))
 text_tbl <- data.frame(
 City = c("Barcelona","Madrid","Valencia"),
 H,
 check.names = FALSE)
-colnames(text_tbl) <- c("City\\Quarter", "First", "Second ", "Thirdr", "Fourth","Total ads")
-xtable::xtable(text_tbl, digits=0, caption = "Number of dwelling  listing ads for each city and quarter. \\label{tab:number-ads}") %>%
-xtable2kable(include.rownames = FALSE) %>%
-kable_styling(full_width = F) %>%
-column_spec(1, width = "4em", italic = FALSE) %>%
-column_spec(2, width = "3em") %>%
-column_spec(3, width = "3em", latex_column_spec = "c") %>%
-column_spec(4, width = "3em", latex_column_spec = "c") %>%
-column_spec(5, width = "3em", latex_column_spec = "c") %>%
+colnames(text_tbl) <- c("City\\Quarter", "First", "Second ", "Third", "Fourth","Total ads")
+xtable::xtable(text_tbl, digits=0, caption = "Number of dwelling  listing ads for each city and quarter. \\label{tab:number-ads}") |>
+xtable2kable(include.rownames = FALSE) |>
+kable_styling(full_width = F) |>
+column_spec(1, width = "4em", italic = FALSE) |>
+column_spec(2, width = "3em") |>
+column_spec(3, width = "3em", latex_column_spec = "c") |>
+column_spec(4, width = "3em", latex_column_spec = "c") |>
+column_spec(5, width = "3em", latex_column_spec = "c") |>
 column_spec(6, width = "2em", latex_column_spec = "c")
 ```
 
 
-Each record of the dwelling listing contains a set of indoor characteristics supplied by the advertisers on the Idealista website (e.g., price, surface area, number of bedrooms, basic features, etc.), including the exact location of the dwelling (see Section [Anonymizing the data set](#anonymizing)). Table \ref{tab:variables} lists the main indoor variables with a short description and the mean value of each variable. The dwelling listings were enriched with a number of additional attributes from the Spanish cadastre [@Catastro]. The cadastral information is described in Table \ref{tab:variables}, with the prefix CAD in the variable name. The cadastral features were assigned by applying the features of the nearest parcel to the coordinates. The year the dwelling was built (CONSTRUCTIONYEAR) given by the advertiser was revised since the year of construction is entered on the website by users, and it is therefore subject to errors and incomplete data (40\% missing data). To resolve this issue, an alternative variable (CADCONSTRUCTIONYEAR) was included, assigning the cadastral construction year from the nearest cadastral parcel whenever the value was outstanding (date was after publication date or year of construction was before 1500) or when the value supplied by the advertiser was missing.
+Each record of the dwelling listing contains a set of indoor characteristics supplied by the advertisers on the Idealista website (e.g., price, surface area, number of bedrooms, basic features, etc.), including the location of the dwelling. The exact location has been masked, as described in Section [Anonymizing the data set](#anonymizing)). Table \ref{tab:variables} lists the main indoor variables with a short description and the mean value of each variable. The dwelling listings were enriched with a number of additional attributes from the Spanish cadastre [@Catastro]. The cadastral information is described in Table \ref{tab:variables}, with the prefix CAD in the variable name. The cadastral features were assigned by applying the features of the nearest parcel to the coordinates. The year the dwelling was built (CONSTRUCTIONYEAR) given by the advertiser was revised since the year of construction is entered on the website by users, and it is therefore subject to errors and incomplete data (40\% missing data). To resolve this issue, an alternative variable (CADCONSTRUCTIONYEAR) was included, assigning the cadastral construction year from the nearest cadastral parcel whenever the value was outstanding (date was after publication date or year of construction was before 1500) or when the value supplied by the advertiser was missing.
 
-Additionally, the distance of each dwelling to three urban points of interest was included in the sf object: distance to the city center, distance to the closest metro station, and distance to a major street (La Diagonal for Barcelona, La Castellana for Madrid, and Blasco Ibañez for Valencia). The last rows of Table \ref{tab:variables} show the mean values of these variables.
+Additionally, the distance of each dwelling to several points of interest was included in the sf object: distance to the city center, distance to the closest metro station, and distance to a major street (La Diagonal for Barcelona, La Castellana for Madrid, and Blasco Ibañez for Valencia). The last rows of Table \ref{tab:variables} show the mean values of these variables.
 
 ```{r table-variables, echo = FALSE, message = FALSE}
 dummyvariables <- c(3,4,5,6,7,27,30,31,32,33,37,38,39)
@@ -90,13 +149,13 @@ Madrid = colMeans(st_drop_geometry(Madrid_Sale[dummyvariables]), na.rm = TRUE),
 "Valencia"=colMeans(st_drop_geometry(Valencia_Sale[dummyvariables]), na.rm = TRUE),
 check.names = FALSE)
 text_tbl[dim(text_tbl)[1],1]<-"DISTANCE_TO_(MAINSTREET)"
-xtable::xtable(text_tbl, caption = "List, sort description, and mean of the main quantitative variables included in the dwelling listing for the three Spanish cities. See the help section in the \\textbf{idealista18} R package for details and formal definitions. Some variables have been excluded from this table to save space. Check the full list in the \\textbf{idealista18} package.\\label{tab:variables}") %>%
-xtable2kable(include.rownames = FALSE) %>%
-kable_styling(full_width = F, font_size=8) %>%
-column_spec(1, width = "13em", italic = FALSE) %>%
-column_spec(2, width = "14em") %>%
-column_spec(3, width = "2em", latex_column_spec = "c") %>%
-column_spec(4, width = "2em", latex_column_spec = "c") %>%
+xtable::xtable(text_tbl, caption = "List, sort description, and mean of the main quantitative variables included in the dwelling listing for the three Spanish cities. See the help section in the \\textbf{idealista18} R package for details and formal definitions. Some variables have been excluded from this table to save space. Check the full list in the \\textbf{idealista18} package.\\label{tab:variables}") |>
+xtable2kable(include.rownames = FALSE) |>
+kable_styling(full_width = F, font_size=8) |>
+column_spec(1, width = "13em", italic = FALSE) |>
+column_spec(2, width = "14em") |>
+column_spec(3, width = "2em", latex_column_spec = "c") |>
+column_spec(4, width = "2em", latex_column_spec = "c") |>
 column_spec(5, width = "2em", latex_column_spec = "c")
 ```
 
@@ -123,72 +182,209 @@ Madrid = colMeans(st_drop_geometry(Madrid_Sale[dummyvariables])),
 "Valencia"=colMeans(st_drop_geometry(Valencia_Sale[dummyvariables])),
 check.names = FALSE)
 
-xtable::xtable(text_tbl, caption = "List of dummy variables, sort description, and ratios of dwellings with the specific characteristics. See the help section in the \\textbf{idealista18} R package for details and formal definitions. Some dummy variables have been excluded from this table to save space\\label{tab:Dummy-variables}") %>%
-xtable2kable(include.rownames = FALSE) %>%
-kable_styling(full_width = F, font_size = 8) %>%
-column_spec(1, width = "12em", italic = FALSE) %>%
-column_spec(2, width = "14em") %>%
-column_spec(3, width = "2em", latex_column_spec = "c") %>%
-column_spec(4, width = "2em", latex_column_spec = "c") %>%
+xtable::xtable(text_tbl, caption = "List of dummy variables, sort description, and ratios of dwellings with the specific characteristics. See the help section in the \\textbf{idealista18} R package for details and formal definitions. Some dummy variables have been excluded from this table to save space\\label{tab:Dummy-variables}") |>
+xtable2kable(include.rownames = FALSE) |>
+kable_styling(full_width = F, font_size = 8) |>
+column_spec(1, width = "12em", italic = FALSE) |>
+column_spec(2, width = "14em") |>
+column_spec(3, width = "2em", latex_column_spec = "c") |>
+column_spec(4, width = "2em", latex_column_spec = "c") |>
 column_spec(5, width = "2em", latex_column_spec = "c")
 ```
 
 ## Neighboorhood polygons
 
-The second block of data included in the ‘idealista18’ R package is the spatial features of the three cities divided into neighborhoods. There is an sf object for each city with the name of the city and the suffix '_Polygons'. Figure \ref{fig:all-polygons} shows the quantile maps of the number of dwellings in the listing for the different neighborhoods in the three cities. The neighborhoods are based on the official boundaries but slightly changed by Idealista\footnote{There are two criteria used to make this division. If an area is small enough and similar enough to another, the two areas are merged, and, if the official area is not homogeneous, it is divided into a series of new polygons.}. In practical terms, we can assume they are the same since the website combines areas when there are few ads for that area. In the case of Madrid, they combined four areas into two.
+The second data object included in {idealista18} is the neighborhoods in the three cities as polygons. There is an sf object for each city with the name of the city and the suffix '_Polygons'. Figure \ref{fig:all-polygons} shows the quantile maps of the number of dwellings in the listing for the different neighborhoods in the three cities. The neighborhoods are based on the official boundaries but slightly changed by Idealista\footnote{There are two criteria used to make this division. If an area is small enough and similar enough to another, the two areas are merged, and, if the official area is not homogeneous, it is divided into a series of new polygons.}. In practical terms, we can assume they are the same since the website combines areas when there are few ads for that area. In the case of Madrid, they combined four areas into two.
 
-```{r, echo = FALSE,message=FALSE,fig.width=5, fig.cap="\\label{fig:all-polygons}Quantile maps of the number of dwellings in each neighborhood. Boundary for Barcelona (Left), Madrid (Center), and Valencia (Right)."}
-library("ggplot2")
-library("dplyr")
-library("gridExtra")
+```{r, echo = FALSE,message=FALSE, fig.width=5, fig.cap="\\label{fig:all-polygons}Number of listings in each neighborhood. Boundary for Barcelona (Top), Madrid (Center), and Valencia (Bottom)."}
+
 # Barcelona
-Barcelona_counts <- Barcelona_Polygons %>% 
-  mutate(counts = lengths(st_intersects(., Barcelona_Sale)))
+Barcelona_counts <- Barcelona_Polygons |> 
+  mutate(counts = lengths(st_intersects(Barcelona_Polygons, Barcelona_Sale)))
 q <- quantile(Barcelona_counts$counts)
-Barcelona_Polygons$Quantile<- as.factor((Barcelona_counts$counts > q[2]) + (Barcelona_counts$counts > q[3]) +(Barcelona_counts$counts >= q[4]) + 1)
-plot4 <- ggplot(data = Barcelona_Polygons) +
-  geom_sf(aes(fill = Quantile),color = "black",size=.2) +
+
+Barcelona_counts <- Barcelona_counts |>
+  mutate(Quantile = case_when(counts <= q[2] ~ glue("[{q[1]}-{q[2]})"),
+                              counts > q[2] & counts <= q[3] ~ glue("[{q[2]}-{q[3]})"),
+                              counts > q[3] & counts <= q[4] ~ glue("[{q[3]}-{q[4]})"),
+                              counts > q[4] ~ glue("[{q[4]}-{q[5]})")))
+
+
+barcelona_listings <- ggplot(data = Barcelona_counts) +
+  geom_sf(aes(fill = Quantile),
+          color = "black",size=.2) +
   theme_bw(base_size = 6) +
   scale_fill_manual(values=c("#FFFEDE","#FFDFA2", "#FFA93F", "#D5610D"))+
-  theme(plot.margin=unit(c(0.1,0.1,0.1,0.1),"cm"),legend.position = "bottom",
-        legend.key.size = unit(0.2, 'cm'),text = element_text(size=4))
+  theme(plot.margin=unit(c(0.1,0.1,0.1,0.1), "cm"),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.key.size = unit(0.2, 'cm'),
+        text = element_text(size=4))
+
 # Madrid
-Madrid_counts <- Madrid_Polygons %>% 
-  mutate(counts = lengths(st_intersects(., Madrid_Sale)))
+Madrid_counts <- Madrid_Polygons |> 
+  mutate(counts = lengths(st_intersects(Madrid_Polygons, Madrid_Sale)))
 q <- quantile(Madrid_counts$counts)
-Madrid_Polygons$Quantile<- as.factor((Madrid_counts$counts > q[2]) + (Madrid_counts$counts > q[3]) +(Madrid_counts$counts >= q[4]) + 1)
-plot5 <- ggplot(data = Madrid_Polygons) +
-  geom_sf(aes(fill = Quantile),color = "black",size=.2) +
+
+Madrid_counts <- Madrid_counts |>
+  mutate(Quantile = case_when(counts <= q[2] ~ glue("[{q[1]}-{q[2]})"),
+                              counts > q[2] & counts <= q[3] ~ glue("[{q[2]}-{q[3]})"),
+                              counts > q[3] & counts <= q[4] ~ glue("[{q[3]}-{q[4]})"),
+                              counts > q[4] ~ glue("[{q[4]}-{q[5]})")))
+
+
+madrid_listings <- ggplot(data = Madrid_counts) +
+  geom_sf(aes(fill = Quantile),
+          color = "black",size=.2) +
   theme_bw(base_size = 6) +
   scale_fill_manual(values=c("#FFFEDE","#FFDFA2", "#FFA93F", "#D5610D"))+
-  theme(plot.margin=unit(c(0.1,0.1,0.1,0.1),"cm"),legend.position = "bottom",
-        legend.key.size = unit(0.2, 'cm'),text = element_text(size=4))
+  theme(plot.margin=unit(c(0.1,0.1,0.1,0.1), "cm"),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.key.size = unit(0.2, 'cm'),
+        text = element_text(size=4))
+
 # Valencia
-Valencia_counts <- Valencia_Polygons %>% 
-  mutate(counts = lengths(st_intersects(., Valencia_Sale)))
+Valencia_counts <- Valencia_Polygons |> 
+  mutate(counts = lengths(st_intersects(Valencia_Polygons, Valencia_Sale)))
 q <- quantile(Valencia_counts$counts)
-Valencia_Polygons$Quantile<- as.factor((Valencia_counts$counts > q[2]) + (Valencia_counts$counts > q[3]) +(Valencia_counts$counts >= q[4]) + 1)
-plot6 <- ggplot(data = Valencia_Polygons) +
-  geom_sf(aes(fill = Quantile),color = "black",size=.2) +
-  ylim(39.405,39.52) +
+
+Valencia_counts <- Valencia_counts |>
+  mutate(Quantile = case_when(counts <= q[2] ~ glue("[{q[1]}-{q[2]})"),
+                              counts > q[2] & counts <= q[3] ~ glue("[{q[2]}-{q[3]})"),
+                              counts > q[3] & counts <= q[4] ~ glue("[{q[3]}-{q[4]})"),
+                              counts > q[4] ~ glue("[{q[4]}-{q[5]})")))
+
+
+valencia_listings <- ggplot(data = Valencia_counts) +
+  geom_sf(aes(fill = Quantile),
+          color = "black",size=.2) +
   theme_bw(base_size = 6) +
   scale_fill_manual(values=c("#FFFEDE","#FFDFA2", "#FFA93F", "#D5610D"))+
-  theme(plot.margin=unit(c(0.1,0.1,0.1,0.1),"cm"),legend.position = "bottom",
-        legend.key.size = unit(0.2, 'cm'),text = element_text(size=4))
-grid.arrange(plot4, plot5, plot6, ncol = 3, nrow = 1)
+  theme(plot.margin=unit(c(0.1,0.1,0.1,0.1), "cm"),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.key.size = unit(0.2, 'cm'),
+        text = element_text(size=4))
+
+# Arrange plots
+grid.arrange(barcelona_listings, madrid_listings, valencia_listings,
+             ncol = 1,
+             nrow = 3)
 ```
 
 There are a total of 69 neighborhoods in Barcelona, 135 in Madrid, and 73 in Valencia. The sf object includes a unique identifier (LOCATIONID) and the neighborhood name (LOCATIONNAME).
 
+The total number of dwellings is available from the Spanish cadastre aggregated by district (districts are groups of neighborhoods). Figure \ref{fig:districts} shows the percentage of listed dwellings relative to the total number of dwelling by district in each of the three cities. This gives a sense of how active residential real estate markets were in different parts of each city in 2018.
+
+```{r, echo = FALSE,message=FALSE, fig.width=5, fig.cap="\\label{fig:districts}Percentage of listings relative to total number of dwellings by district. Boundary for Barcelona (Top), Madrid (Center), and Valencia (Bottom)."}
+# Barcelona
+Barcelona_prop <- properties_by_district |>
+  filter(CITY == "Barcelona") |>
+  mutate(proportion = N/N_CADASTRE)
+
+q <- quantile(Barcelona_prop$proportion)
+pq <- round(q * 100, 2)
+
+Barcelona_prop <- Barcelona_prop |>
+  mutate(Quantile = case_when(proportion <= q[2] ~ glue("[{pq[1]}%-{pq[2]}%)"),
+                              proportion > q[2] & proportion <= q[3] ~ glue("[{pq[2]}%-{pq[3]}%)"),
+                              proportion > q[3] & proportion <= q[4] ~ glue("[{pq[3]}%-{pq[4]}%)"),
+                              proportion > q[4] ~ glue("[{pq[4]}%-{pq[5]}%)")))
+
+plot4 <- ggplot(data = Barcelona_prop) +
+  geom_sf(aes(fill = Quantile),
+          color = "black",
+          size=.2) +
+  theme_bw(base_size = 6) +
+  scale_fill_manual(values=c("#FFFEDE",
+                             "#FFDFA2",
+                             "#FFA93F",
+                             "#D5610D"))+
+  theme(plot.margin=unit(c(0.1, 0.1, 0.1, 0.1),
+                         "cm"),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.key.size = unit(0.2, 'cm'),
+        text = element_text(size=4))
+
+# Madrid
+Madrid_prop <- properties_by_district |>
+  filter(CITY == "Madrid") |>
+  mutate(proportion = N/N_CADASTRE)
+
+q <- quantile(Madrid_prop$proportion)
+pq <- round(q * 100, 2)
+
+Madrid_prop <- Madrid_prop |>
+  mutate(Quantile = case_when(proportion <= q[2] ~ glue("[{pq[1]}%-{pq[2]}%)"),
+                              proportion > q[2] & proportion <= q[3] ~ glue("[{pq[2]}%-{pq[3]}%)"),
+                              proportion > q[3] & proportion <= q[4] ~ glue("[{pq[3]}%-{pq[4]}%)"),
+                              proportion > q[4] ~ glue("[{pq[4]}%-{pq[5]}%)")))
+
+
+plot5 <- ggplot(data = Madrid_prop) +
+  geom_sf(aes(fill = Quantile),
+          color = "black",
+          size=.2) +
+  theme_bw(base_size = 6) +
+  scale_fill_manual(values=c("#FFFEDE",
+                             "#FFDFA2",
+                             "#FFA93F",
+                             "#D5610D"))+
+  theme(plot.margin=unit(c(0.1, 0.1, 0.1, 0.1),
+                         "cm"),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.key.size = unit(0.2, 'cm'),
+        text = element_text(size=4))
+
+# Valencia
+Valencia_prop <- properties_by_district |>
+  filter(CITY == "Valencia") |>
+  mutate(proportion = N/N_CADASTRE)
+
+q <- quantile(Valencia_prop$proportion)
+pq <- round(q * 100, 2)
+
+Valencia_prop <- Valencia_prop |>
+  mutate(Quantile = case_when(proportion <= q[2] ~ glue("[{pq[1]}%-{pq[2]}%)"),
+                              proportion > q[2] & proportion <= q[3] ~ glue("[{pq[2]}%-{pq[3]}%)"),
+                              proportion > q[3] & proportion <= q[4] ~ glue("[{pq[3]}%-{pq[4]}%)"),
+                              proportion > q[4] ~ glue("[{pq[4]}%-{pq[5]}%)")))
+
+
+plot6 <- ggplot(data = Valencia_prop) +
+  geom_sf(aes(fill = Quantile),
+          color = "black",
+          size=.2) +
+  theme_bw(base_size = 6) +
+  scale_fill_manual(values=c("#FFFEDE",
+                             "#FFDFA2",
+                             "#FFA93F",
+                             "#D5610D"))+
+  theme(plot.margin=unit(c(0.1, 0.1, 0.1, 0.1),
+                         "cm"),
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.key.size = unit(0.2, 'cm'),
+        text = element_text(size=4))
+
+# Arrange plots
+grid.arrange(plot4, plot5, plot6, 
+             ncol = 1, 
+             nrow = 3)
+```
+
 ## Points of Interest
 
-The last block of data included in the data package is a set of Points of Interest in each city as an object of the class list. The name of the list includes the name of the city with the suffix '_POIS'. These lists include three elements: (i) the coordinates of the city center, the central business district; (ii) a set of coordinates that define the main street of each city; and (iii) the coordinates of the metro stations.
+The last data object included in the package is a set of Points of Interest in each city as an object of the class list. The name of the list includes the name of the city with the suffix '_POIS'. These lists include three elements: (i) the coordinates of the city center, the central business district; (ii) a set of coordinates that define the main street of each city; and (iii) the coordinates of the metro stations.
 
 # Anonymizing the data set {#anonymizing}
 
 To comply with Spanish regulations, two variables were slightly modified to provide anonymity. A masking process was applied to asking prices and location (coordinates).
 
-In terms of the asking prices, the original values were obfuscated with the addition or subtraction of a random percentage of their original values, ranging from -2.5% to +2.5%. Since asking prices are usually multiples of 1,000, after the first price modification, the prices were aligned to multiples of 1,000. 
+In terms of the asking prices, the original values were obfuscated with the addition or subtraction of a random percentage of their original values, ranging from $-2.5%$ to $+2.5%$. Since asking prices are usually multiples of 1,000, after the first price modification, the prices were aligned to multiples of 1,000. 
 
 
 ```{=tex}
@@ -222,7 +418,7 @@ knitr::include_graphics(c("EPB_files/points-moved-image.png","EPB_files/coordina
 
 # Conclusion
 
-This paper describes a data product of a geo-referenced micro-data set of Spain’s three largest cities. This is an excellent data product to help understand the complex mechanisms related to the housing market and housing prices. Researchers can apply hedonic models with spatial effects, identifying housing submarkets or machine learning techniques. The data product can also be used for educational proposes and teaching activities.
+This paper describes a data product of a geo-referenced micro-data set of Spain's three largest cities. This is an excellent data product to help understand the complex mechanisms related to the housing market and housing prices. Researchers can apply hedonic models with spatial effects, identifying housing submarkets or machine learning techniques [e.g., @rey2023using]. The data product can also be used for educational proposes and teaching activities.
 
 # Declaration of Competing Interest
 

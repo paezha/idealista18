@@ -1,7 +1,7 @@
 Package: idealista18
 Type: Package
 Title: Idealista 2018 Data Package
-Version: 0.1.1
+Version: 0.1.2
 Date: 2021-07-17
 Authors@R: 
     c(person("David", "Rey", , "drey@idealista.com", role = c("aut"),
@@ -29,5 +29,5 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 VignetteBuilder: knitr
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.3
 URL: https://paezha.github.io/idealista18/
