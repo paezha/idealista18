@@ -60,21 +60,20 @@ Some researchers have already responded to this need for publicly available, geo
 
 To contribute to the growing inventory of international micro-data sets of real estate markets, this paper introduces an open micro-data set of geo-referenced dwelling listings. The data have been provided by the Idealista company\footnote{Idealista is the major real estate listing website in Spain, and present in other southern european countries as Italy and Portugal} and contain information about 189,923 dwellings located in Spain's three largest cities. To date, this data product is one of the largest open geo-referenced micro-data set of the housing market in the world. The most similar in terms of geographical disaggregation and sample size is the dataset of @song2021hedonic which includes transactions for four cities in South Korea, namely Busan ($n=61,152$), Daegu ($n=32,363$), Daejeon ($n=21,114$), and Gwangju ($n=25,984$). It is certainly the largest in Spain. 
 
-
-The data set has been supplied directly by Idealista, and therefore is clean and free of download errors. However, in order to be able to share publicly the data we have slightly modified some variables by applying some random noise which will not bias the main results derived from its usage. 
+The data set has been supplied directly by Idealista, and therefore is clean and free of download errors. However, to comply with data legislation, to share the data we have slightly modified the prices by applying a small amount of random noise which will not bias the main results derived from its usage. 
 
 This micro-data set can be used to benchmark new analytical methods in a reproducible fashion. Applied and theoretical researchers on real estate mass appraisal and valuation methods might use this dataset to canonically compare the performance of their proposed comparable and hedonic models, among others. The data can also be used to study the segmentation of housing submarkets and related topics such as the impact of suburban areas on house prices. The listings have been enriched with official information from the Spanish cadastre along with other relevant geographical features, such as distance to urban points of interest. In any case, the data might be easily extended by spatially joining other datasets that contain information at administrative, census tract, or postal code levels.
 
-The data set is distributed as an `R` package, named {idealista18}, which can be accessed from a public Github repository\footnote{\url{https://github.com/paezha/idealista18}}. The open data product is made available under the \href{http://opendatacommons.org/licenses/odbl/1.0/}{Open Database License}. For transparency, we also share the randomisation process applied to the original data in the aforementioned Github repository. 
+The data set is distributed as an `R` package, named {idealista18}, which can be accessed from a public Github repository\footnote{\url{https://github.com/paezha/idealista18}}. The open data product is made available under the \href{http://opendatacommons.org/licenses/odbl/1.0/}{Open Database License}. For transparency, we also share the randomization process applied to the original data in the aforementioned Github repository. 
 
 <!-- @cohen2008spatial (508 observations) -->
 <!-- @lazrak2014market (19000 observations) -->
 
 # Data description
 
-The open data product {idealista18} is an `R` package composed of nine objects, three objects for each of the three main Spanish cities: Barcelona, Madrid, and Valencia. For each city, dwelling listings, neighborhood polygons, and a set of points of interest have been included in the package. 
+The open data product {idealista18} is an `R` package composed of ten objects, three objects for each of the three main Spanish cities: Barcelona, Madrid, and Valencia. For each city, dwelling listings, neighborhood polygons, and a set of points of interest have been included in the package. There is in addition a data object with the number of dwellings by district (a collection of neighborhoods), according to the Spanish cadastre.
 
-The data provider (idealista.com) is a leading real estate portal in Spain, on par with Fotocasa. Smaller portals include Habitaclia and Milanuncios, the latter focusing almost exclusively on individual (i.e., non-professional) advertisers. In September 2021, according to data from Similarweb (a site specialized in sites' traffic volume comparison), there were a total of 103 million page views on real estate portals in Spain. Of this, 94% of traffic was concentrated on four portals, of which idealista was the most important, followed by Fotocasa, Habitaclia, and Pisos.com. Traffic is also highly concentrated, and idealista.com was the the leader by far with 58.6 monthly million visits (57% of the total traffic) compared to its closest competitor with 19.9 million visits (19.3 % of total traffic).
+The data provider (idealista.com) is a leading real estate portal in Spain, on par with its nearest competitor Fotocasa. Smaller listing portals include Habitaclia and Milanuncios, the latter focusing almost exclusively on individual (i.e., non-professional) advertisers. In September 2021, according to data from Similarweb (a site specialized in sites' traffic volume comparison), there were a total of 103 million page views on real estate portals in Spain. Of this, 94% of traffic was concentrated on four portals, of which idealista was the most important, followed by Fotocasa, Habitaclia, and Pisos.com. Traffic is also highly concentrated, and idealista.com was the the leader by far with 58.6 monthly million visits (57% of the total traffic) compared to its closest competitor with 19.9 million visits (19.3 % of total traffic).
 
 As a result of its share of advertisments, idealista.com covers fairly well all segments of the Spanish market, including both individual and professional advertisers. This dataset includes information about listing prices, and therefore represents the market situation from the perspective of asking prices. This is a necessary compromise in the present case, since actual sale prices are not publicly available, and the information can only be accessed by paying high fees to Colegio de Registradores. However listing prices reflect quite well the (transaction) reality of real estate markets, and correlations between idealista listings and transaction prices can be established see [Banco de España](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3400031). Official transactions and asking prices can be taken as complementary and are of great interest when studying asking-transaction price gaps or the relation between listing site demand variables (i.e., ad contacts or ad views) and price gaps. 
 
@@ -294,8 +293,9 @@ Barcelona_prop <- Barcelona_prop |>
 
 plot4 <- ggplot(data = Barcelona_prop) +
   geom_sf(aes(fill = Quantile),
-          color = "black",
-          size=.2) +
+          color = NA) +
+  geom_sf(data = Barcelona_Polygons,
+          fill = NA) +
   theme_bw(base_size = 6) +
   scale_fill_manual(values=c("#FFFEDE",
                              "#FFDFA2",
@@ -325,8 +325,10 @@ Madrid_prop <- Madrid_prop |>
 
 plot5 <- ggplot(data = Madrid_prop) +
   geom_sf(aes(fill = Quantile),
-          color = "black",
+          color = NA,
           size=.2) +
+    geom_sf(data = Madrid_Polygons,
+          fill = NA) +
   theme_bw(base_size = 6) +
   scale_fill_manual(values=c("#FFFEDE",
                              "#FFDFA2",
@@ -356,8 +358,10 @@ Valencia_prop <- Valencia_prop |>
 
 plot6 <- ggplot(data = Valencia_prop) +
   geom_sf(aes(fill = Quantile),
-          color = "black",
+          color = NA,
           size=.2) +
+    geom_sf(data = Valencia_Polygons,
+          fill = NA) +
   theme_bw(base_size = 6) +
   scale_fill_manual(values=c("#FFFEDE",
                              "#FFDFA2",

@@ -119,10 +119,10 @@ four cities in South Korea, namely Busan (\(n=61,152\)), Daegu
 is certainly the largest in Spain.
 
 The data set has been supplied directly by Idealista, and therefore is
-clean and free of download errors. However, in order to be able to share
-publicly the data we have slightly modified some variables by applying
-some random noise which will not bias the main results derived from its
-usage.
+clean and free of download errors. However, to comply with data
+legislation, to share the data we have slightly modified the prices by
+applying a small amount of random noise which will not bias the main
+results derived from its usage.
 
 This micro-data set can be used to benchmark new analytical methods in a
 reproducible fashion. Applied and theoretical researchers on real estate
@@ -142,30 +142,32 @@ The data set is distributed as an \texttt{R} package, named
 repository\footnote{\url{https://github.com/paezha/idealista18}}. The
 open data product is made available under the
 \href{http://opendatacommons.org/licenses/odbl/1.0/}{Open Database License}.
-For transparency, we also share the randomisation process applied to the
+For transparency, we also share the randomization process applied to the
 original data in the aforementioned Github repository.
 
 \hypertarget{data-description}{%
 \section{Data description}\label{data-description}}
 
 The open data product \{idealista18\} is an \texttt{R} package composed
-of nine objects, three objects for each of the three main Spanish
-cities: Barcelona, Madrid, and Valencia. For each city, dwelling
-listings, neighborhood polygons, and a set of points of interest have
-been included in the package.
+of ten objects, three objects for each of the three main Spanish cities:
+Barcelona, Madrid, and Valencia. For each city, dwelling listings,
+neighborhood polygons, and a set of points of interest have been
+included in the package. There is in addition a data object with the
+number of dwellings by district (a collection of neighborhoods),
+according to the Spanish cadastre.
 
 The data provider (idealista.com) is a leading real estate portal in
-Spain, on par with Fotocasa. Smaller portals include Habitaclia and
-Milanuncios, the latter focusing almost exclusively on individual (i.e.,
-non-professional) advertisers. In September 2021, according to data from
-Similarweb (a site specialized in sites' traffic volume comparison),
-there were a total of 103 million page views on real estate portals in
-Spain. Of this, 94\% of traffic was concentrated on four portals, of
-which idealista was the most important, followed by Fotocasa,
-Habitaclia, and Pisos.com. Traffic is also highly concentrated, and
-idealista.com was the the leader by far with 58.6 monthly million visits
-(57\% of the total traffic) compared to its closest competitor with 19.9
-million visits (19.3 \% of total traffic).
+Spain, on par with its nearest competitor Fotocasa. Smaller listing
+portals include Habitaclia and Milanuncios, the latter focusing almost
+exclusively on individual (i.e., non-professional) advertisers. In
+September 2021, according to data from Similarweb (a site specialized in
+sites' traffic volume comparison), there were a total of 103 million
+page views on real estate portals in Spain. Of this, 94\% of traffic was
+concentrated on four portals, of which idealista was the most important,
+followed by Fotocasa, Habitaclia, and Pisos.com. Traffic is also highly
+concentrated, and idealista.com was the the leader by far with 58.6
+monthly million visits (57\% of the total traffic) compared to its
+closest competitor with 19.9 million visits (19.3 \% of total traffic).
 
 As a result of its share of advertisments, idealista.com covers fairly
 well all segments of the Spanish market, including both individual and
@@ -365,9 +367,9 @@ Madrid, they combined four areas into two.
 \begin{figure}
 \centering
 \includegraphics{main_EPB_files/figure-latex/unnamed-chunk-1-1.pdf}
-\caption{\label{fig:all-polygons}Quantile maps of the number of
-dwellings in each neighborhood. Boundary for Barcelona (Left), Madrid
-(Center), and Valencia (Right).}
+\caption{\label{fig:all-polygons}Number of listings in each
+neighborhood. Boundary for Barcelona (Top), Madrid (Center), and
+Valencia (Bottom).}
 \end{figure}
 
 There are a total of 69 neighborhoods in Barcelona, 135 in Madrid, and
@@ -384,9 +386,9 @@ different parts of each city in 2018.
 \begin{figure}
 \centering
 \includegraphics{main_EPB_files/figure-latex/unnamed-chunk-2-1.pdf}
-\caption{\label{fig:districts}Quantile maps of the percentage of
-listings relative to total number of dwellings by district. Boundary for
-Barcelona (Left), Madrid (Center), and Valencia (Right).}
+\caption{\label{fig:districts}Percentage of listings relative to total
+number of dwellings by district. Boundary for Barcelona (Top), Madrid
+(Center), and Valencia (Bottom).}
 \end{figure}
 
 \hypertarget{points-of-interest}{%
@@ -409,9 +411,10 @@ location (coordinates).
 
 In terms of the asking prices, the original values were obfuscated with
 the addition or subtraction of a random percentage of their original
-values, ranging from -2.5\% to +2.5\%. Since asking prices are usually
-multiples of 1,000, after the first price modification, the prices were
-aligned to multiples of 1,000.
+values, ranging from \(-2.5%
+\) to \(+2.5%
+\). Since asking prices are usually multiples of 1,000, after the first
+price modification, the prices were aligned to multiples of 1,000.
 
 \begin{algorithm}[!ht]
  \KwData{all idealista listings}
