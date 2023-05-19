@@ -2,14 +2,26 @@
 title: "A geo-referenced micro-data set of real estate listings for Spain’s three largest cities - Response to referees"
 output: pdf_document
 bibliography: bibEPB.bib
+link-citations: yes
+linkcolor: blue
 ---
+
+```{r load-packages, include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(glue)
+library(gridExtra)
+library(idealista18)
+library(kableExtra)
+library(sf)
+```
 
 <!--
 ```{r install-data-package, include = FALSE}
 # Run only once if needed to install data package `sobiEquity`
 if (!require("idealista18", character.only = TRUE)) {
-      devtools::install_github("https://github.com/paezha/idealista18")
-  }
+devtools::install_github("https://github.com/paezha/idealista18")
+}
 ```
 
 ```{r setup,  cache=FALSE, warning = FALSE, include=FALSE, message = FALSE}
@@ -64,22 +76,22 @@ To better place in context the coverage of the {idealista18} dataset, Table \ref
 
 ```{=tex}
 \begin{table}[!ht]
-    \centering
-      \caption{Total properties and transactionst three Spanish cities. Year 2018} 
-  \label{tab:transactions} 
-    \begin{tabular}{lccccc}
-        City & Total properties (P) & Total transactions (T) & Listings (L) & L/P & T/L \\
-        \hline
-        Barcelona &  789,740  &  56,012  &  61,329  & 7.8\% & 81.3\%  \\ 
-        Madrid &  1,545,397  &  76,603  &  94,802  & 6.1\%  & 80.8\% \\ 
-        Valencia &  416,004  &  30,615  &  33,593  & 8.1\% & 91.1\% \\ 
-        \hline
-        Total &  2,751,141  &  163,230  &  189,724  & 6.9\% & 86.0\% \\ 
-        \hline
-        \multicolumn{6}{l}{{\footnotesize \textbf{Sources}}}\\
-        \multicolumn{6}{l}{{\footnotesize Total properties (P): Ministerio Español de Hacienda y Función Pública}}\\
-        \multicolumn{6}{l}{{\footnotesize Total transactions (T): Instituto Nacional de Estadística}}\\
-    \end{tabular}
+\centering
+\caption{Total properties and transactionst three Spanish cities. Year 2018} 
+\label{tab:transactions} 
+\begin{tabular}{lccccc}
+City & Total properties (TP) & Total transactions (TT) & Listings (L) & L/TP & TT/L \\
+\hline
+Barcelona &  789,740  &  56,012  &  61,329  & 7.8\% & 81.3\%  \\ 
+Madrid &  1,545,397  &  76,603  &  94,802  & 6.1\%  & 80.8\% \\ 
+Valencia &  416,004  &  30,615  &  33,593  & 8.1\% & 91.1\% \\ 
+\hline
+Total &  2,751,141  &  163,230  &  189,724  & 6.9\% & 86.0\% \\ 
+\hline
+\multicolumn{6}{l}{{\footnotesize \textbf{Sources}}}\\
+\multicolumn{6}{l}{{\footnotesize Total properties (P): Ministerio Español de Hacienda y Función Pública}}\\
+\multicolumn{6}{l}{{\footnotesize Total transactions (T): Instituto Nacional de Estadística}}\\
+\end{tabular}
 \end{table}
 ```
 
@@ -93,12 +105,12 @@ We appreciate the opportunity to delve more deeply into this issue, as it may be
 
 Now the longer story.
 
-The masked prices ($P$) in the dataset are calculated as the sum of two random variables, the original raw prices ($RP$) and a random masking variable ($\eta$). The masking variable is generated as follows:
+The masked prices are given by:
 $$
-\eta = RP\cdot\epsilon
+P = RP\cdot \epsilon
 $$
 
-The masking variable uses values drawn at random from the uniform distribution with parameters $b = 0.025$ and $a = -0.025$:
+\noindent where $\epsilon$ is drawn from the uniform distribution with parameters $a=0.975$ and $b=1.025$:
 $$
 f(\epsilon) = 
 \begin{cases}
@@ -107,59 +119,147 @@ f(\epsilon) =
 \end{cases}
 $$
 
-The effect of $\epsilon$ is to produce a random percentage of the raw price ($\pm 2.5\%$). The expectation of $\epsilon$ given these parameters is:
+The expectation of $\epsilon$ given these parameters is:
 $$
-E[\epsilon] = \frac{a+b}{2} = \frac{-0.025 + 0.025}{2} = 0
-$$
-
-\noindent and the variance is:
-$$
-\mathrm{V}[\epsilon]=\frac{(b - a)^2}{12} = \frac{25}{120000}
+E[\epsilon] = \frac{a+b}{2} = \frac{0.975 + 1.025}{2} = 1
 $$
 
-The masked prices $P$ are the raw prices plus the masking variable:
+\noindent and the variance of $\epsilon$ is:
 $$
-P = RP + RP\cdot\epsilon = RP + \eta
-$$
-
-Since the mean of $\epsilon$ is zero, and $RP$ and $\epsilon$ are independent, it turns out that the mean of the masking variable is zero:
-$$
-\mathrm{E}[\eta] = \mathrm{E}[RP\cdot\epsilon] = \mathrm{E}[RP] \cdot \mathrm{E}[\epsilon] = 0
+\mathrm{V}[\epsilon]=\frac{(b - a)^2}{12} = \frac{1}{4800}
 $$
 
-It follows that the masked prices are unbiased since their expectation is identical to the expectation of the raw prices:
+Therefore, the expectation of the masked prices is:
 $$
-\mathrm{E}[P] = \mathrm{E}[RP] + \mathrm{E}[\eta] = \mathrm{E}[RP]
-$$
-
-Now let us examine the covariance. Again, since $RP$ and $\epsilon$ are independent, the variance of the masking variable $\eta$ is:
-$$
-\mathrm{V}[\eta] = \mathrm{V}[RP\cdot\epsilon] = \mathrm{V}[RP]\cdot\mathrm{V}[\epsilon] + \mathrm{V}[RP]\cdot(\mathrm{E}[\epsilon])^2 + \mathrm{V}[\epsilon]\cdot(\mathrm{E}[RP])^2  
+\mathrm{E}[P] = \mathrm{E}[RP\cdot \epsilon] = \mathrm{E}[RP]\cdot \mathrm{E}[\epsilon] = \mathrm{E}[RP]
 $$
 
-Considering that $\mathrm{E}[\epsilon] = 0$, then:
+In other words, the masked prices $P$ are an unbiased version of the raw prices $RP$.
+
+Considering that $RP$ and $\epsilon$ are independent, the variance of the masked prices is as follows:
 $$
-\mathrm{V}[\eta] = \mathrm{V}[RP]\cdot\mathrm{V}[\epsilon] + \mathrm{V}[\epsilon]\cdot(\mathrm{E}[RP])^2 = \mathrm{V}[\epsilon]\cdot\big(\mathrm{V}[RP] + (\mathrm{E}[RP])^2\big) = \frac{25}{120000}\big(\mathrm{V}[RP] + (\mathrm{E}[RP])^2\big)  
+\mathrm{V}[P] = \mathrm{V}[RP\cdot \epsilon] = \mathrm{V}[RP]\cdot \mathrm{V}[\epsilon] + \mathrm{V}[RP]\cdot (\mathrm{E}[\epsilon])^2 + \mathrm{V}[\epsilon]\cdot(\mathrm{E}[RP])^2
 $$
 
-Accordingly, the variance of the masked prices is:
+Since $\mathrm{E}[\epsilon] = 1$, we have that:
 $$
-\mathrm{V}[P] = \mathrm{V}[RP + \eta] = \mathrm{V}[RP] + \mathrm{V}[\eta] + 2\mathrm{Cov}[RP,\eta] 
-$$
-
-If we recall that $\mathrm{E}[\eta] = 0$ and $\mathrm{E}[\epsilon] = 0$, the covariance of $RP$ and $\eta$ can be shown to be zero:
-$$
-\mathrm{Cov}[RP,\eta] = \mathrm{E}[RP\cdot \eta] - \mathrm{E}[RP]\cdot \mathrm{E}[\eta] = \mathrm{E}[RP\cdot \eta] = \mathrm{E}[RP^2\cdot \epsilon] = \mathrm{E}[RP^2]\cdot \mathrm{E}[\epsilon] = 0
+\mathrm{V}[P] = \mathrm{V}[RP]\cdot \mathrm{V}[\epsilon] + \mathrm{V}[RP] + \mathrm{V}[\epsilon]\cdot(\mathrm{E}[RP])^2 = \mathrm{V}[RP]\cdot (1 + \mathrm{V}[\epsilon]) + \mathrm{V}[\epsilon]\cdot(\mathrm{E}[RP])^2
 $$
 
-From the above we can conclude that the variance of the masked prices is:
+Solving for $\mathrm{V}[RP]$, and replacing the expectation of the raw prices by its unbiased version ($\mathrm{E}[P]$), yields the variance of the raw prices:
 $$
-\mathrm{V}[P] = \mathrm{V}[RP] + \mathrm{V}[\eta] = \mathrm{V}[RP] + \frac{25}{120000}\big(\mathrm{V}[RP] + (\mathrm{E}[RP])^2\big) = \frac{120025}{120000}\cdot\mathrm{V}[RP] + \frac{25}{120000}\cdot(\mathrm{E}[RP])^2
+\mathrm{V}[RP] = \frac{\mathrm{V}[P] - \frac{1}{4800}\cdot (\mathrm{E}[P])^2}{1 + \frac{1}{4800}}
 $$
 
-\noindent which is $0.0208%$ greater than the variance of the raw prices, plus $0.0208%$ of the square of the mean of the raw prices.
+Table \ref{tab:variance} reports the mean and the standard deviation of the prices in the package, and the standard deviation of the raw prices calculated using the formula above. The last column of the table can be read as an inflation factor. We see that the variance of the masked prices is inflated with respect to the variance of the original values by less than $1\%$ in all cases examined. Users can use the formula above to calculate the inflation of the variance if they use subsamples other than those shown, to assess the potential impacts of the masking (e.g., when computing intervals of confidence).
 
-What does this mean for users of the data? The masked prices are an unbiased version of the raw prices, but they have a somewhat larger variance than the original (unreported) prices.
+```{r echo = FALSE}
+data("Barcelona_Sale")
+data("Madrid_Sale")
+data("Valencia_Sale")
+```
+
+```{r echo=FALSE}
+# Barcelona
+Barcelona_Price <- Barcelona_Sale |>
+  select(PRICE, PERIOD) |>
+  st_drop_geometry()
+
+BQ <- Barcelona_Price |>
+  group_by(PERIOD) |>
+  summarize(mean = mean(PRICE),
+            variance = var(PRICE),
+            .groups = "drop") |>
+  mutate(sq_mean = mean^2,
+         var_raw = (variance - sq_mean/4800)/(1 + 1/4800),
+         inflation = variance/var_raw,
+         CITY = "BARCELONA")
+
+BT <- Barcelona_Price |>
+  summarize(mean = mean(PRICE),
+            variance = var(PRICE),
+            .groups = "drop") |>
+  mutate(PERIOD = "2018",
+         sq_mean = mean^2,
+         var_raw = (variance - sq_mean/4800)/(1 + 1/4800),
+         inflation = variance/var_raw,
+         CITY = "BARCELONA")
+
+# Madrid
+Madrid_Price <- Madrid_Sale |>
+  select(PRICE, PERIOD) |>
+  st_drop_geometry()
+
+MQ <- Madrid_Price |>
+  group_by(PERIOD) |>
+  summarize(mean = mean(PRICE),
+            variance = var(PRICE),
+            .groups = "drop") |>
+  mutate(sq_mean = mean^2,
+         var_raw = (variance - sq_mean/4800)/(1 + 1/4800),
+         inflation = variance/var_raw,
+         CITY = "MADRID")
+
+MT <- Madrid_Price |>
+  summarize(mean = mean(PRICE),
+            variance = var(PRICE),
+            .groups = "drop") |>
+  mutate(PERIOD = "2018",
+         sq_mean = mean^2,
+         var_raw = (variance - sq_mean/4800)/(1 + 1/4800),
+         inflation = variance/var_raw,
+         CITY = "MADRID")
+
+# Valencia
+Valencia_Price <- Valencia_Sale |>
+  select(PRICE, PERIOD) |>
+  st_drop_geometry()
+
+VQ <- Valencia_Price |>
+  group_by(PERIOD) |>
+  summarize(mean = mean(PRICE),
+            variance = var(PRICE),
+            .groups = "drop") |>
+  mutate(sq_mean = mean^2,
+         var_raw = (variance - sq_mean/4800)/(1 + 1/4800),
+         inflation = variance/var_raw,
+         CITY = "VALENCIA")
+
+VT <- Valencia_Price |>
+  summarize(mean = mean(PRICE),
+            variance = var(PRICE),
+            .groups = "drop") |>
+  mutate(PERIOD = "2018",
+         sq_mean = mean^2,
+         var_raw = (variance - sq_mean/4800)/(1 + 1/4800),
+         inflation = variance/var_raw,
+         CITY = "VALENCIA")
+
+Q <- rbind(BQ,
+           BT,
+           MQ,
+           MT,
+           VQ,
+           VT)
+
+Q |>
+  mutate(PERIOD = case_when(PERIOD == "201803" ~ "Q1",
+                            PERIOD == "201806" ~ "Q2",
+                            PERIOD == "201809" ~ "Q3",
+                            PERIOD == "201812" ~ "Q4",
+                            PERIOD == "2018" ~ "2018"),
+         sd = round(sqrt(variance), 2),
+         sd_raw = round(sqrt(var_raw), 2),
+         inflation = round(inflation, 5),
+         across(c(mean, sd, sd_raw, inflation), ~ prettyNum(.x, big.mark = ",")))  |>
+  select(CITY, PERIOD, mean, sd, sd_raw, inflation) |>
+  kableExtra::kable(booktabs = TRUE,
+                    caption = "\\label{tab:variance}Inflation of the variance of masked prices with respect to raw prices",
+                    col.names = c("City", "Period", "mean(P)", "sd(P)", "sd(RP)", "sd(P)/sd(RP)")) |>
+  collapse_rows(columns = 1) |>
+  footnote(general = c("P: masked prices; ", "RP: raw prices; ", "sd: standard deviation (square root of the variance)"),
+           threeparttable = T)
+```
 
 ---
 
@@ -170,13 +270,6 @@ What does this mean for users of the data? The masked prices are an unbiased ver
 After this comment we included a new figure in the paper to display the percentage of listings relative to the total number of dwellings by district (see Figure \ref{fig:districts} below).
 
 ```{r, echo = FALSE,message=FALSE, fig.height=8, fig.cap="\\label{fig:districts}Percentage of listings relative to total number of dwellings by district. Boundary for Barcelona (Top), Madrid (Center), and Valencia (Bottom)."}
-library(dplyr)
-library(ggplot2)
-library(glue)
-library(gridExtra)
-library(idealista18)
-library(sf)
-
 data("properties_by_district")
 
 # Barcelona
@@ -227,7 +320,7 @@ plot5 <- ggplot(data = Madrid_prop) +
   geom_sf(aes(fill = Quantile),
           color = NA,
           size=.2) +
-    geom_sf(data = Madrid_Polygons,
+  geom_sf(data = Madrid_Polygons,
           fill = NA) +
   theme_bw(base_size = 6) +
   scale_fill_manual(values=c("#FFFEDE",
@@ -258,7 +351,7 @@ plot6 <- ggplot(data = Valencia_prop) +
   geom_sf(aes(fill = Quantile),
           color = NA,
           size=.2) +
-    geom_sf(data = Valencia_Polygons,
+  geom_sf(data = Valencia_Polygons,
           fill = NA) +
   theme_bw(base_size = 6) +
   scale_fill_manual(values=c("#FFFEDE",
