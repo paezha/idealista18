@@ -32,6 +32,20 @@ set.seed(1234)
 ```
 -->
 
+To the Editor:
+
+We have responded to the comments of the reviewers in a thorough and conscientious manner. This has made the paper longer.
+
+At this point, the paper has been stuck in limbo for months with the Editorial Assistant, who initially requested that we cut the length of the paper, but did not indicate just _what_ to cut. In our opinion, the paper needs to be seen by an Editor to decide whether the paper _needs_ to be cut, and if so, _what_ can be left out without compromising the changes made to satisfy the requests of the reviewers.
+
+More generally, to avoid this situation in the future with Data Papers, the editors need to:
+
+1. Instruct reviewers as to the expectations for criticism. If the papers cannot be longer, they should not ask questions that require long responses; and/or
+1. Instruct the Editorial Assistant that papers _will be_ longer after revisions; and/or
+1. Provide clear guidelines to the authors to ensure that they know what is essential to revise so that they do not spend time and effort responding to critiques that the Editors may find superfluous.
+
+Below are our detailed responses to the comments from the Reviewers.
+
 Referee: 1
 
 >Comments to the Author  
