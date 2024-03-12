@@ -24,14 +24,15 @@ header-includes:
 ---
 
 ```{r load-packages, include=FALSE}
-library(dplyr)
-library(ggplot2)
-library(glue)
-library(gridExtra)
-library(idealista18)
-library(kableExtra)
-library(xtable)
-library(sf)
+library(dplyr) # A Grammar of Data Manipulation
+library(ggplot2) # Create Elegant Data Visualisations Using the Grammar of Graphics
+library(glue) # Interpreted String Literals
+library(gridExtra) # Miscellaneous Functions for "Grid" Graphics
+library(idealista18) # Idealista 2018 Data Package
+library(kableExtra) # Construct Complex Table with 'kable' and Pipe Syntax
+library(patchwork) # The Composer of Plots
+library(sf) # Simple Features for R
+library(xtable) # Export Tables to LaTeX or HTML
 ```
 
 ```{r load-data, include=FALSE}
@@ -64,7 +65,7 @@ To contribute to the growing inventory of international micro-data sets of real 
 
 The data set has been supplied directly by Idealista, and therefore is clean and free from download errors. However, to comply with data legislation, we have masked the prices by applying a small amount of random noise that will not bias the main results derived from its usage. 
 
-This micro-data set can be used to benchmark new methods in a reproducible fashion  [e.g., @rey2023using]. Applied and theoretical researchers on real estate mass appraisal and valuation methods might use this dataset to canonically compare the performance of their proposed comparable and hedonic models, among others. The data can also be used to study the segmentation of housing submarkets and related topics such as the impact of suburban areas on house prices. The listings have been enriched with official information from the Spanish cadastre along with other relevant geographical features, such as distance to urban points of interest. In any case, the data might be easily extended by spatially joining other datasets that contain information at administrative, census tract, or postal code levels.
+This micro-data set can be used to benchmark new methods in a reproducible fashion  [e.g., @rey2024using]. Applied and theoretical researchers on real estate mass appraisal and valuation methods might use this dataset to canonically compare the performance of their proposed comparable and hedonic models, among others. The data can also be used to study the segmentation of housing submarkets and related topics such as the impact of suburban areas on house prices. The listings have been enriched with official information from the Spanish cadastre along with other relevant geographical features, such as distance to urban points of interest. In any case, the data might be easily extended by spatially joining other datasets that contain information at administrative, census tract, or postal code levels.
 
 The data set is distributed as an `R` package and it can be accessed from a public Github repository\footnote{\url{https://github.com/paezha/idealista18}}. The open data product is made available under the \href{http://opendatacommons.org/licenses/odbl/1.0/}{Open Database License}. For transparency, we also share the masking process applied to the original data in the aforementioned Github repository. 
 
@@ -377,12 +378,18 @@ plot6 <- ggplot(data = Valencia_prop) +
         legend.title = element_blank(),
         legend.key.size = unit(0.2, 'cm'),
         text = element_text(size=4))
+
+fig_01 <- ((plot1 + plot4)/(plot2 + plot5)/(plot3 + plot6))
+
+ggsave(fig_01,
+       filename = "main_EPB_figures/fig-01.jpeg",
+       height = 6.5,
+       units = "in")
 ```
 
 ```{r figure-listings, echo=FALSE, fig.height=6.5, message=FALSE, fig.height=6.5, fig.cap="\\label{fig:all-polygons}Listings by neighborhood (left column) and percentage of listings relative to total dwellings (right column). Barcelona (Top), Madrid (Center), and Valencia (Bottom)."}
 
-library(patchwork)
-(plot1 + plot4)/(plot2 + plot5)/(plot3 + plot6)
+fig_01
 ```
 
 ## Points of Interest
@@ -571,7 +578,7 @@ Algorithm \ref{algo:coordinates-displacement} iteratively displaces the coordina
 Figure \ref{fig:Anonymizing} (right) shows the histogram of the displacements in meters for all the listings in the city of Valencia. The average distance between the original and masked coordinates is 45 meters.
 
 ```{r figure-masking-coordinates, echo = FALSE, out.width=c("29%","37%"), out.height="20%",fig.cap="\\label{fig:Anonymizing}(Left) Masking coordinates. Spatial range. (Right) Coordinate displacement in meters (Valencia)",fig.show='hold',fig.align='center'}
-knitr::include_graphics(c("EPB_files/points-moved-image.png","EPB_files/coordinates-valencia.png"))
+knitr::include_graphics(c("main_EPB_figures/points-moved-image.jpeg","main_EPB_figures/coordinates-valencia.jpeg"))
 ```
 
 # Conclusion
@@ -585,4 +592,5 @@ Authors One and Two are employed by Idealista. They have been granted permission
 # Acknowledgments
 
 The authors wish to thank Alessandro Galesi for their support in the paper revision and Juan Ramón Selva for collecting and cleaning the spatial data. This work has been partially funded by the Spanish Ministry of Economy and Competitiveness Grants PID2019-107800GB-100, but it was not funded by any of Canada's research councils.
+
 
