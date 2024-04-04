@@ -5,5 +5,5 @@ citEntry(entry="Article",
   title = "{A geo-referenced micro-data set of real estate listings for Spain’s three largest cities}",
   year = 2022,
   journal = "{Environment and Planning B}",
-  textVersion = "Rey-Blanco, D., 2022. Title. Environment and Planning B XX (X), XXX-XXX, https://doi.org/"
+  textVersion = "Rey-Blanco, D. et al. 2024. Title. Environment and Planning B XX (X), XXX-XXX, https://doi.org/10.1177/23998083241242844"
 )

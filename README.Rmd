@@ -36,6 +36,16 @@ knitr::opts_chunk$set(
 
 {idealista18} is an open data product with big geo-referenced micro-data sets of 2018 real estate listings in Spain. These data were originally published on the idealista.com real estate website. The data sets are for the three largest cities in Spain: Madrid (n = 94,815 observations), Barcelona (n = 61,486 observations), and Valencia (n = 33,622 observations), and include approximate coordinates of properties (latitude and longitude), asking prices of each listed dwelling, and several variables of indoor characteristics. The listings were enriched with official information from the Spanish cadastre (e.g., building material quality) plus other relevant geographical features, such as distance to urban points of interest. Along with the real estate listings, the data product also includes neighborhood boundaries for each city. The data sets are offered as a fully documented R package and are available for scientific and educational purposes, particularly for geo-spatial studies.
 
+## Paper
+
+**A geo-referenced micro-data set of real estate listings for Spain’s three largest cities**
+
+David Rey-Blanco and Pelayo Arbues (idealista)  
+Fernando Lopez (Universidad Politecnica de Cartagena)  
+Antonio Paez (McMaster University)  
+
+Published in *Environment and Planning B: Urban Analytics and City Science* (https://doi.org/10.1177/23998083241242844)
+
 ## Installation
 
 <!--

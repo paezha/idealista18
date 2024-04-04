@@ -5,8 +5,8 @@
 
 <!-- badges: start -->
 
-[![License: CC BY-NC-SA
-4.0](https://img.shields.io/badge/license-ODbLv1.0-blue.svg)](https://opendatacommons.org/licenses/odbl/1-0/)
+[![License:
+ODbLv1.0](https://img.shields.io/badge/license-ODbLv1.0-blue.svg)](https://opendatacommons.org/licenses/odbl/1-0/)
 
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
@@ -51,12 +51,23 @@ each city. The data sets are offered as a fully documented R package and
 are available for scientific and educational purposes, particularly for
 geo-spatial studies.
 
+## Paper
+
+**A geo-referenced micro-data set of real estate listings for Spain’s
+three largest cities**
+
+David Rey-Blanco and Pelayo Arbues (idealista)  
+Fernando Lopez (Universidad Politecnica de Cartagena)  
+Antonio Paez (McMaster University)
+
+Published in *Environment and Planning B: Urban Analytics and City
+Science* (<https://doi.org/10.1177/23998083241242844>)
+
 ## Installation
 
 <!--
 You can install the released version of idealista18 from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
+&#10;``` r
 install.packages("idealista18")
 ```
 -->
@@ -78,6 +89,7 @@ description of the data is available in the help section of the package.
 
 ``` r
 library(dplyr) # A Grammar of Data Manipulation
+#> Warning: package 'dplyr' was built under R version 4.2.2
 #> 
 #> Attaching package: 'dplyr'
 #> The following objects are masked from 'package:stats':
@@ -87,11 +99,15 @@ library(dplyr) # A Grammar of Data Manipulation
 #> 
 #>     intersect, setdiff, setequal, union
 library(ggplot2) # Create Elegant Data Visualisations Using the Grammar of Graphics
+#> Warning: package 'ggplot2' was built under R version 4.2.2
 library(idealista18) # Idealista 2018 Data Package
+#> Warning: package 'idealista18' was built under R version 4.2.2
 #library(kableExtra) # Construct Complex Table with 'kable' and Pipe Syntax
 library(sf) # Simple Features for R
-#> Linking to GEOS 3.9.1, GDAL 3.3.2, PROJ 7.2.1; sf_use_s2() is TRUE
+#> Warning: package 'sf' was built under R version 4.2.2
+#> Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE
 library(skimr) 
+#> Warning: package 'skimr' was built under R version 4.2.2
 ```
 
 ## Dwelling listings
