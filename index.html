@@ -63,12 +63,20 @@
 <p><img src="https://img.shields.io/github/issues/paezha/idealista18" alt="GitHub issues"><img src="https://img.shields.io/github/release-date/paezha/idealista18" alt="GitHub release"><img src="https://img.shields.io/github/commit-activity/y/paezha/idealista18" alt="GitHub commit activity"><img src="https://img.shields.io/github/last-commit/paezha/idealista18" alt="GitHub last commit"><!-- badges: end --></p>
 <p>{idealista18} is an open data product with big geo-referenced micro-data sets of 2018 real estate listings in Spain. These data were originally published on the idealista.com real estate website. The data sets are for the three largest cities in Spain: Madrid (n = 94,815 observations), Barcelona (n = 61,486 observations), and Valencia (n = 33,622 observations), and include approximate coordinates of properties (latitude and longitude), asking prices of each listed dwelling, and several variables of indoor characteristics. The listings were enriched with official information from the Spanish cadastre (e.g., building material quality) plus other relevant geographical features, such as distance to urban points of interest. Along with the real estate listings, the data product also includes neighborhood boundaries for each city. The data sets are offered as a fully documented R package and are available for scientific and educational purposes, particularly for geo-spatial studies.</p>
 <div class="section level2">
+<h2 id="paper">Paper<a class="anchor" aria-label="anchor" href="#paper"></a>
+</h2>
+<p><strong>A geo-referenced micro-data set of real estate listings for Spain’s three largest cities</strong></p>
+<p>David Rey-Blanco and Pelayo Arbues (idealista)<br>
+Fernando Lopez (Universidad Politecnica de Cartagena)<br>
+Antonio Paez (McMaster University)</p>
+<p>Published in <em>Environment and Planning B: Urban Analytics and City Science</em> (<a href="https://doi.org/10.1177/23998083241242844" class="external-link uri">https://doi.org/10.1177/23998083241242844</a>)</p>
+</div>
+<div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <!--
 You can install the released version of idealista18 from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
+&#10;``` r
 install.packages("idealista18")
 ```
 -->
@@ -84,6 +92,7 @@ install.packages("idealista18")
 <p>There are nine data objects in the package: three objects for each of the cities included. For each city, dwelling listings, neighborhood polygons, and a set of points of interest have been included in the R package. The following subsections describe each object. A full description of the data is available in the help section of the package.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="co"># A Grammar of Data Manipulation</span></span>
+<span><span class="co">#&gt; Warning: package 'dplyr' was built under R version 4.2.2</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
 <span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
@@ -93,11 +102,15 @@ install.packages("idealista18")
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co"># Create Elegant Data Visualisations Using the Grammar of Graphics</span></span>
+<span><span class="co">#&gt; Warning: package 'ggplot2' was built under R version 4.2.2</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://paezha.github.io/idealista18/">idealista18</a></span><span class="op">)</span> <span class="co"># Idealista 2018 Data Package</span></span>
+<span><span class="co">#&gt; Warning: package 'idealista18' was built under R version 4.2.2</span></span>
 <span><span class="co">#library(kableExtra) # Construct Complex Table with 'kable' and Pipe Syntax</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span> <span class="co"># Simple Features for R</span></span>
-<span><span class="co">#&gt; Linking to GEOS 3.9.1, GDAL 3.3.2, PROJ 7.2.1; sf_use_s2() is TRUE</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/skimr/" class="external-link">skimr</a></span><span class="op">)</span> </span></code></pre></div>
+<span><span class="co">#&gt; Warning: package 'sf' was built under R version 4.2.2</span></span>
+<span><span class="co">#&gt; Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/skimr/" class="external-link">skimr</a></span><span class="op">)</span> </span>
+<span><span class="co">#&gt; Warning: package 'skimr' was built under R version 4.2.2</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="dwelling-listings">Dwelling listings<a class="anchor" aria-label="anchor" href="#dwelling-listings"></a>
 </h2>
@@ -2027,7 +2040,7 @@ install.packages("idealista18")
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://opendatacommons.org/licenses/odbl/1-0/" class="external-link"><img src="https://img.shields.io/badge/license-ODbLv1.0-blue.svg" alt="License: CC BY-NC-SA 4.0"></a></li>
+<li><a href="https://opendatacommons.org/licenses/odbl/1-0/" class="external-link"><img src="https://img.shields.io/badge/license-ODbLv1.0-blue.svg" alt="License: ODbLv1.0"></a></li>
 </ul>
 </div>
 
