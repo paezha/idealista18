@@ -1,51 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://paezha.github.io/idealista18/404.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/index.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/reference/Barcelona_POIS.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/reference/Barcelona_Polygons.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/reference/Barcelona_Sale.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/reference/Madrid_POIS.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/reference/Madrid_Polygons.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/reference/Madrid_Sale.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/reference/Valencia_POIS.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/reference/Valencia_Polygons.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/reference/Valencia_Sale.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/reference/idealista18.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://paezha.github.io/idealista18/reference/properties_by_district.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://paezha.github.io/idealista18/404.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/LICENSE.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/authors.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/index.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/reference/Barcelona_POIS.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/reference/Barcelona_Polygons.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/reference/Barcelona_Sale.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/reference/Madrid_POIS.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/reference/Madrid_Polygons.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/reference/Madrid_Sale.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/reference/Valencia_POIS.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/reference/Valencia_Polygons.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/reference/Valencia_Sale.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/reference/idealista18.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/reference/index.html</loc></url>
+<url><loc>https://paezha.github.io/idealista18/reference/properties_by_district.html</loc></url>
 </urlset>
+
